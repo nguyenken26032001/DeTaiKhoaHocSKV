@@ -1,0 +1,60 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.panel-heading {
+  position: relative;
+}
+.link_file {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  padding: 10px 25px;
+  background-color: #2979ff;
+  border-radius: 8px;
+  color: white;
+}
+.link_file:hover {
+  color: #999;
+}
+.scrollTable thead th {
+  position: sticky;
+  top: 0;
+}
+th {
+  background-color: #628cd5;
+  color: white;
+}
+.scrollTable {
+  height: 450px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.scrollTable::-webkit-scrollbar {
+  display: none;
+}
+#home {
+  color: #999;
+  margin: 5px 20px;
+}
+.text__Article {
+  text-align: left;
+  display: -webkit-box;
+  line-height: 1.2;
+  word-break: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+tr:hover {
+  cursor: pointer;
+}
+/* * button delete Article of file showArticleDetail */
+.primary {
+  position: relative;
+}
+.delete {
+  position: absolute;
+  right: 0;
+  top: 2px;
+}

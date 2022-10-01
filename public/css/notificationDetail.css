@@ -1,0 +1,24 @@
+.prevInformation__wrapper {
+  padding-left: 10px;
+}
+
+.notification__title--detail {
+  font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 35px;
+  font-size: 30px;
+  margin-bottom: 30px;
+  margin-top: 80px;
+  padding-left: 10px;
+}
+
+.notification_content--detail {
+  padding: 10px;
+  font-size: 17px;
+  line-height: 1.5;
+  margin-bottom: 50px;
+}
+
+.icon-download {
+  color: orangered;
+}
