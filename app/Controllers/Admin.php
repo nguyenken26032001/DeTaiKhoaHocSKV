@@ -1,4 +1,7 @@
 <?php
+// if (isset($_SESSION['status'])) {
+
+
 class Admin extends controller
 {
     public $DepartmentModel;
@@ -21,12 +24,28 @@ class Admin extends controller
     }
     public function managerArticle()
     {
-        $data = $this->Article->getArticleList();
-        $this->view("masters", [
-            "page" => "admin/managerArticle",
-            "Action" => "1",
-            "dataArticle" => $data,
-        ]);
+        if (isset($_GET["search"])) {
+            $maDeTai = $_GET['search'];
+            $data = $this->Article->getArticleById($maDeTai);
+            if (!empty($data)) {
+                $this->view("masters", [
+                    "page" => "admin/managerArticle",
+                    "Action" => "1",
+                    "dataArticle" => $data,
+                ]);
+            } else {
+                $_SESSION['status'] = "Thông tin về đề tài này không tổn tại !";
+                $_SESSION['status_code'] = "error";
+                header("Location: ../Admin/managerArticle");
+            }
+        } else {
+            $data = $this->Article->getArticleList();
+            $this->view("masters", [
+                "page" => "admin/managerArticle",
+                "Action" => "1",
+                "dataArticle" => $data,
+            ]);
+        }
     }
     public function notification()
     {
@@ -157,4 +176,118 @@ class Admin extends controller
     {
         $this->Article->delArticle();
     }
+    //thống kê
+    function Statistical()
+    {
+        $data = $this->Model('thongke')->statistical_By_Derpartment();
+        $dataByType = $this->Model('thongke')->statistical_By_Type();
+        $this->view("masters", [
+            "page" => "admin/thongKe",
+            "thongKeByKhoa" => $data,
+            "thongKeByTypeArticle" => $dataByType,
+            "Action" => "6",
+        ]);
+    }
+    //feauter post article
+    function postArticle()
+    {
+        $listMaDeTai = $this->Article->getListMaDeTai();
+        $this->view("masters", [
+            "page" => "admin/PostArticle",
+            "Action" => "5",
+            "listMaDeTai" => $listMaDeTai,
+        ]);
+    }
+    function postManager()
+    {
+        if (isset($_GET["search"])) {
+            $maDeTai = $_GET['search'];
+            $data = $this->Model("postArticle")->getListPostById($maDeTai);
+            if (!empty($data)) {
+                $this->view("masters", [
+                    "page" => "admin/postManager",
+                    "Action" => "5",
+                    "dataPost" => $data,
+                ]);
+            } else {
+                $_SESSION['status'] = "Thông tin về đề tài này không tổn tại !";
+                $_SESSION['status_code'] = "error";
+                header("Location: ../Admin/postManager");
+            }
+        } else {
+            $data = $this->Model("postArticle")->getListPost();
+            $this->view("masters", [
+                "page" => "admin/postManager",
+                "Action" => "5",
+                "dataPost" => $data,
+            ]);
+        }
+    }
+    function AddPostArticle()
+    {
+        $check = $this->Model("postArticle")->addPostArticle();
+        if ($check == 0) {
+            header("Location: ../Admin/postArticle");
+        } else {
+            header("Location: ../Admin/postManager");
+        }
+    }
+    function postArticleDetail($maDeTai)
+    {
+        $data = $this->Model("postArticle")->getListPostById($maDeTai);
+        $dataMaDeTai = $this->Model("Article")->getListMaDeTai();
+        $this->view("masters", [
+            "page" => "admin/showPostArticleDetail",
+            "Action" => "5",
+            "dataPostById" => $data,
+            "dataMaDeTai" => $dataMaDeTai
+        ]);
+    }
+    function updatePostArticle()
+    {
+        $maDeTai = $_POST["maDeTai"];
+        $data = $this->Model("postArticle")->updatePostArticle();
+        if ($data === 1) {
+            header("Location: ../Admin/postManager");
+        } else {
+            $this->postArticleDetail($maDeTai);
+        }
+    }
+    function DelPost()
+    {
+        $this->Model("postArticle")->delPost();
+    }
+    //MANAGER BANNER
+    function banner()
+    {
+        $data = $this->Model("banner")->getbanner();
+        $this->view("masters", [
+            "page" => "admin/banner",
+            "Action" => "7",
+            "banner" => $data,
+        ]);
+    }
+    function updateBanner($id)
+    {
+        $data = $this->Model("banner")->getbannerById($id);
+        $this->view("masters", [
+            "page" => "admin/updateBanner",
+            "Action" => "7",
+            "bannerId" => $data,
+        ]);
+    }
+    function updatedBanner()
+    {
+        $id = $_POST["idBanner"];
+        $data = $this->Model("banner")->updateBannerId();
+        if ($data === 1) {
+            header("Location: ../Admin/banner");
+        } else {
+            $this->updateBanner($id);
+        }
+    }
 }
+// }
+//  else {
+//     header("Location:" . _WEB_ROOT_ . '/login');
+// }

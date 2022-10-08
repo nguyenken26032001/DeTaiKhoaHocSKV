@@ -12,7 +12,7 @@
     <div class="header">
         <div class="login">
             <i class="far fa-user"></i>
-            <a href="./Admin">ĐĂNG NHẬP</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin">ĐĂNG NHẬP</a>
         </div>
         <div class="header__content d-flex flex-column">
             <div class="header__content--right mb-2">
@@ -96,7 +96,7 @@
             </div>
         </nav>
     </div>
-    <form action="./" method=" GET">
+    <form action="" method=" GET">
         <div class="search">
             <input type="text" name="search" id="" class="inputSearch" placeholder="Searching......" />
             <button type="submit" class="button">Tìm Kiếm</button>

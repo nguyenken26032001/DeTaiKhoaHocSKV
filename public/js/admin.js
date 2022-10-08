@@ -149,3 +149,48 @@ function deleteNotification(id) {
     return false;
   }
 }
+function deletePost(id) {
+  var question = confirm("Bạn chắc chắn muốn xóa bài đăng này ?");
+  if (question) {
+    $.ajax({
+      type: "post",
+      url: `${pathRoot}/Admin/DelPost`,
+      data: {
+        maDeTai: id,
+      },
+      success: function (data) {
+        window.location = `${pathRoot}/Admin/postManager`;
+      },
+    });
+  } else {
+    return false;
+  }
+}
+//* thống kê dữ liệu
+function DuLieuThongKe(value) {
+  $.ajax({
+    type: "POST",
+    url: `${pathRoot}/Statistical/statistical_By_Derpartment`,
+    data: {
+      value: value,
+    },
+    success: function (data) {
+      $("#tableThongKe").html(data);
+    },
+  });
+}
+//read url when changed img banner
+function previewImage() {
+  var file = document.getElementById("file").files;
+  if (file.length > 0) {
+    var fileReader = new FileReader();
+
+    fileReader.onload = function (event) {
+      document
+        .getElementById("changeImage")
+        .setAttribute("src", event.target.result);
+    };
+
+    fileReader.readAsDataURL(file[0]);
+  }
+}

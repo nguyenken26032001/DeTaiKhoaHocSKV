@@ -2,7 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">ĐĂNG THÔNG BÁO MỚI</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notificationManager" class="link_file">Xem thông báo</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notificationManager" class="link_file btn btn-outline-info">Xem thông báo</a>
         </div>
         <form action="<?php echo _WEB_ROOT_ ?>/Admin/AddNotifi" method="post" enctype="multipart/form-data">
             <div class="form-group">

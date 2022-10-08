@@ -22,7 +22,7 @@
                 </p>
                 <p class="address--responsive"></p>
             </div>
-            <div class="contact d-flex align-items-center mb-4">
+            <div class="contact d-flex align-items-center mb-3">
                 <div class="contact__phone d-flex">
                     <ion-icon name="call" class="icon iconPhone"></ion-icon>
                     <p id="contact__phone--detail">0825871266</p>
@@ -34,7 +34,7 @@
         </div>
         <div class="copyRight d-flex">
             <div class="copyRight__left">
-                <span style="font-size: 16px; color: white" class="copyright">Copyright</span>
+                <span style="font-size: 17px; color: white" class="copyright">Copyright</span>
                 <i class="fa-regular fa-copyright icon icon--copyright"></i>
                 <span style="color: white" class="school">
                     2022, Trường Đại học Sư phạm kỹ thuật Vinh</span>

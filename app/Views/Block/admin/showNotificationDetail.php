@@ -20,6 +20,7 @@
                 <input type="file" id="address" name="fileUploads" multiple="multiple" style="margin-left: 59px;">
                 <span><?php echo $dataNotificationByID[0]['fileDinhKem']   ?></span>
             </div>
+            <input type="hidden" name="file_old" value="<?php echo $dataNotificationByID[0]['fileDinhKem']   ?>">
             <button type="submit" class="btn btn-success mt-3 px-5" name="updateNoti" id="add" style="margin-bottom: 30px;">Update</button>
         </form>
     </div>

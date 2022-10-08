@@ -33,11 +33,16 @@
                     <input type="text" name="nienKhoa" id="" class="form-control" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success d-flex mb-3 px-4 py-2" style="margin-left: 120px;" name="addClass"> THÊM</button>
+            <div class="button_feature d-flex justify-content-between">
+                <button type="submit" class="btn btn-success px-4 py-2" style="margin-left: 120px;" name="addClass"> THÊM</button>
         </form>
-        <div class="note d-flex">
-            <strong>NOTE: </strong>
-            <p class="font-italic ml-2"> Có thể thêm nhiều lớp cùng một khoa, mỗi lớp cách nhau bởi một dấu phẩy. </p>
-        </div>
+        <form action="<?php echo _WEB_ROOT_ ?>/import/importData" method="post" enctype="multipart/form-data">
+            <div class="import" style="margin-right:50px">
+                <input type="file" name="file_import" required style="width: 250px;">
+                <button class="btn btn-success px-3" name="import">IMPORT</button>
+                <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImport.xlsx" class="btn btn-success"> down load file mẫu</a>
+            </div>
+        </form>
     </div>
+</div>
 </div>

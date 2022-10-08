@@ -42,8 +42,8 @@
 <script>
     $(document).ready(function() {
         $("#content").summernote({
-            placeholder: 'Nhập và chỉnh sửa nội dung thông báo.',
-            height: 330
+            placeholder: 'Điền nội dung...',
+            height: 260
         });
     });
 </script>

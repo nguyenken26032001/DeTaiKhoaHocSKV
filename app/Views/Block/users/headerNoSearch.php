@@ -12,7 +12,7 @@
     <div class="header">
         <div class="login">
             <i class="far fa-user"></i>
-            <a href="<?php echo _WEB_ROOT_; ?>/login">ĐĂNG NHẬP</a>
+            <a href="<?php echo _WEB_ROOT_; ?>/loginnn">ĐĂNG NHẬP</a>
         </div>
         <div class="header__content d-flex flex-column">
             <div class="header__content--right mb-2">

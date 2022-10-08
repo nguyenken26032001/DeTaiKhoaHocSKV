@@ -2,7 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">DANH SÁCH LỚP</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin/addClassPage" class="link_file">Thêm lớp</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin/addClassPage" class="link_file btn btn-outline-info">Thêm lớp</a>
             <div id="notifi">
             </div>
         </div>

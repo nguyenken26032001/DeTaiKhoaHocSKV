@@ -1,5 +1,20 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
+}
+:root {
+  font-family: "Inter", sans-serif;
+}
+label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: 500;
+  color: #212b36;
+}
+.content-wrapper {
+  background-color: #f9fafb;
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: "Inter var", sans-serif;
+  }
 }
 .panel-heading {
   position: relative;
@@ -9,12 +24,12 @@ body {
   top: 6px;
   right: 4px;
   padding: 10px 25px;
-  background-color: #2979ff;
+  /* background-color: #2979ff; */
   border-radius: 8px;
-  color: white;
+  /* color: white; */
 }
 .link_file:hover {
-  color: #999;
+  /* color: #999; */
 }
 .scrollTable thead th {
   position: sticky;
@@ -37,7 +52,7 @@ th {
   margin: 5px 20px;
 }
 .text__Article {
-  text-align: left;
+  text-align: justify;
   display: -webkit-box;
   line-height: 1.2;
   word-break: break-word;
@@ -57,4 +72,12 @@ tr:hover {
   position: absolute;
   right: 0;
   top: 2px;
+}
+/* * edit file thong ke */
+.icon {
+  border-radius: 5px;
+}
+.wrapper-card {
+  position: absolute;
+  top: 50%;
 }

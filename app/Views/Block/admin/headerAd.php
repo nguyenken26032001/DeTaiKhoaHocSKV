@@ -23,12 +23,90 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!--  custom css  link page-->
-    <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/css/styleAdmin.css">
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!--  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Comfortaa:wght@500;700&family=Encode+Sans:wght@700;800&family=Merriweather:wght@300&family=Montserrat:wght@300;400;600&family=Open+Sans:wght@300;400;600&family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
+    <!-- add icon bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/css/styleAdmin.css">
+    <?php
+    $page = $data['page'];
+    if ($page == "admin/thongKe") {
+    ?>
+        <style>
+            .content-wrapper {
+                background: #ffff;
+            }
+
+            text {
+                font-size: 16px;
+            }
+        </style>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {
+                packages: ["corechart"]
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Task", "Hours per Day"],
+                    <?php
+                    // var_dump($thongkeByKhoa);
+                    foreach ($thongkeByKhoa as $item) {
+                        echo "[\"" . $item['tenkhoa'] . "\"," . $item['soluong'] . "],";
+                    }
+                    ?>
+                ]);
+
+                var options = {
+                    title: "Biểu đồ thông kê đề tài",
+                };
+
+                var chart = new google.visualization.PieChart(
+                    document.getElementById("piechart")
+                );
+
+                chart.draw(data, options);
+            }
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {
+                packages: ["corechart"]
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Task", "Hours per Day"],
+                    <?php
+                    // var_dump($thongkeByKhoa);
+                    foreach ($thongKeByTypeArticle as $item) {
+                        echo "[\"Đề tài " . $item['xepLoai'] . "\"," . $item['soluong'] . "],";
+                    }
+                    ?>
+                ]);
+
+                var options = {
+                    title: "Biểu đồ xếp loại đề tài",
+                };
+
+                var chart = new google.visualization.PieChart(
+                    document.getElementById("piechart2")
+                );
+
+                chart.draw(data, options);
+            }
+        </script>
+    <?php
+    }
+    ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -86,7 +164,7 @@
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin/notification" class="nav-link" style="padding-left: 22px">
                                 <i class="fa-regular fa-bell" style="padding-right: 10px;"></i>
                                 <p>
-                                    QUẢN LÝ THÔNG BÁO
+                                    THÔNG BÁO
                                 </p>
                             </a>
                         </li>
@@ -94,7 +172,7 @@
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin/documentManagement" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    QUẢN LÝ TÀI LIỆU
+                                    TÀI LIỆU
                                 </p>
                             </a>
                         </li>
@@ -103,6 +181,30 @@
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     QUẢN LÝ LỚP
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/postArticle" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    ĐĂNG BÀI
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/Statistical" class="nav-link">
+                                <i class="fa-solid fa-building" style="padding-right: 10px; margin-left:5px;"></i>
+                                <p>
+                                    THỐNG KÊ
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/banner" class="nav-link">
+                                <i class="fa-solid fa-image" style="padding-right: 10px; margin-left:5px;"></i>
+                                <p>
+                                    BANNER
                                 </p>
                             </a>
                         </li>

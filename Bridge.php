@@ -13,3 +13,4 @@ define('_WEB_ROOT_', $web_root);
 require_once "app/core/App.php";
 require_once "app/core/controller.php";
 require_once "app/core/DB.php";
+require_once "app/library/PHPExcel.php";

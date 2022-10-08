@@ -211,7 +211,7 @@
             ?>
             <div class="form-group">
                 <label for="">Mục Tiêu Nghiên Cứu</label>
-                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="content" cols="30" rows="5"> <?php echo $dataArticleDetail[0]['mucTieuNghienCuu'] ?></textarea>
+                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="5" spellcheck="false"> <?php echo $dataArticleDetail[0]['mucTieuNghienCuu'] ?></textarea>
             </div>
             <div class="form-group">
                 <label for="">Sản Phẩm Nghiên Cứu</label>
@@ -224,8 +224,8 @@
             <div class="form-group">
                 <label for="">File Báo Cáo </label>
                 <input type="file" id="address" name="fileUploads" style="margin-left: 59px;"> <span> <?php echo $dataArticleDetail[0]['fileBaoCao'] ?></span>
-
             </div>
+            <input type="hidden" name="file_Old" value=" <?php echo $dataArticleDetail[0]['fileBaoCao'] ?>">
     </div>
     <button type="submit" class="btn btn-success" name="updateDeTai" id="update" style="margin-bottom: 30px;">CẬP NHẬT</button>
     </form>

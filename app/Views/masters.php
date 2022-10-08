@@ -36,7 +36,31 @@ if (isset($data["dataNotification"])) {
 if (isset($data["dataNotificationByID"])) {
     $dataNotificationByID = $data["dataNotificationByID"];
 }
-
+//data post
+if (isset($data["dataPost"])) {
+    $dataPost = $data["dataPost"];
+}
+if (isset($data["dataPostById"])) {
+    $dataPostById = $data["dataPostById"];
+}
+if (isset($data["listMaDeTai"])) {
+    $listMaDeTai = $data["listMaDeTai"];
+}
+if (isset($data["dataMaDeTai"])) {
+    $dataMaDeTai = $data["dataMaDeTai"];
+}
+if (isset($data["thongKeByKhoa"])) {
+    $thongkeByKhoa = $data["thongKeByKhoa"];
+}
+if (isset($data["thongKeByTypeArticle"])) {
+    $thongKeByTypeArticle = $data["thongKeByTypeArticle"];
+}
+if (isset($data["banner"])) {
+    $banner = $data["banner"];
+}
+if (isset($data["bannerId"])) {
+    $bannerId = $data["bannerId"];
+}
 ?>
 <?php include "app/Views/Block/admin/headerAd.php" ?>
 <?php include "app/Views/Block/" . $data['page'] . ".php" ?>

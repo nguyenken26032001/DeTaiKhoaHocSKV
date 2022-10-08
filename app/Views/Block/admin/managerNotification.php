@@ -3,7 +3,7 @@
 
         <div class="panel-heading primary">
             <h2 class="text-center">QUẢN LÝ THÔNG BÁO</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notification" class="link_file">Đăng thông báo mới</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notification" class="link_file btn btn-outline-info">Đăng thông báo mới</a>
             <div id="notifi">
             </div>
 

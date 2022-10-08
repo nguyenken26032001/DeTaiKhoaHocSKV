@@ -2,7 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">THÊM ĐỀ TÀI MỚI</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin/managerArticle" class="link_file">Quản lý đề tài</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin/managerArticle" class="link_file btn btn-outline-info">Quản lý đề tài</a>
         </div>
         <form action="<?php echo _WEB_ROOT_ ?>/Admin/AddArticle" method="post" enctype="multipart/form-data">
             <div class="form-group">
@@ -107,7 +107,7 @@
             </div>
             <div class="form-group">
                 <label for="">Mục Tiêu Nghiên Cứu</label>
-                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="content" cols="30" rows="3"></textarea>
+                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="10" spellcheck="false"></textarea>
             </div>
             <div class="form-group">
                 <label for="">Sản Phẩm Nghiên Cứu</label>

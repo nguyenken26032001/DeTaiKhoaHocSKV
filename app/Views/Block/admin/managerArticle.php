@@ -3,10 +3,17 @@
 
         <div class="panel-heading primary">
             <h2 class="text-center">QUẢN LÝ ĐỀ TÀI</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin" class="link_file">Thêm mới đề tài</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/Admin" class="link_file btn btn-outline-info">Thêm mới đề tài</a>
             <div id="notifi">
             </div>
-
+        </div>
+        <!-- search bar -->
+        <div class="input-group">
+            <form action='' method="get">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" placeholder="Tìm kiếm..." name="search" />
+                </div>
+            </form>
         </div>
         <table class="table table-hover table-fixed  table-bordered text-center mt-5">
             <thead>
