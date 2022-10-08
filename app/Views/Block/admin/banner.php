@@ -10,7 +10,7 @@
                 foreach ($banner as $item) {
                     echo '
             <tr class="d-flex justify-content-around align-items-center">
-               <td><img src="' . _WEB_ROOT_ . '/Uploads\/Banner\/' . $item['hinhAnh'] . '" width="250px"/></td> 
+               <td><img src="' . _WEB_ROOT_ . '/Uploads/Banner/' . $item['hinhAnh'] . '" width="250px"/></td> 
                <td ><a class="btn btn-outline-info" href="' . _WEB_ROOT_ . '/Admin/updateBanner/' . $item['id'] . '" > Thay ảnh</a></td> 
             </tr>
                 ';

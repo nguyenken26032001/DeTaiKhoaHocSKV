@@ -21,7 +21,7 @@ class postArticle extends DB
                 $allowed = ['png', 'jpg', 'jpeg'];
                 $fileupload = $this->changeTitle($_FILES["fileUploads"]['name']);
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/PostArticle/' . $fileupload);
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
                     $sql = "INSERT INTO postdetai(maDeTai, tieuDe, noiDung, hinhAnh,moTa) VALUES(
                         '$maDeTai', '$tieuDe', '$noiDung', '$fileupload','$moTa')";
                     $this->execute($sql);
@@ -52,10 +52,10 @@ class postArticle extends DB
             $allowed = ['png', 'jpg', 'jpeg'];
             if (file_exists($image)) {
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/PostArticle/' . $image);
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $image);
                     $sql = "UPDATE postdetai SET tieuDe='$tieuDe', noiDung='$noiDung', hinhAnh='$image',moTa='$moTa' WHERE maDeTai='$maDeTai'";
                     $this->execute($sql);
-                    unlink('"' . _WEB_ROOT_ . '"/Uploads/PostArticle/' . $oldImage);
+                    unlink('./Uploads/PostArticle/' . $oldImage);
                     $_SESSION["status"] = "Cập nhật bài đăng thành công!";
                     $_SESSION["status_code"] = "success";
                     $value = 1;
@@ -103,12 +103,19 @@ class postArticle extends DB
         $sql = "SELECT * FROM postdetai WHERE maDeTai ='$maDeTai'";
         return $this->executeResult($sql);
     }
+    function getImageById($maDeTai)
+    {
+        $sql = "SELECT hinhAnh FROM postdetai WHERE maDeTai ='$maDeTai'";
+        return $this->executeResult($sql);
+    }
     function delPost()
     {
         if (isset($_POST["maDeTai"])) {
             $maDeTai = $_POST['maDeTai'];
+            $Image = $this->getImageById($maDeTai);
             $sql = "DELETE FROM postdetai WHERE maDeTai = '$maDeTai'";
             $this->execute($sql);
+            unlink('./Upload/PostArticle/' . $Image . '');
             $_SESSION["status"] = "Xóa bài thành công";
             $_SESSION["status_code"] = "success";
         }

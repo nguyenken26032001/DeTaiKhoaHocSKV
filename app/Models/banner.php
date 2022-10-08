@@ -22,15 +22,14 @@ class banner extends DB
             $newFile = $this->changeTitle($fileName['name']);
             $allowed = ['png', 'jpg', 'jpeg'];
             if (in_array($extension, $allowed)) {
-                move_uploaded_file($fileName['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/Banner/' . $newFile);
+                move_uploaded_file($fileName['tmp_name'], './Uploads/Banner/' . $newFile);
                 $sql = "UPDATE banner SET hinhAnh='$newFile' where id = '$id'";
                 $this->execute($sql);
-                unlink('"' . _WEB_ROOT_ . '"/Uploads/Banner/' . $oldImage);
+                unlink('./Uploads/Banner/' . $oldImage . '');
                 $_SESSION['status'] = "Cập nhật ảnh thành công !";
                 $_SESSION['status_code'] = "success";
                 $value = 1;
             } else {
-                error_reporting(E_USER_ERROR);
                 $_SESSION['status'] = "File ảnh không đúng định dạng vui lòng kiểm tra!";
                 $_SESSION['status_code'] = "warning";
                 $value = 0;

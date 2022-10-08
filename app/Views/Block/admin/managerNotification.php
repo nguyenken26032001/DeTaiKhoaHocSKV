@@ -26,7 +26,7 @@
                     echo ' 
                     <tr data-href="../Admin/NotificationDetail/' . $item['id'] . '">
                     <td>' . (++$index) . '</td>
-                    <td>' . $item['tieuDe'] . '</td>
+                    <td> <p class="text__Article">' . $item['tieuDe'] . '</p></td>
                     <td> <p class="text__Article">' . $item['noiDung'] . ' </p></td>
                 </tr>';
                 }

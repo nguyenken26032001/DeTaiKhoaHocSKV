@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="content">Nội dung thông báo</label>
-                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
 
             <div class="form-group">

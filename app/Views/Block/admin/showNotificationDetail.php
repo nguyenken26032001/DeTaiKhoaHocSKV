@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="content">Nội dung thông báo</label>
-                <textarea name="content" id="content" cols="30" rows="10"><?php echo $dataNotificationByID[0]['noiDung'] ?></textarea>
+                <textarea name="content" id="" cols="30" rows="10" class="form-control"><?php echo $dataNotificationByID[0]['noiDung'] ?></textarea>
             </div>
 
             <div class="form-group">

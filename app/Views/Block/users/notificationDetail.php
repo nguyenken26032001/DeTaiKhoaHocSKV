@@ -4,9 +4,7 @@
                 thành công Diễn đàn Năng lực công nghệ số 2022
             </p>
             <p class="notification_content--detail">
-                <?php
-                echo  $ArticleDetail[0]['noiDung'];
-                ?>
+
             </p>
             <div class="dowload--document d-flex mb-5">
                 <ion-icon name="download-outline" class="icon-download"></ion-icon>

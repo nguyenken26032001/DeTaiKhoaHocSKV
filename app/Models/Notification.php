@@ -42,7 +42,7 @@ class  Notification extends DB
         $fileName = $this->getFileNameById($id);
         $sql = "DELETE from thongbao where id='$id'";
         $this->execute($sql);
-        unlink('"' . _WEB_ROOT_ . '"/Uploads/FileNotification/' . $fileName[0]['fileDinhKem'] . '');
+        unlink('./Uploads/FileNotification/' . $fileName[0]['fileDinhKem'] . '');
         $_SESSION['status'] = "Xóa thông báo thành công !";
         $_SESSION['status_code'] = "success";
     }
@@ -59,10 +59,10 @@ class  Notification extends DB
                 $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
                 if (in_array($extension, $allowed)) {
                     $fileDinhKem = $this->changeTitle($_FILES['fileUploads']['name']);
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/FileNotification/' . $fileDinhKem);
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileNotification/' . $fileDinhKem);
                     $sql = "UPDATE thongbao SET tieuDe='$title', noiDung='$content', fileDinhKem='$fileDinhKem' where id='$id'";
                     $this->execute($sql);
-                    unlink('"' . _WEB_ROOT_ . '"/Uploads/FileNotification/' . $file_old);
+                    unlink('./Uploads/FileNotification/' . $file_old);
                     $_SESSION['status'] = "Cập nhật thông báo thành công !";
                     $_SESSION['status_code'] = "success";
                 } else {

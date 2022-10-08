@@ -51,7 +51,7 @@ class Article extends DB
                 $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
                 $fileBaoCao = $this->changeTitle($_FILES['fileUploads']['name']);
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/FileArticle' . $fileBaoCao);
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
                     $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao')";
                     $this->execute($sqlAddArticle);
                     $_SESSION['status'] = "Thêm  đề tài thành công !";
@@ -113,10 +113,10 @@ class Article extends DB
                 $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
                 $fileBaoCao = md5(uniqid()) . '.' . $extension;
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], '"' . _WEB_ROOT_ . '"/Uploads/FileArticle' . $fileBaoCao);
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
                     $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";
                     $this->execute($sqlUpdateArticle);
-                    unlink('"' . _WEB_ROOT_ . '"/Upload/FileArticle/' . $file_Old . '');
+                    unlink('./Upload/FileArticle/' . $file_Old . '');
                 }
             } else {
                 $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu' WHERE maDeTai='$maDeTai' ";
@@ -146,12 +146,14 @@ class Article extends DB
     {
         if (isset($_POST)) {
             $maDeTai = $_POST['maDeTai'];
+            $fileBaoCao = $this->getFileBaoCaoById($maDeTai);
             $sqlDelStudent = "DELETE FROM sinhvien WHERE maDeTai='$maDeTai'";
             $this->execute($sqlDelStudent);
             $sqlDelMentor = "DELETE FROM giaovienhd WHERE maDeTai  = '$maDeTai'";
             $this->execute($sqlDelMentor);
             $sqlDelArticle = "DELETE FROM detai WHERE maDeTai  = '$maDeTai'";
             $this->execute($sqlDelArticle);
+            unlink('./Upload/FileArticle/' . $fileBaoCao . '');
             $_SESSION['status'] = 'Xóa đề tài thành công !';
             $_SESSION['status_code'] = "success";
         }
@@ -165,6 +167,11 @@ class Article extends DB
     function getListMaDeTai()
     {
         $sql = "SELECT maDeTai FROM detai ";
+        return $this->executeResult($sql);
+    }
+    function getFileBaoCaoById($maDeTai)
+    {
+        $sql = "SELECT fileBaoCao FROM detai WHERE maDeTai = '$maDeTai'";
         return $this->executeResult($sql);
     }
 }
