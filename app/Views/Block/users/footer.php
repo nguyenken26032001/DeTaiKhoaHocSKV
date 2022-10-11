@@ -46,5 +46,22 @@
     </div>
 </body>
 <script src="<?php echo _WEB_ROOT_ ?>/app/FrameWork/bootstrap-5/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<?php
+if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+?>
+    <script>
+        swal({
+            title: "",
+            text: "<?php echo $_SESSION['status'] ?>",
+            icon: "<?php echo $_SESSION['status_code'] ?>",
+            button: "ok",
+        });
+    </script>
+<?php
+    unset($_SESSION['status']);
+    unset($_SESSION['status_code']);
+}
+?>
 
 </html>

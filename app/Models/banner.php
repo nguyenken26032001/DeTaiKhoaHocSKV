@@ -16,10 +16,10 @@ class banner extends DB
         $value = 0;
         if (isset($_POST['updateBanner'])) {
             $id = $_POST['idBanner'];
-            $fileName = $_FILES['fileUpdateBanner'];
+            $fileName = $_FILES['fileUploads'];
             $oldImage = $_POST['oldImage'];
             $extension = pathinfo($fileName['name'], PATHINFO_EXTENSION);
-            $newFile = $this->changeTitle($fileName['name']);
+            $newFile = $this->getFileName();
             $allowed = ['png', 'jpg', 'jpeg'];
             if (in_array($extension, $allowed)) {
                 move_uploaded_file($fileName['tmp_name'], './Uploads/Banner/' . $newFile);

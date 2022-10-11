@@ -36,7 +36,7 @@
     <div class="menu">
         <ul class="menu_main">
             <li class="menu_item">
-                <a href="" class="menu_link">HOME</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">HOME</a>
             </li>
             <li class="menu_item">
                 <a href="" class="menu_link">TIN TỨC</a>

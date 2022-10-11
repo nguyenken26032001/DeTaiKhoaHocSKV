@@ -48,34 +48,40 @@ class Article extends DB
             } else {
 
                 $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-                $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
-                $fileBaoCao = $this->changeTitle($_FILES['fileUploads']['name']);
+                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
+                $fileBaoCao = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
                     $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao')";
                     $this->execute($sqlAddArticle);
                     $_SESSION['status'] = "Thêm  đề tài thành công !";
                     $_SESSION['status_code'] = "success";
-                }
-                //* insert instructors
-                $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa) values('$maDeTai','$GVHD','$khoaGVHD')";
-                $this->execute($sqlInsertTeacher);
-                new DB();
-                //* insert member
-                $sqlInsertHost = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$CNDT','$maDeTai','$khoaCNDT','$lopCNDT','$nienKhoaCNDT','Chủ nhiệm đề tài')";
-                $this->execute($sqlInsertHost);
 
-                if ($member > 0) {
-                    for ($i = 1; $i <= $member; $i++) {
-                        $nameMB = $_POST["name_MB" . $i];
-                        $khoaMB = $_POST["khoa_MB" . $i];
-                        $lopMB = $_POST["lop_MB" . $i];
-                        $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
-                        $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','Thành Viên')";
-                        $this->execute($sqlInsertMember);
+
+                    //* insert instructors
+                    $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa) values('$maDeTai','$GVHD','$khoaGVHD')";
+                    $this->execute($sqlInsertTeacher);
+                    new DB();
+                    //* insert member
+                    $sqlInsertHost = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$CNDT','$maDeTai','$khoaCNDT','$lopCNDT','$nienKhoaCNDT','Chủ nhiệm đề tài')";
+                    $this->execute($sqlInsertHost);
+
+                    if ($member > 0) {
+                        for ($i = 1; $i <= $member; $i++) {
+                            $nameMB = $_POST["name_MB" . $i];
+                            $khoaMB = $_POST["khoa_MB" . $i];
+                            $lopMB = $_POST["lop_MB" . $i];
+                            $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
+                            $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','Thành Viên')";
+                            $this->execute($sqlInsertMember);
+                        }
                     }
+                    $data = 1;
+                } else {
+                    $_SESSION['status'] = "Định dạng của file báo cáo không được Uploads ";
+                    $_SESSION['status_code'] = "error";
+                    $data = 0;
                 }
-                $data = 1;
             }
         }
         return $data;
@@ -111,7 +117,7 @@ class Article extends DB
             if (file_exists($file['name'])) {
                 $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
                 $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
-                $fileBaoCao = md5(uniqid()) . '.' . $extension;
+                $fileBaoCao = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
                     $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";

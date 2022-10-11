@@ -8,11 +8,11 @@
             <input type="hidden" name="id" value="<?php echo $dataNotificationByID[0]['id'] ?>">
             <div class="form-group">
                 <label for="email">Tiêu đề thông báo</label>
-                <input required="true" type="text" class="form-control" name="title" value="<?php echo $dataNotificationByID[0]['tieuDe'] ?>">
+                <input required="true" type="text" class="form-control" name="title" spellcheck="false" value="<?php echo $dataNotificationByID[0]['tieuDe'] ?>">
             </div>
             <div class="form-group">
                 <label for="content">Nội dung thông báo</label>
-                <textarea name="content" id="" cols="30" rows="10" class="form-control"><?php echo $dataNotificationByID[0]['noiDung'] ?></textarea>
+                <textarea name="content" id="" cols="30" rows="10" spellcheck="false" class="form-control"><?php echo $dataNotificationByID[0]['noiDung'] ?></textarea>
             </div>
 
             <div class="form-group">

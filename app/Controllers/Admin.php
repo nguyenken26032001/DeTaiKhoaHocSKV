@@ -69,8 +69,12 @@ class Admin extends controller
     }
     public function AddNotifi()
     {
-        $this->Model('Notification')->add_notification();
-        header("Location: ../Admin/notificationManager");
+        $data = $this->Model('Notification')->add_notification();
+        if ($data == 1) {
+            header("Location: ../Admin/notificationManager");
+        } else {
+            $this->notification();
+        }
     }
     public function NotificationDetail($maThongBao)
     {
@@ -84,8 +88,13 @@ class Admin extends controller
     }
     public function UpdateNoti()
     {
-        $this->Model('Notification')->update_notification();
-        header("Location: ../Admin/notificationManager");
+        $id = $_POST['id'];
+        $data = $this->Model('Notification')->update_notification();
+        if ($data == 1) {
+            header("Location: ../Admin/notificationManager");
+        } else {
+            $this->NotificationDetail($id);
+        }
     }
 
     public function classManagement()
@@ -215,7 +224,7 @@ class Admin extends controller
                 header("Location: ../Admin/postManager");
             }
         } else {
-            $data = $this->Model("postArticle")->getListPost();
+            $data = $this->Model("postArticle")->getListPostForAdmin();
             $this->view("masters", [
                 "page" => "admin/postManager",
                 "Action" => "5",

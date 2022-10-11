@@ -3,18 +3,28 @@
 }
 
 .notification__title--detail {
-  font-family: "Open Sans Condensed", Arial, Helvetica, sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 35px;
   font-size: 30px;
   margin-bottom: 30px;
-  margin-top: 80px;
+  margin-top: 30px;
   padding-left: 10px;
+  text-align: justify;
 }
-
+.notification__title--detail::first-letter {
+  text-transform: uppercase;
+}
+.notification_content--detail::first-letter {
+  font-size: 4rem;
+  float: left;
+  line-height: 4rem;
+  font-weight: 600;
+  padding-right: 8px;
+}
 .notification_content--detail {
+  text-align: justify;
   padding: 10px;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
   margin-bottom: 50px;
 }

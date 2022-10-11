@@ -34,7 +34,7 @@
                     <td>' . (++$index) . '</td>
                     <td><p class="text__Article">' . $item['tieuDe'] . '</p></td>
                     <td> <p class="text__Article">' . $item['noiDung'] . ' </p></td>
-                    <td> <img src="../Uploads/' . $item['hinhAnh'] . '" width="150px"/> </td>
+                    <td> <img src="../Uploads/PostArticle/' . $item['hinhAnh'] . '" width="150px"/> </td>
                 </tr>';
                 }
 

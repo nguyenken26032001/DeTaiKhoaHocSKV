@@ -19,7 +19,7 @@ class postArticle extends DB
             } else {
                 $extension = pathinfo($_FILES["fileUploads"]['name'], PATHINFO_EXTENSION);
                 $allowed = ['png', 'jpg', 'jpeg'];
-                $fileupload = $this->changeTitle($_FILES["fileUploads"]['name']);
+                $fileupload = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
                     $sql = "INSERT INTO postdetai(maDeTai, tieuDe, noiDung, hinhAnh,moTa) VALUES(
@@ -50,18 +50,19 @@ class postArticle extends DB
             $oldImage = $_POST["oldImage"];
             $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
             $allowed = ['png', 'jpg', 'jpeg'];
-            if (file_exists($image)) {
+            $imageNew = $this->getFileName();
+            if (!empty($image)) {
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $image);
-                    $sql = "UPDATE postdetai SET tieuDe='$tieuDe', noiDung='$noiDung', hinhAnh='$image',moTa='$moTa' WHERE maDeTai='$maDeTai'";
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $imageNew);
+                    $sql = "UPDATE postdetai SET tieuDe='$tieuDe', noiDung='$noiDung', hinhAnh='$imageNew',moTa='$moTa' WHERE maDeTai='$maDeTai'";
                     $this->execute($sql);
-                    unlink('./Uploads/PostArticle/' . $oldImage);
                     $_SESSION["status"] = "Cập nhật bài đăng thành công!";
                     $_SESSION["status_code"] = "success";
+                    unlink('./Uploads/PostArticle/' . $oldImage);
                     $value = 1;
                 } else {
                     $_SESSION["status"] = "File ảnh không đúng định dạng vui lòng kiểm tra lại";
-                    $_SESSION["status_code"] = "warning";
+                    $_SESSION["status_code"] = "error";
                     $value = 0;
                 }
             } else {
@@ -84,6 +85,11 @@ class postArticle extends DB
         $sql = "SELECT * FROM postdetai limit $firstIndex,$limit";
         return $this->executeResult($sql);
     }
+    function getListPostForAdmin()
+    {
+        $sql = "SELECT * FROM postdetai";
+        return $this->executeResult($sql);
+    }
     function getCountPost()
     {
         $sql = "SELECT count(maDeTai) as 'number' from postdetai";
@@ -91,9 +97,8 @@ class postArticle extends DB
     }
     function getDataSearch($search_content)
     {
-        $sql = "SELECT postdetai.maDeTai as'maDeTai', postdetai.tieuDe as'tieuDe',
-        postdetai.noiDung as 'noiDung', postdetai.hinhAnh as 'hinhAnh'
-         FROM postdetai,giaovienhd WHERE postdetai.maDeTai= giaovienhd.maDeTai and postdetai.maDeTai ='$search_content' or giaovienhd.hoTen like  " % '$search_content' % " ";
+        $sql = "SELECT postdetai.maDeTai as'maDeTai', postdetai.tieuDe as'tieuDe',postdetai.noiDung as 'noiDung', postdetai.hinhAnh as 'hinhAnh'
+         FROM postdetai,giaovienhd WHERE postdetai.maDeTai= giaovienhd.maDeTai and postdetai.maDeTai ='$search_content' OR giaovienhd.hoTen like  '% " . $search_content . " %'";
         return $this->executeResult($sql);
         //fix bug where here 
     }

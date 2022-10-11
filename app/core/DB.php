@@ -75,4 +75,14 @@ class DB
             return $data;
         }
     }
+    function getFileName()
+    {
+        $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
+        $elementFileAll = explode('.', $_FILES['fileUploads']['name']);
+        $elementHeader = array_slice($elementFileAll, 0, -1);
+        $fileNew = implode('', $elementHeader);
+        $fileChangeTitle = $this->changeTitle($fileNew);
+        $file = $fileChangeTitle . '-' . uniqid() . '.' . $extension;
+        return $file;
+    }
 }

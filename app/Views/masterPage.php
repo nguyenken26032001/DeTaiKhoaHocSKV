@@ -30,6 +30,9 @@ if (isset($data["Carousel"])) {
 if (isset($data["dataDetai"])) {
     $dataDetai = $data["dataDetai"];
 }
+if (isset($data["notifications"])) {
+    $notifications = $data["notifications"];
+}
 if (isset($data["numberPost"])) {
     $numberPages = $data["numberPost"];
 }
@@ -39,6 +42,10 @@ if (isset($data["pageIndex"])) {
 if (isset($data["ArticleDetail"])) {
     $ArticleDetail = $data["ArticleDetail"];
 }
+//notification details
+if (isset($data["dataNotificationDetail"])) {
+    $notificationDetail = $data["dataNotificationDetail"];
+}
 ?>
 
 <body>
@@ -47,7 +54,7 @@ if (isset($data["ArticleDetail"])) {
             <?php include "app/Views/Block/" . $data["header"] . ".php" ?>
             <div class="prevInformation">
                 <?php include "app/Views/Block/" . $data['page'] . ".php" ?>
-                <?php include 'app/Views/Block/users/notification.php' ?>
+                <?php if (isset($data['pageNotifi'])) include "app/Views/Block/users/" . $data['pageNotifi'] . ".php" ?>
             </div>
             <?php include 'app/Views/Block/users/footer.php' ?>
         </div>

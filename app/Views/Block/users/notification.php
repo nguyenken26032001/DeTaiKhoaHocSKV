@@ -4,63 +4,31 @@
         </div>
         <div class="notification__lists mw-100">
             <ul>
-                <li class="notification__list--item mw-100">
-                    <!-- <p class="dot"></p> -->
-                    <a href="<?php echo _WEB_ROOT_; ?>/notification/Detail/3">cộng hòa xã hội chủ nghĩa việt nam độc lập tự do hạnh phúc vì
-                        tương lai đất nước của chúng ta phải không ạ
-                    </a>
-                    <div class="notification--time">
-                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                        <div class="time__date">
-                            <p class="time__date--detail">24 tháng 5,2022</p>
+                <?php
+                foreach ($notifications as $item) {
+                ?>
+
+                    <li class="notification__list--item mw-100">
+                        <a href="<?php echo _WEB_ROOT_; ?>/Home/notificationDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?>
+                        </a>
+                        <div class="notification--time">
+                            <ion-icon class="oclock" name="alarm-outline"></ion-icon>
+                            <div class="time__date">
+                                <p class="time__date--detail">
+                                    <?php
+                                    $time = strtotime($item['ngayDang']);
+                                    $day = date('j', $time);
+                                    $month = date('m', $time);
+                                    $year = date('Y', $time);
+                                    echo $day . ' tháng ' . $month . ', ' . $year  ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="notification__list--item mw-100">
-                    <!-- <p class="dot"></p> -->
-                    <a href="<?php echo _WEB_ROOT_; ?>/notification/Detail/3">cộng hòa xã hội chủ nghĩa việt nam độc lập tự do hạnh phúc vì
-                        tương lai đất nước của chúng ta phải không ạ
-                    </a>
-                    <div class="notification--time">
-                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                        <div class="time__date">
-                            <p class="time__date--detail">24 tháng 5,2022</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="notification__list--item mw-100">
-                    <!-- <p class="dot"></p> -->
-                    <a href="<?php echo _WEB_ROOT_; ?>/notification/Detail/3">cộng hòa xã hội chủ nghĩa việt nam độc lập tự do hạnh phúc vì
-                        tương lai đất nước của chúng ta phải không ạ</a>
-                    <div class="notification--time">
-                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                        <div class="time__date">
-                            <p class="time__date--detail">24 tháng 5,2022</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="notification__list--item mw-100">
-                    <!-- <p class="dot"></p> -->
-                    <a href="<?php echo _WEB_ROOT_; ?>/Notification">cộng hòa xã hội chủ nghĩa việt nam độc lập tự do hạnh phúc vì
-                        tương lai đất nước của chúng ta phải không ạ</a>
-                    <div class="notification--time">
-                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                        <div class="time__date">
-                            <p class="time__date--detail">24 tháng 5,2022</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="notification__list--item mw-100">
-                    <!-- <p class="dot"></p> -->
-                    <a href="<?php echo _WEB_ROOT_; ?>/Notification?id=5">cộng hòa xã hội chủ nghĩa việt nam độc lập tự do hạnh phúc vì
-                        tương lai đất nước của chúng ta phải không ạ</a>
-                    <div class="notification--time">
-                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                        <div class="time__date">
-                            <p class="time__date--detail">24 tháng 5,2022</p>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </div>

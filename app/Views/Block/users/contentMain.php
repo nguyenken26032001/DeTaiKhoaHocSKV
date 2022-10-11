@@ -27,7 +27,7 @@
         }
         ?>
 
-        <div class="page__number mb-4">
+        <div class="page__number mb-4" style="margin-top: 250px;">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php

@@ -36,7 +36,7 @@
     <div class="menu">
         <ul class="menu_main">
             <li class="menu_item">
-                <a href="" class="menu_link">HOME</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">HOME</a>
             </li>
             <li class="menu_item">
                 <a href="" class="menu_link">TIN TỨC</a>
@@ -96,7 +96,7 @@
             </div>
         </nav>
     </div>
-    <form action="" method=" GET">
+    <form action="" method="GET">
         <div class="search">
             <input type="text" name="search" id="" class="inputSearch" placeholder="Searching......" />
             <button type="submit" class="button">Tìm Kiếm</button>

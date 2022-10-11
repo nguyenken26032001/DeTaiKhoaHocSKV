@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Tiêu đề bài</label>
-                <input required="true" type="text" class="form-control" name="title" value="<?php echo $dataPostById[0]['tieuDe'] ?>">
+                <input required="true" type="text" class="form-control" name="title" spellcheck="false" value="<?php echo $dataPostById[0]['tieuDe'] ?>">
             </div>
             <div class="form-group">
                 <label for="content">Nội dung đề tài</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="image">Mô tả hình ảnh</label>
-                <input type="text" name="moTa" id="" required value="<?php echo $dataPostById[0]['moTa']  ?>">
+                <input type="text" name="moTa" id="" class="form-control" required value="<?php echo $dataPostById[0]['moTa']  ?>" spellcheck="false">
 
             </div>
             <input type="hidden" name="oldImage" value="<?php echo $dataPostById[0]["hinhAnh"] ?>">
