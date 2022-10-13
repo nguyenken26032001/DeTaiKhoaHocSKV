@@ -611,7 +611,7 @@ body::-webkit-scrollbar-thumb {
 }
 /** css page article detail */
 .articel__title {
-  font-weight: 500;
+  font-weight: 600;
   line-height: 35px;
   font-size: 30px;
   margin-bottom: 30px;
@@ -643,4 +643,7 @@ body::-webkit-scrollbar-thumb {
   line-height: 30px;
   margin-bottom: 50px;
 }
-/* *  */
+/* *   css find by link on menu */
+.find__byLink {
+  text-decoration: none;
+}

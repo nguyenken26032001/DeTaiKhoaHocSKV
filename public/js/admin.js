@@ -194,3 +194,15 @@ function previewImage() {
     fileReader.readAsDataURL(file[0]);
   }
 }
+function GetKhoaChuTri(maDeTai) {
+  $.ajax({
+    type: "post",
+    url: `${pathRoot}/Ajax/getDepartment`,
+    data: {
+      maDeTai: maDeTai,
+    },
+    success: function (data) {
+      $("#khoaChuTri").val(data);
+    },
+  });
+}

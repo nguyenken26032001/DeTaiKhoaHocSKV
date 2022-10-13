@@ -19,7 +19,7 @@ class Home extends controller
     {
         $numberPost = $this->Model("postArticle")->getCountPost();
         $Carousel = $this->Model('banner')->getbanner();
-        $limit = 1;
+        $limit = 10;
         $page = 1;
         $numberPost = $numberPost[0]['number'];
         if (isset($_GET['page'])) {
@@ -86,5 +86,35 @@ class Home extends controller
             "notifications" => $notifications,
 
         ]);
+    }
+    function NCKH($makhoa)
+    {
+        $limit = 10;
+        $page = 1;
+        $numberPost = $this->Model("postArticle")->getNumberPostByDerpartment($makhoa);
+        $numberPost = $numberPost[0]['number'];
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        if ($page < 0) {
+            $page = 1;
+        }
+        $firstIndex = ($page - 1) * $limit;
+        $data = $this->Model("postArticle")->getListPostByDerpartment($makhoa, $firstIndex, $limit);
+        if (!empty($data) && count($data) > 0) {
+            $this->view("masterPage", [
+                "header" => "users/headerNoSearch",
+                "page" => "users/articleFindByLink",
+                "dataDeTaiByLink" => $data,
+                "numberPost" => $numberPost,
+                "pageIndex" => $page,
+            ]);
+        } else {
+            $this->view("masterPage", [
+                "header" => "users/headerNoSearch",
+                "page" => "users/page404",
+                "css" => "page404"
+            ]);
+        }
     }
 }

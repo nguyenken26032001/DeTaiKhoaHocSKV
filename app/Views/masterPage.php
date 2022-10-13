@@ -46,6 +46,10 @@ if (isset($data["ArticleDetail"])) {
 if (isset($data["dataNotificationDetail"])) {
     $notificationDetail = $data["dataNotificationDetail"];
 }
+// tìm kiếm trên thanh navbar
+if (isset($data["dataDeTaiByLink"])) {
+    $dataDeTaiByLink = $data["dataDeTaiByLink"];
+}
 ?>
 
 <body>

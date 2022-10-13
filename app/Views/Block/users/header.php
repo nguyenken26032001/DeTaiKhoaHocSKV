@@ -52,13 +52,27 @@
                 <a href="" class="menu_link">ĐỀ TÀI</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
-                        <li>Khoa công nghệ thông tin</li>
-                        <li>Khoa cơ khí chế tạo</li>
-                        <li>Khoa cơ khí động lực</li>
-                        <li>Khoa điện</li>
-                        <li>Khoa điện tử</li>
-                        <li>Khoa kinh tế</li>
-                        <li>Khoa ngoại ngữ</li>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CNTT">
+                            <li>Khoa công nghệ thông tin</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKCT">
+                            <li>Khoa cơ khí chế tạo</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKDL">
+                            <li>Khoa cơ khí động lực</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/Dien">
+                            <li>Khoa điện</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/ĐT">
+                            <li>Khoa điện tử</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/KT">
+                            <li>Khoa kinh tế</li>
+                        </a>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/NN">
+                            <li>Khoa ngoại ngữ</li>
+                        </a>
                     </ul>
                 </div>
             </li>

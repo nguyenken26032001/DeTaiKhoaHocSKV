@@ -9,6 +9,7 @@ class Admin extends controller
     public $lop;
     function __construct()
     {
+        // header("Location:" . _WEB_ROOT_ . '/login');
         $this->DepartmentModel = $this->Model("DepartmentModel");
         $this->Article = $this->Model("Article");
         $this->lop = $this->Model("Lop");
@@ -289,11 +290,18 @@ class Admin extends controller
     {
         $id = $_POST["idBanner"];
         $data = $this->Model("banner")->updateBannerId();
-        if ($data === 1) {
+        if ($data == 1) {
             header("Location: ../Admin/banner");
         } else {
             $this->updateBanner($id);
         }
+    }
+    function document()
+    {
+        $this->view("masters", [
+            "page" => "admin/addDocument",
+            "Action" => "3"
+        ]);
     }
 }
 // }

@@ -7,7 +7,7 @@
         <form action="<?php echo _WEB_ROOT_ ?>/Admin/AddPostArticle" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="usr">Mã Đề Tài</label>
-                <select name="maDeTai" id="" class="form-control">
+                <select name="maDeTai" id="" class="form-control" onchange="GetKhoaChuTri(this.value)">
                     <?php
                     if (isset($listMaDeTai)) {
                         foreach ($listMaDeTai as $item) {
@@ -17,6 +17,7 @@
                     ?>
                 </select>
             </div>
+            <input type="hidden" name="khoaChuTri" id="khoaChuTri">
             <div class="form-group">
                 <label for="email">Tiêu đề bài</label>
                 <input required="true" type="text" class="form-control" name="title">
@@ -27,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="content">Hình ảnh đề tài</label>
-                <input type="file" name="fileUploads" id="" required>
+                <input type="file" name="fileUploads" accept="image/*" id="" required>
             </div>
             <div class="form-group">
                 <label for="content">Mô tả hình ảnh</label>

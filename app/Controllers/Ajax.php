@@ -55,8 +55,9 @@ class Ajax extends controller
 
     function getDepartment()
     {
-        if (isset($_GET)) {
-            $maKhoa = $_GET["maKhoa"];
+        if (isset($_POST)) {
+            $maDeTai = $_POST["maDeTai"];
+            echo  $this->Model("Article")->getKhoaChuTri($maDeTai);
         }
     }
 }

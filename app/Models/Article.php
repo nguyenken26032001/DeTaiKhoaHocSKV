@@ -48,7 +48,7 @@ class Article extends DB
             } else {
 
                 $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
+                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
                 $fileBaoCao = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
@@ -116,13 +116,13 @@ class Article extends DB
 
             if (file_exists($file['name'])) {
                 $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-                $allowed = ['png', 'jpg', 'jpeg', 'gif', 'ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
+                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
                 $fileBaoCao = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
                     $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";
                     $this->execute($sqlUpdateArticle);
-                    unlink('./Upload/FileArticle/' . $file_Old . '');
+                    unlink('./Upload/FileArticle/' . $file_Old);
                 }
             } else {
                 $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu' WHERE maDeTai='$maDeTai' ";
@@ -159,7 +159,7 @@ class Article extends DB
             $this->execute($sqlDelMentor);
             $sqlDelArticle = "DELETE FROM detai WHERE maDeTai  = '$maDeTai'";
             $this->execute($sqlDelArticle);
-            unlink('./Upload/FileArticle/' . $fileBaoCao . '');
+            unlink('./Upload/FileArticle/' . $fileBaoCao);
             $_SESSION['status'] = 'Xóa đề tài thành công !';
             $_SESSION['status_code'] = "success";
         }
@@ -179,5 +179,11 @@ class Article extends DB
     {
         $sql = "SELECT fileBaoCao FROM detai WHERE maDeTai = '$maDeTai'";
         return $this->executeResult($sql);
+    }
+    function getKhoaChuTri($maDeTai)
+    {
+        $sql = "SELECT khoaChuTri from detai where maDeTai = '$maDeTai'";
+        $data = $this->executeResult($sql);
+        return $data[0]['khoaChuTri'];
     }
 }

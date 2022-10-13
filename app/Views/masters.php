@@ -61,6 +61,13 @@ if (isset($data["banner"])) {
 if (isset($data["bannerId"])) {
     $bannerId = $data["bannerId"];
 }
+//document
+if (isset($data["listDocuments"])) {
+    $listDocuments = $data["listDocuments"];
+}
+if (isset($data["documentDetai"])) {
+    $documentDetai = $data["documentDetai"];
+}
 ?>
 <?php include "app/Views/Block/admin/headerAd.php" ?>
 <?php include "app/Views/Block/" . $data['page'] . ".php" ?>

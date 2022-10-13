@@ -10,6 +10,7 @@ class postArticle extends DB
             $tieuDe = $_POST['title'];
             $noiDung = $_POST['content'];
             $moTa = $_POST['moTa'];
+            $khoaChuTri = $_POST['khoaChuTri'];
             //check  bai dang exist
             $data = $this->checkExitsArticle($maDeTai);
             if (!empty($data) && count($data) > 0) {
@@ -22,8 +23,8 @@ class postArticle extends DB
                 $fileupload = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
-                    $sql = "INSERT INTO postdetai(maDeTai, tieuDe, noiDung, hinhAnh,moTa) VALUES(
-                        '$maDeTai', '$tieuDe', '$noiDung', '$fileupload','$moTa')";
+                    $sql = "INSERT INTO postdetai(maDeTai,khoaChuTri, tieuDe, noiDung, hinhAnh,moTa) VALUES(
+                        '$maDeTai','$khoaChuTri', '$tieuDe', '$noiDung', '$fileupload','$moTa')";
                     $this->execute($sql);
                     $_SESSION["status"] = "Đăng bài thành công";
                     $_SESSION["status_code"] = "success";
@@ -124,5 +125,21 @@ class postArticle extends DB
             $_SESSION["status"] = "Xóa bài thành công";
             $_SESSION["status_code"] = "success";
         }
+    }
+    function getListPostByDerpartment($maKhoa, $firstIndex, $limit)
+    {
+        $sql = "SELECT * FROM postdetai WHERE khoaChuTri = '$maKhoa' limit $firstIndex,$limit";
+        $data = $this->executeResult($sql);
+        if (empty($data)) {
+            $_SESSION["status"] = "không tìm thấy nội dung phù hợp !";
+            $_SESSION["status_code"] = "warning";
+        }
+        return $data;
+    }
+    function getNumberPostByDerpartment($maKhoa)
+    {
+        $sql = "SELECT  count(khoaChuTri) as 'number' FROM postdetai WHERE khoaChuTri ='$maKhoa'";
+        $data = $this->executeResult($sql);
+        return $data;
     }
 }

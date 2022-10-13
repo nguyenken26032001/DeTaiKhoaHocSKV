@@ -169,7 +169,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/documentManagement" class="nav-link">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/document" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     TÀI LIỆU
