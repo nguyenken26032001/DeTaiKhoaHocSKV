@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Tên Đề Tài</label>
-                <input required="true" type="text" class="form-control" name="tenDeTai">
+                <input required="true" type="text" class="form-control" name="tenDeTai" spellcheck="false">
             </div>
             <div class="form-group">
                 <label for="pwd">Đơn Vị Chủ Trì</label>
@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="form-group" id="thanhvien">
                         <label for=""> Giáo Viên Hướng Dẫn </label>
-                        <input type="text" class="form-control" id="" required="true" name="GVHD">
+                        <input type="text" class="form-control" id="" required="true" name="GVHD" spellcheck="false">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label for="usr">Chủ Nhiệm Đề Tài</label>
-                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai">
+                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai" spellcheck="false">
             </div>
             <div class="row">
                 <div class="col-md-3">
@@ -111,7 +111,7 @@
             </div>
             <div class="form-group">
                 <label for="">Sản Phẩm Nghiên Cứu</label>
-                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu">
+                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu" spellcheck="false">
             </div>
             <div class="form-group">
                 <label for="">Xếp loại đề tài</label>

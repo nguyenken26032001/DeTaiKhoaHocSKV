@@ -80,8 +80,10 @@
                 <a href="" class="menu_link">TÀI LIỆU</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
-                        <li>Quy trình thực hiện</li>
-                        <li>Các biểu mẫu</li>
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/document">
+                            <li>Các biểu mẫu</li>
+                        </a>
+
                     </ul>
                 </div>
             </li>

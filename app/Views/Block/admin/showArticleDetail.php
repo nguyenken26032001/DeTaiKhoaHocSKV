@@ -225,7 +225,7 @@
                 <label for="">File Báo Cáo </label>
                 <input type="file" id="address" name="fileUploads" style="margin-left: 59px;"> <span> <?php echo $dataArticleDetail[0]['fileBaoCao'] ?></span>
             </div>
-            <input type="hidden" name="file_Old" value=" <?php echo $dataArticleDetail[0]['fileBaoCao'] ?>">
+            <input type="hidden" name="file_Old" value="<?php echo $dataArticleDetail[0]['fileBaoCao']; ?>">
     </div>
     <button type="submit" class="btn btn-success" name="updateDeTai" id="update" style="margin-bottom: 30px;">CẬP NHẬT</button>
     </form>

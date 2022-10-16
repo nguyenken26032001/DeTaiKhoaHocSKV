@@ -28,7 +28,7 @@ class taiLieu extends DB
             $id = $_POST['id'];
             $decsDoc = $_POST['decsDoc'];
             $file = $_FILES['fileUploads']['name'];
-            $file_Old = $_POST['file_Old'];
+            $file_old = $_POST['file_Old'];
             $extension = pathinfo($file, PATHINFO_EXTENSION);
             $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx'];
             $newFile = $this->getFileName();
@@ -37,7 +37,7 @@ class taiLieu extends DB
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileTaiLieu/' . $newFile);
                     $sql = "UPDATE tailieu SET tenFile='$decsDoc', fileTaiLieu='$newFile'WHERE id = '$id'";
                     $this->execute($sql);
-                    unlink('./Upload/FileTaiLieu/' . $file_Old);
+                    unlink('./Uploads/FileTaiLieu/' . $file_old . '');
                     $_SESSION['status'] = "Cập nhật tài liệu thành công";
                     $_SESSION['status_code'] = "success";
                     $value = 1;
@@ -65,5 +65,20 @@ class taiLieu extends DB
     {
         $sql = "SELECT * FROM tailieu WHERE id = '$id'";
         return  $this->executeResult($sql);
+    }
+    function getFileById($id)
+    {
+        $sql = "SELECT fileTaiLieu FROM tailieu WHERE id = '$id'";
+        return $this->executeResult($sql);
+    }
+
+    function deleteDocument($id)
+    {
+        $sql = "DELETE FROM tailieu WHERE id ='$id'";
+        $this->execute($sql);
+        $fileName = $this->getFileById($id);
+        unlink('./Uploads/FileTaiLieu/' . $fileName[0]['fileTaiLieu'] . '');
+        $_SESSION['status'] = "xóa tài liệu thành công";
+        $_SESSION['status_code'] = "success";
     }
 }

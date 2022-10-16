@@ -119,8 +119,14 @@ class Admin extends controller
     function UpdateArticle()
     {
         if (isset($_POST['updateDeTai'])) {
-            $this->Article->updateArticle();
-            header("Location: ../Admin/managerArticle");
+            $maDeTai = $_POST['maDeTai'];
+            $khoaChuTri = $_POST['khoaChuTri'];
+            $data = $this->Article->updateArticle();
+            if ($data == 0) {
+                $this->ArticleDetail($maDeTai, $khoaChuTri);
+            } else {
+                header("Location: ../Admin/managerArticle");
+            }
         }
     }
 

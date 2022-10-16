@@ -10,12 +10,7 @@ class document extends controller
     function  addDocument()
     {
         $this->doc->addDocument();
-        $data = $this->doc->getListDocuments();
-        $this->view("masters", [
-            "page" => "admin/documentManager",
-            "Action" => "3",
-            "listDocuments" => $data,
-        ]);
+        $this->documentManager();
     }
     function documentManager()
     {
@@ -47,6 +42,14 @@ class document extends controller
             header("Location: ../document/documentManager");
         } else {
             $this->documentDetail($id);
+        }
+    }
+    function deleteDocument()
+    {
+        if (isset($_POST)) {
+            $id = $_POST['id'];
+            $this->doc->deleteDocument($id);
+            $this->documentManager();
         }
     }
 }

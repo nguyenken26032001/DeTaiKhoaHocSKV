@@ -20,10 +20,10 @@
             <input type="hidden" name="khoaChuTri" id="khoaChuTri">
             <div class="form-group">
                 <label for="email">Tiêu đề bài</label>
-                <input required="true" type="text" class="form-control" name="title">
+                <input required="true" type="text" class="form-control" spellcheck="false" name="title">
             </div>
             <div class="form-group">
-                <label for="content">Nội dung đề tài</label>
+                <label for="content">Nội dung bài đăng</label>
                 <textarea name="content" id="" cols="30" rows="10" spellcheck="false" class="form-control"></textarea>
             </div>
             <div class="form-group">
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="content">Mô tả hình ảnh</label>
-                <input type="text" name="moTa" id="" required class="form-control">
+                <input type="text" name="moTa" id="" required spellcheck="false" class="form-control">
             </div>
             <button type="submit" class="btn btn-success" name="postArticle" id="add" style="margin-bottom: 30px;">ĐĂNG BÀI</button>
         </form>

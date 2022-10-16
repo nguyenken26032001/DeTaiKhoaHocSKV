@@ -50,6 +50,9 @@ if (isset($data["dataNotificationDetail"])) {
 if (isset($data["dataDeTaiByLink"])) {
     $dataDeTaiByLink = $data["dataDeTaiByLink"];
 }
+if (isset($data["dataDocuments"])) {
+    $dataDocuments = $data["dataDocuments"];
+}
 ?>
 
 <body>

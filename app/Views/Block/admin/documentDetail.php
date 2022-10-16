@@ -2,6 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">TÀI LIỆU CHI TIẾT</h2>
+            <button class="btn btn-danger delete" onclick="deleteDocument('<?php echo $documentDetai[0]['id']; ?>')">Xóa tài liệu</button>
         </div>
         <form action="<?PHP echo _WEB_ROOT_ ?>/document/updateDocument" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $documentDetai[0]['id'] ?>">
@@ -14,7 +15,7 @@
                 <input type="file" name="fileUploads">
                 <span><?php echo $documentDetai[0]['fileTaiLieu'] ?></span>
             </div>
-            <input type="hidden" name="file_Old" value=" <?php echo $documentDetai[0]['fileTaiLieu'] ?>">
+            <input type="hidden" name="file_Old" value="<?php echo $documentDetai[0]['fileTaiLieu'] ?>">
             <div class="button_feature d-flex justify-content-between">
                 <button type="submit" class="btn btn-success px-4 py-2" name="updateDocument"> Cập nhật </button>
             </div>

@@ -18,13 +18,16 @@ class postArticle extends DB
                 $_SESSION["status_code"] = "warning";
                 $check = 0;
             } else {
+                $data = $this->getArticleName_FileBaoCao_ById($maDeTai);
+                $name = $data[0]['tenDeTai'];
+                $fileBaoCao = $data[0]['fileBaoCao'];
                 $extension = pathinfo($_FILES["fileUploads"]['name'], PATHINFO_EXTENSION);
                 $allowed = ['png', 'jpg', 'jpeg'];
                 $fileupload = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
-                    $sql = "INSERT INTO postdetai(maDeTai,khoaChuTri, tieuDe, noiDung, hinhAnh,moTa) VALUES(
-                        '$maDeTai','$khoaChuTri', '$tieuDe', '$noiDung', '$fileupload','$moTa')";
+                    $sql = "INSERT INTO postdetai(maDeTai,tenDeTai,khoaChuTri,tieuDe, noiDung, hinhAnh,moTa,fileBaoCao) VALUES(
+                        '$maDeTai','$name','$khoaChuTri', '$tieuDe', '$noiDung', '$fileupload','$moTa','$fileBaoCao')";
                     $this->execute($sql);
                     $_SESSION["status"] = "Đăng bài thành công";
                     $_SESSION["status_code"] = "success";
@@ -98,10 +101,16 @@ class postArticle extends DB
     }
     function getDataSearch($search_content)
     {
+        $data = [];
         $sql = "SELECT postdetai.maDeTai as'maDeTai', postdetai.tieuDe as'tieuDe',postdetai.noiDung as 'noiDung', postdetai.hinhAnh as 'hinhAnh'
-         FROM postdetai,giaovienhd WHERE postdetai.maDeTai= giaovienhd.maDeTai and postdetai.maDeTai ='$search_content' OR giaovienhd.hoTen like  '% " . $search_content . " %'";
-        return $this->executeResult($sql);
-        //fix bug where here 
+            FROM postdetai,giaovienhd WHERE postdetai.maDeTai= giaovienhd.maDeTai and postdetai.tenDeTai  like  '% $search_content%'";
+        $data = $this->executeResult($sql);
+        if (empty($data) && count($data) <= 0) {
+            $sql1 = "SELECT postdetai.maDeTai as'maDeTai', postdetai.tieuDe as'tieuDe',postdetai.noiDung as 'noiDung', postdetai.hinhAnh as 'hinhAnh'
+            FROM postdetai,giaovienhd WHERE postdetai.maDeTai= giaovienhd.maDeTai and giaovienhd.hoTen like '%" . $search_content . "%'";
+            $data = $this->executeResult($sql1);
+        }
+        return $data;
     }
 
     function getListPostById($maDeTai)
@@ -131,7 +140,7 @@ class postArticle extends DB
         $sql = "SELECT * FROM postdetai WHERE khoaChuTri = '$maKhoa' limit $firstIndex,$limit";
         $data = $this->executeResult($sql);
         if (empty($data)) {
-            $_SESSION["status"] = "không tìm thấy nội dung phù hợp !";
+            $_SESSION["status"] = "Khoa bạn tìm kiếm chưa có đề tài nào !";
             $_SESSION["status_code"] = "warning";
         }
         return $data;
@@ -141,5 +150,10 @@ class postArticle extends DB
         $sql = "SELECT  count(khoaChuTri) as 'number' FROM postdetai WHERE khoaChuTri ='$maKhoa'";
         $data = $this->executeResult($sql);
         return $data;
+    }
+    function getArticleName_FileBaoCao_ById($maDeTai)
+    {
+        $sql = "SELECT tenDeTai,fileBaoCao FROM detai WHERE maDeTai = '$maDeTai'";
+        return $this->executeResult($sql);
     }
 }

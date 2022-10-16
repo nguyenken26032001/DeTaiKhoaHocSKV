@@ -20,7 +20,7 @@
                 $index = 0;
                 foreach ($data as $item) {
                     echo ' 
-                    <tr data-href="../document/documentDetail/' . $item['id'] . '">
+                    <tr data-href="' . _WEB_ROOT_ . '/document/documentDetail/' . $item['id'] . '">
                     <td>' . (++$index) . '</td>
                     <td> <p class="text__Article">' . $item['tenFile'] . '</p></td>
                     <td> <p class="text__Article">' . $item['fileTaiLieu'] . ' </p></td>

@@ -70,7 +70,7 @@ class  Notification extends DB
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileNotification/' . $fileDinhKem);
                     $sql = "UPDATE thongbao SET tieuDe='$title', noiDung='$content', fileDinhKem='$fileDinhKem' where id='$id'";
                     $this->execute($sql);
-                    unlink('./Uploads/FileNotification/' . $file_old);
+                    unlink('./Uploads/FileNotification/' . $file_old . '');
                     $_SESSION['status'] = "Cập nhật thông báo thành công !";
                     $_SESSION['status_code'] = "success";
                     $value = 1;

@@ -19,7 +19,7 @@
             <div class="article d-flex mb-5 align-items-center">
                 <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostArticle/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
                 <div class="article__content ms-2 mw-100">
-                    <a href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['maDeTai'] ?>"><?php echo $item['noiDung'] ?></a>
+                    <a href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['maDeTai'] ?>"><?php echo $item['tieuDe'] ?></a>
                 </div>
             </div>
 

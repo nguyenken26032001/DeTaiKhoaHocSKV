@@ -117,4 +117,13 @@ class Home extends controller
             ]);
         }
     }
+    function document()
+    {
+        $data = $this->Model("taiLieu")->getListDocuments();
+        $this->view("masterPage", [
+            "header" => "users/headerNoSearch",
+            "page" => "users/document",
+            "dataDocuments" => $data
+        ]);
+    }
 }

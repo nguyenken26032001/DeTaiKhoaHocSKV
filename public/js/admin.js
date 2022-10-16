@@ -206,3 +206,21 @@ function GetKhoaChuTri(maDeTai) {
     },
   });
 }
+//document
+function deleteDocument(id) {
+  var question = confirm("Bạn có chắc chắn muốn xóa tài liệu này ?");
+  if (question) {
+    $.ajax({
+      type: "post",
+      url: `${pathRoot}/document/deleteDocument`,
+      data: {
+        id: id,
+      },
+      success: function (data) {
+        window.location = `${pathRoot}/document/documentManager`;
+      },
+    });
+  } else {
+    return false;
+  }
+}

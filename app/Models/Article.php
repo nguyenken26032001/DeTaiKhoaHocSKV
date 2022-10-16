@@ -40,47 +40,52 @@ class Article extends DB
             $xepLoaiDT = $_POST['article_type'];
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
+            $date1 = strtotime($ngayGiao);
+            $date2 = strtotime($ngayNghiemThu);
             $checkArticle = $this->checkExitsArticle($maDeTai);
             if (!empty($checkArticle) && count($checkArticle) > 0) {
                 $_SESSION['status'] = "Mã đề tài đã tồn tại vui lòng kiểm tra lại !";
                 $_SESSION['status_code'] = "error";
                 $data = 0;
             } else {
-
-                $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
-                $fileBaoCao = $this->getFileName();
-                if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
-                    $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao')";
-                    $this->execute($sqlAddArticle);
-                    $_SESSION['status'] = "Thêm  đề tài thành công !";
-                    $_SESSION['status_code'] = "success";
-
-
-                    //* insert instructors
-                    $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa) values('$maDeTai','$GVHD','$khoaGVHD')";
-                    $this->execute($sqlInsertTeacher);
-                    new DB();
-                    //* insert member
-                    $sqlInsertHost = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$CNDT','$maDeTai','$khoaCNDT','$lopCNDT','$nienKhoaCNDT','Chủ nhiệm đề tài')";
-                    $this->execute($sqlInsertHost);
-
-                    if ($member > 0) {
-                        for ($i = 1; $i <= $member; $i++) {
-                            $nameMB = $_POST["name_MB" . $i];
-                            $khoaMB = $_POST["khoa_MB" . $i];
-                            $lopMB = $_POST["lop_MB" . $i];
-                            $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
-                            $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','Thành Viên')";
-                            $this->execute($sqlInsertMember);
-                        }
-                    }
-                    $data = 1;
-                } else {
-                    $_SESSION['status'] = "Định dạng của file báo cáo không được Uploads ";
+                if ($date1 > $date2) {
+                    $_SESSION['status'] = "Vui lòng nhập đúng thời gian giao và nghiệm thu đề tài.";
                     $_SESSION['status_code'] = "error";
                     $data = 0;
+                } else {
+                    $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
+                    $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
+                    $fileBaoCao = $this->getFileName();
+                    if (in_array($extension, $allowed)) {
+                        move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao);
+                        $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao')";
+                        $this->execute($sqlAddArticle);
+                        $_SESSION['status'] = "Thêm  đề tài thành công !";
+                        $_SESSION['status_code'] = "success";
+                        //* insert instructors
+                        $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa) values('$maDeTai','$GVHD','$khoaGVHD')";
+                        $this->execute($sqlInsertTeacher);
+                        new DB();
+                        //* insert member
+                        $sqlInsertHost = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$CNDT','$maDeTai','$khoaCNDT','$lopCNDT','$nienKhoaCNDT','Chủ nhiệm đề tài')";
+                        $this->execute($sqlInsertHost);
+
+                        if ($member > 0) {
+                            for ($i = 1; $i <= $member; $i++) {
+                                $nameMB = $_POST["name_MB" . $i];
+                                $khoaMB = $_POST["khoa_MB" . $i];
+                                $lopMB = $_POST["lop_MB" . $i];
+                                $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
+                                $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','Thành Viên')";
+                                $this->execute($sqlInsertMember);
+                            }
+                        }
+                        $data = 1;
+                    } else {
+                        $_SESSION['status'] = "Định dạng của file báo cáo không được Uploads ";
+                        $_SESSION['status_code'] = "error";
+                        $data = 0;
+                    }
                 }
             }
         }
@@ -88,10 +93,8 @@ class Article extends DB
     }
     function updateArticle()
     {
+        $data = 0;
         if (isset($_POST["updateDeTai"])) {
-            $_SESSION['status'] = "Cập nhật đề tài thành công !";
-            $_SESSION['status_code'] = "success";
-
             $maDeTai = $_POST['maDeTai'];
             $tenDeTai = $_POST['tenDeTai'];
             $khoaChuTri = $_POST['khoaChuTri'];
@@ -108,45 +111,60 @@ class Article extends DB
             $xepLoaiDT = $_POST['article_type'];
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
-            $file_Old = $_POST['file_Old'];
-            // * update host
-
-            $sqlUpdateHost = "UPDATE sinhvien SET hoTen='$CNDT',maKhoa='$khoaCNDT',lop='$lopCNDT',nienKhoa='$nienKhoaCNDT' WHERE maDeTai='$maDeTai' and vaiTro='Chủ nhiệm đề tài'";
-            $this->execute($sqlUpdateHost);
-
-            if (file_exists($file['name'])) {
-                $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-                $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
-                $fileBaoCao = $this->getFileName();
-                if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle' . $fileBaoCao);
-                    $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";
-                    $this->execute($sqlUpdateArticle);
-                    unlink('./Upload/FileArticle/' . $file_Old);
-                }
+            $fileold = $_POST['file_Old'];
+            //check date
+            $date1 = strtotime($ngayGiao);
+            $date2 = strtotime($ngayNghiemThu);
+            if ($date1 > $date2) {
+                $_SESSION['status'] = "Vui lòng nhập đúng thời gian giao và nghiệm thu đề tài.";
+                $_SESSION['status_code'] = "error";
+                $data = 0;
             } else {
-                $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu' WHERE maDeTai='$maDeTai' ";
-                $this->execute($sqlUpdateArticleNotFile);
-            }
-            new DB();
-            $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
-            $this->execute($sqlUpdateTeacher);
-            new DB();
-            //*#### update member
-
-
-            if ($member > 0) {
-                for ($i = 1; $i <= $member; $i++) {
-                    new DB();
-                    $nameMB = $_POST["name_MB" . $i];
-                    $khoaMB = $_POST["khoa_MB" . $i];
-                    $lopMB = $_POST["lop_MB" . $i];
-                    $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
-                    $sqlUpdateMember = "UPDATE  sinhvien SET hoTen='$nameMB',maKhoa='$khoaMB',lop='$lopMB',nienKhoa='$nienKhoaMB' where maDeTai='$maDeTai' and vaiTro='Thành Viên'";
-                    $this->execute($sqlUpdateMember);
+                if (!empty($file['name'])) {
+                    $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
+                    $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
+                    $fileBaoCao = $this->getFileName();
+                    if (in_array($extension, $allowed)) {
+                        move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao . '');
+                        $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";
+                        $this->execute($sqlUpdateArticle);
+                        $isCheckPostDeTai = $this->getPostArticleById($maDeTai);
+                        if (!empty($isCheckPostDeTai) && count($isCheckPostDeTai) > 0) {
+                            $updateFile_tablePostArticle = "UPDATE postdetai SET fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai'";
+                            $this->execute($updateFile_tablePostArticle);
+                        }
+                        unlink('./Uploads/FileArticle/' . $fileold . '');
+                        $sqlUpdateHost = "UPDATE sinhvien SET hoTen='$CNDT',maKhoa='$khoaCNDT',lop='$lopCNDT',nienKhoa='$nienKhoaCNDT' WHERE maDeTai='$maDeTai' and vaiTro='Chủ nhiệm đề tài'";
+                        $this->execute($sqlUpdateHost);
+                        $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
+                        $this->execute($sqlUpdateTeacher);
+                        //*#### update member
+                        $_SESSION['status'] = "Cập nhật đề tài thành công !";
+                        $_SESSION['status_code'] = "success";
+                        $data = 1;
+                    } else {
+                        $_SESSION['status'] = "Vui lòng Upload file đúng định dạng.";
+                        $_SESSION['status_code'] = "error";
+                    }
+                } else {
+                    $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu' WHERE maDeTai='$maDeTai' ";
+                    $this->execute($sqlUpdateArticleNotFile);
+                    $sqlUpdateHost = "UPDATE sinhvien SET hoTen='$CNDT',maKhoa='$khoaCNDT',lop='$lopCNDT',nienKhoa='$nienKhoaCNDT' WHERE maDeTai='$maDeTai' and vaiTro='Chủ nhiệm đề tài'";
+                    $this->execute($sqlUpdateHost);
+                    $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
+                    $this->execute($sqlUpdateTeacher);
+                    $_SESSION['status'] = "Cập nhật đề tài thành công !";
+                    $_SESSION['status_code'] = "success";
+                    $data = 1;
                 }
             }
         }
+        return $data;
+    }
+    function getPostArticleById($maDeTai)
+    {
+        $sql = "SELECT maDeTai FROM postdetai WHERE maDeTai='$maDeTai'";
+        return $this->executeResult($sql);
     }
     function delArticle()
     {
@@ -160,6 +178,11 @@ class Article extends DB
             $sqlDelArticle = "DELETE FROM detai WHERE maDeTai  = '$maDeTai'";
             $this->execute($sqlDelArticle);
             unlink('./Upload/FileArticle/' . $fileBaoCao);
+            $isCheckPostDeTai = $this->getPostArticleById($maDeTai);
+            if (!empty($isCheckPostDeTai) && count($isCheckPostDeTai) > 0) {
+                $sqlPost = "DELETE FROM postdetai WHERE maDeTai = '$maDeTai'";
+                $this->execute($sqlPost);
+            }
             $_SESSION['status'] = 'Xóa đề tài thành công !';
             $_SESSION['status_code'] = "success";
         }
