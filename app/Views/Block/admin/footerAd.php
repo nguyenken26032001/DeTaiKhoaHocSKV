@@ -36,7 +36,6 @@
 <script src="<?php echo _WEB_ROOT_ ?>/public/dist/js/pages/dashboard.js"></script>
 </body>
 <script src="<?php echo _WEB_ROOT_ ?>/public/js/admin.js"></script>
-<script src="<?php echo _WEB_ROOT_ ?>/public/js/toastMessage.js"></script>
 <script src="<?php echo _WEB_ROOT_ ?>/public/js/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>

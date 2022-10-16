@@ -65,7 +65,7 @@
                 ]);
 
                 var options = {
-                    title: "Biểu đồ thông kê đề tài",
+                    title: "Biểu đồ thống kê đề tài",
                 };
 
                 var chart = new google.visualization.PieChart(
@@ -123,7 +123,7 @@
                     <a class="" id="home" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="" id="home">Home</a>
+                    <a href="<?php echo _WEB_ROOT_ ?>/Admin" class="" id="home">Home</a>
                 </li>
             </ul>
         </nav>
@@ -178,7 +178,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin/classManagement" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                                <i class="fa-solid fa-school" style="padding-right: 5px; margin-left:4px;"></i>
                                 <p>
                                     QUẢN LÝ LỚP
                                 </p>
@@ -186,7 +186,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin/postArticle" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
+                                <i class="fa-regular fa-address-card" style="padding-right: 7px; margin-left:5px;"></i>
                                 <p>
                                     ĐĂNG BÀI
                                 </p>
@@ -194,7 +194,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin/Statistical" class="nav-link">
-                                <i class="fa-solid fa-building" style="padding-right: 10px; margin-left:5px;"></i>
+                                <i class="fa-solid fa-chart-simple" style="padding-right: 10px; margin-left:5px;"></i>
                                 <p>
                                     THỐNG KÊ
                                 </p>

@@ -197,11 +197,17 @@ class Admin extends controller
     {
         $data = $this->Model('thongke')->statistical_By_Derpartment();
         $dataByType = $this->Model('thongke')->statistical_By_Type();
+        $totalStudentJoined = $this->Model('thongke')->totalStudent();
+        $totalArticle = $this->Model('thongke')->totalArticle();
+        $totalArticleXLKha = $this->Model('thongke')->totalArticleXLKha();
         $this->view("masters", [
             "page" => "admin/thongKe",
             "thongKeByKhoa" => $data,
             "thongKeByTypeArticle" => $dataByType,
             "Action" => "6",
+            "totalStudent" => $totalStudentJoined,
+            "totalArticle" => $totalArticle,
+            "totalArticleXLKha" => $totalArticleXLKha,
         ]);
     }
     //feauter post article

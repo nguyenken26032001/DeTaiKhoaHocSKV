@@ -1,5 +1,5 @@
 <div class="prevInformation d-flex flex-column ms-3 mt-5" style="min-height: 500px; ">
-    <h4> Các tài liệu, biểu mẫu liên quan đến việc nghiên cứu khoa học</h4<?php>
+    <h4> Các tài liệu, biểu mẫu liên quan đến việc nghiên cứu khoa học</h4>
     <br>
     <?php
     if (isset($dataDocuments)) {

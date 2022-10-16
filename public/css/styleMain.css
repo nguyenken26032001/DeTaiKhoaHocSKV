@@ -344,6 +344,9 @@ body::-webkit-scrollbar-thumb {
   padding-top: 12px;
   display: flex;
 }
+.noti__title::first-letter {
+  text-transform: uppercase;
+}
 .oclock {
   margin-top: 5px;
   position: relative;
@@ -373,6 +376,9 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 30px;
+}
+.article__content::first-letter {
+  text-transform: uppercase;
 }
 .article__content a:hover {
   text-decoration: underline;

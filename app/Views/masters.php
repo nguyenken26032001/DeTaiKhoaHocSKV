@@ -68,6 +68,20 @@ if (isset($data["listDocuments"])) {
 if (isset($data["documentDetai"])) {
     $documentDetai = $data["documentDetai"];
 }
+//thống kê
+if (isset($data["totalStudent"])) {
+    $totalStudent = $data["totalStudent"];
+}
+if (isset($data["totalArticle"])) {
+    $totalArticle = $data["totalArticle"];
+}
+if (isset($data["totalArticleXLKha"])) {
+    $deTaiKha = $data["totalArticleXLKha"];
+}
+if (isset($data["listyear"])) {
+    $listyear = $data["listyear"];
+}
+
 ?>
 <?php include "app/Views/Block/admin/headerAd.php" ?>
 <?php include "app/Views/Block/" . $data['page'] . ".php" ?>

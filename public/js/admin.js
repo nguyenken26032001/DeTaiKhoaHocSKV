@@ -168,6 +168,8 @@ function deletePost(id) {
 }
 //* thống kê dữ liệu
 function DuLieuThongKe(value) {
+  if (value == "year") statistical_by_year.style.display = "block";
+  else statistical_by_year.style.display = "none";
   $.ajax({
     type: "POST",
     url: `${pathRoot}/Statistical/statistical_By_Derpartment`,
@@ -223,4 +225,21 @@ function deleteDocument(id) {
   } else {
     return false;
   }
+}
+//handles thong ke
+var statistical_by_year = document.getElementById("StatisticalByYear");
+statistical_by_year.style.display = "none";
+
+function Statistical_by_year(year, option) {
+  $.ajax({
+    type: "post",
+    url: `${pathRoot}/Statistical/statisticalByYear`,
+    data: {
+      year: year,
+      option: option,
+    },
+    success: function (data) {
+      $("#tableThongKe").html(data);
+    },
+  });
 }

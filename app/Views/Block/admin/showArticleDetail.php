@@ -139,7 +139,6 @@
             if ($numberMB > 0) {
                 for ($i = 1; $i <= $numberMB; $i++) {
             ?>
-
                     <label for=""> Thành Viên</label>
                     <div class="row  p-2 border border-secondary">
                         <div class="col-md-3">
@@ -187,9 +186,7 @@
                                             echo '<option value="' . $item['maLop'] . '">' . $item['maLop'] . '</option>';
                                     }
                                     ?>
-
                                 </select>
-
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -205,7 +202,6 @@
                         </div>
                     </div>
             <?php
-
                 }
             }
             ?>
