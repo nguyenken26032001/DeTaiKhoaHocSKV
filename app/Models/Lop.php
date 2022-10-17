@@ -13,13 +13,18 @@ class Lop extends DB
     }
     function getDepartmentAllMembers($maDeTai)
     {
-        $sql = "SELECT maKhoa FROM dslop WHERE maDeTai='$maDeTai'";
-        return $this->executeResult($sql);
+        $vaitro = "Thành viên";
+        $sql = "SELECT maKhoa FROM sinhvien WHERE maDeTai='$maDeTai' and vaiTro like '" . $vaitro . "%'";
+        $dataKhoa = $this->executeResult($sql);
+        $output = [];
+        foreach ($dataKhoa as $item) {
+            $sql = "SELECT maLop FROM dslop WHERE maKhoa='" . $item['maKhoa'] . "'";
+            $result = $this->executeResult($sql);
+            $output[] = $result;
+        }
+        return $output;
     }
-    function getListClassByMember($maKhoa, $maDeTai)
-    {
-        $sql = "SELECT maLop FROM dslop,sinhvien WHERE dslop.maKhoa=sinhvien.maKhoa and sinhien.maDeTai='$maDeTai'";
-    }
+
     function addClass()
     {
         $data = 0;

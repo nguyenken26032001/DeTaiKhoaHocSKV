@@ -137,7 +137,7 @@ class Admin extends controller
         $dataKhoa = $this->DepartmentModel->getList();
         $Numbermember = $this->Model("Article")->countMember($maDeTai);
         $member = $this->Model("student")->getMembersByCode($maDeTai);
-        // $dataClassMember = $this->Model("student")->getMembersByCode($maKhoa);
+        $dataClassMember = $this->Model("lop")->getDepartmentAllMembers($maDeTai);
         $this->view("masters", [
             "page" => "admin/showArticleDetail",
             "dataArticleByID" => $data,
@@ -145,6 +145,7 @@ class Admin extends controller
             "dataClass" => $dataClass,
             "Numbermember" => $Numbermember,
             "member" => $member,
+            "dataClassMember" => $dataClassMember,
             "Action" => "1"
         ]);
     }

@@ -188,7 +188,7 @@
                         <label for=""> Lớp</label>
                         <select name="lop_MB<?php echo $i ?>" id="lop<?php echo $i ?>" class="form-control">
                             <?php
-                                    foreach ($dataClass as $item) {
+                                    foreach ($dataClassMember[$i - 1] as $item) {
                                         if ($item['maLop'] == $member[$i - 1]['lop']) {
                                             echo '<option value="' . $item['maLop'] . '" selected>' . $item['maLop'] . '</option>';
                                         } else

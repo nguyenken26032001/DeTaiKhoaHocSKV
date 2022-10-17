@@ -14,6 +14,9 @@ if (isset($data["dataClass"])) {
 if (isset($data["Numbermember"])) {
     $Numbermember = $data["Numbermember"];
 }
+if (isset($data["dataClassMember"])) {
+    $dataClassMember = $data["dataClassMember"];
+}
 if (isset($data["member"])) {
     $member = $data["member"];
 }
