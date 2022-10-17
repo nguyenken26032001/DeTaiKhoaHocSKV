@@ -344,7 +344,7 @@ body::-webkit-scrollbar-thumb {
   padding-top: 12px;
   display: flex;
 }
-.noti__title::first-letter {
+.notification__list--item .noti--title::first-letter {
   text-transform: uppercase;
 }
 .oclock {

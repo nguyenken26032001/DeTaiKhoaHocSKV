@@ -36,7 +36,7 @@
     <div class="menu">
         <ul class="menu_main">
             <li class="menu_item">
-                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">HOME</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TRANG CHỦ</a>
             </li>
             <li class="menu_item">
                 <a href="" class="menu_link">TIN TỨC</a>
@@ -91,7 +91,8 @@
         <nav class="navbar navbar-expand-lg d-block d-sm-none navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -115,7 +116,7 @@
     </div>
     <form action="" method="GET">
         <div class="search">
-            <input type="text" name="search" id="" class="inputSearch" placeholder="Searching......" />
+            <input type="text" name="search" id="" class="inputSearch" placeholder="Tìm kiếm......" />
             <button type="submit" class="button">Tìm Kiếm</button>
         </div>
     </form>

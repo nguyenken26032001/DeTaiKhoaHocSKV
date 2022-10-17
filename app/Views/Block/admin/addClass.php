@@ -23,7 +23,8 @@
                 </div>
                 <div class="md-col-3 mr-4">
                     <label for="pwd">Hệ Đào Tạo</label>
-                    <select class="form-control" name="heDaoTao" id="heDaoTao" onchange="updateLop(this.value,$('#0').val())">
+                    <select class="form-control" name="heDaoTao" id="heDaoTao"
+                        onchange="updateLop(this.value,$('#0').val())">
                         <option value="Đại học chính quy">Đại học chính quy</option>
                         <option value="Cao đẳng chính quy">Cao đẳng chính quy</option>
                     </select>
@@ -34,13 +35,15 @@
                 </div>
             </div>
             <div class="button_feature d-flex justify-content-between">
-                <button type="submit" class="btn btn-success px-4 py-2" style="margin-left: 120px;" name="addClass"> THÊM</button>
+                <button type="submit" class="btn btn-success px-4 py-2" style="margin-left: 120px;" name="addClass">
+                    THÊM</button>
         </form>
         <form action="<?php echo _WEB_ROOT_ ?>/import/importData" method="post" enctype="multipart/form-data">
             <div class="import" style="margin-right:50px">
                 <input type="file" name="file_import" required style="width: 250px;">
                 <button class="btn btn-success px-3" name="import">IMPORT</button>
-                <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImport.xlsx" class="btn btn-success"> down load file mẫu</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImportClass.xlsx" class="btn btn-success"> down
+                    load file mẫu</a>
             </div>
         </form>
     </div>

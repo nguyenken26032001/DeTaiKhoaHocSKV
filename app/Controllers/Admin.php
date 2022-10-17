@@ -158,6 +158,19 @@ class Admin extends controller
             "Action" => "4",
         ]);
     }
+    function DetailClassByDepartment($maKhoa)
+    {
+        $datakhoa = $this->DepartmentModel->getList();
+        $listClassByDepartment = $this->Model("lop")->listByDepartament($maKhoa);
+        $this->view("masters", [
+            "page" => "admin/listClass",
+            "dataDepartments" => $datakhoa,
+            "maKhoa_added" => $maKhoa,
+            "listClassByDepartment" => $listClassByDepartment,
+            "Action" => "4"
+        ]);
+    }
+
     function addClass()
     {
         //when added class -> direction page ->listClass
@@ -165,15 +178,16 @@ class Admin extends controller
         if ($data == 0) {
             header("Location: ../Admin/addClassPage");
         } else {
-            $datakhoa = $this->DepartmentModel->getList();
-            $listClassByDepartment = $this->Model("lop")->listByDepartament($data);
-            $this->view("masters", [
-                "page" => "admin/listClass",
-                "dataDepartments" => $datakhoa,
-                "maKhoa_added" => $data,
-                "listClassByDepartment" => $listClassByDepartment,
-                "Action" => "4"
-            ]);
+            // $datakhoa = $this->DepartmentModel->getList();
+            // $listClassByDepartment = $this->Model("lop")->listByDepartament($data);
+            // $this->view("masters", [
+            //     "page" => "admin/listClass",
+            //     "dataDepartments" => $datakhoa,
+            //     "maKhoa_added" => $data,
+            //     "listClassByDepartment" => $listClassByDepartment,
+            //     "Action" => "4"
+            // ]);
+            $this->DetailClassByDepartment($data);
         }
     }
     function DelClass()

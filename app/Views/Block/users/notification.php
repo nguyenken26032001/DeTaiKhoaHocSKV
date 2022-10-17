@@ -8,23 +8,24 @@
                 foreach ($notifications as $item) {
                 ?>
 
-                    <li class="notification__list--item mw-100">
-                        <a class="noti__title" href="<?php echo _WEB_ROOT_; ?>/Home/notificationDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?>
-                        </a>
-                        <div class="notification--time">
-                            <ion-icon class="oclock" name="alarm-outline"></ion-icon>
-                            <div class="time__date">
-                                <p class="time__date--detail">
-                                    <?php
+                <li class="notification__list--item mw-100">
+                    <a class="noti--title"
+                        href="<?php echo _WEB_ROOT_; ?>/Home/notificationDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?>
+                    </a>
+                    <div class="notification--time">
+                        <ion-icon class="oclock" name="alarm-outline"></ion-icon>
+                        <div class="time__date">
+                            <p class="time__date--detail">
+                                <?php
                                     $time = strtotime($item['ngayDang']);
                                     $day = date('j', $time);
                                     $month = date('m', $time);
                                     $year = date('Y', $time);
                                     echo $day . ' tháng ' . $month . ', ' . $year  ?>
-                                </p>
-                            </div>
+                            </p>
                         </div>
-                    </li>
+                    </div>
+                </li>
 
                 <?php
                 }

@@ -6,7 +6,7 @@ class import extends controller
         if (isset($_POST['import'])) {
             $file_name = $_FILES['file_import']['name'];
             $extension = pathinfo($file_name, PATHINFO_EXTENSION);
-            $allowed = ['xlsx', 'doc'];
+            $allowed = ['xlsx'];
             if (in_array($extension, $allowed)) {
                 move_uploaded_file($_FILES['file_import']['tmp_name'], './Uploads/' . $file_name);
                 //!red file 
@@ -21,15 +21,28 @@ class import extends controller
                 $data = [];
                 for ($i = 2; $i < $totalRows; $i++) {
                     for ($j = 0; $j < $totalColumn; $j++) {
-                        $data[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                        $value = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                        if (!empty($value)) {
+                            $data[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                        }
                     }
+                }
+                echo "<pre>";
+                print_r($data);
+                echo "</pre>";
+                foreach ($data as $item) {
+                    $malop = $item[1];
+                    $maKhoa = $item[2];
+                    $heDaoTao = $item[3];
+                    $nienKhoa = $item[4];
+                    $this->Model('lop')->addListClassByImportFile($malop, $maKhoa, $heDaoTao, $nienKhoa);
                 }
                 // $_SESSION['status'] = "File import dữ liệu thành công ";
                 // $_SESSION['status_code'] = "success";
                 // header("location: " . _WEB_ROOT_ . "/Admin/addClassPage");
             } else {
                 $_SESSION['status'] = "File import không đúng định dạng vui lòng kiểm tra lại";
-                $_SESSION['status_code'] = "warning";
+                $_SESSION['status_code'] = "error";
                 header("location: " . _WEB_ROOT_ . "/Admin/addClassPage");
             }
         }

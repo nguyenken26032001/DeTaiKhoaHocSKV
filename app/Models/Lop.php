@@ -11,6 +11,11 @@ class Lop extends DB
         $sql = "SELECT maLop FROM dslop WHERE maKhoa='$makhoa'";
         return $this->executeResult($sql);
     }
+    function listByDepartament($makhoa)
+    {
+        $sql = "SELECT maLop FROM dslop WHERE maKhoa='$makhoa'";
+        return $this->executeResult($sql);
+    }
     function getDepartmentAllMembers($maDeTai)
     {
         $vaitro = "Thành viên";
@@ -62,5 +67,10 @@ class Lop extends DB
         $_SESSION['status'] = "Xóa lớp thành công !";
         $_SESSION['status_code'] = "success";
         return $maKhoa;
+    }
+    function addListClassByImportFile($malop, $makhoa, $heDaoTao, $nienKhoa)
+    {
+        $sql = "INSERT INTO dslop (maLop,maKhoa,thuocLoai,nienKhoa) values('$malop','$makhoa','$heDaoTao','$nienKhoa'";
+        $this->execute($sql);
     }
 }
