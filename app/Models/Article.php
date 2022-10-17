@@ -75,8 +75,9 @@ class Article extends DB
                                 $nameMB = $_POST["name_MB" . $i];
                                 $khoaMB = $_POST["khoa_MB" . $i];
                                 $lopMB = $_POST["lop_MB" . $i];
+                                $vaiTro = "Thành viên" . $i;
                                 $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
-                                $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','Thành Viên')";
+                                $sqlInsertMember = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$nameMB','$maDeTai','$khoaMB','$lopMB','$nienKhoaMB','$vaiTro')";
                                 $this->execute($sqlInsertMember);
                             }
                         }
@@ -112,6 +113,7 @@ class Article extends DB
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
             $fileold = $_POST['file_Old'];
+
             //check date
             $date1 = strtotime($ngayGiao);
             $date2 = strtotime($ngayNghiemThu);
@@ -138,6 +140,18 @@ class Article extends DB
                         $this->execute($sqlUpdateHost);
                         $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
                         $this->execute($sqlUpdateTeacher);
+                        //update member
+                        if ($member > 0) {
+                            for ($i = 1; $i <= $member; $i++) {
+                                $nameMB = $_POST["name_MB" . $i];
+                                $khoaMB = $_POST["khoa_MB" . $i];
+                                $lopMB = $_POST["lop_MB" . $i];
+                                $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
+                                $vaiTro = "Thành viên" . $i;
+                                $sqlUpdateMember = "UPDATE  sinhvien SET hoTen='$nameMB',maKhoa='$khoaMB',lop='$lopMB',nienKhoa='$nienKhoaMB' where maDeTai='$maDeTai' and vaiTro='$vaiTro'";
+                                $this->execute($sqlUpdateMember);
+                            }
+                        }
                         //*#### update member
                         $_SESSION['status'] = "Cập nhật đề tài thành công !";
                         $_SESSION['status_code'] = "success";
@@ -153,6 +167,18 @@ class Article extends DB
                     $this->execute($sqlUpdateHost);
                     $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
                     $this->execute($sqlUpdateTeacher);
+                    //update member
+                    if ($member > 0) {
+                        for ($i = 1; $i <= $member; $i++) {
+                            $nameMB = $_POST["name_MB" . $i];
+                            $khoaMB = $_POST["khoa_MB" . $i];
+                            $lopMB = $_POST["lop_MB" . $i];
+                            $nienKhoaMB = $_POST["nienKhoa_MB" . $i];
+                            $vaiTro = "Thành viên" . $i;
+                            $sqlUpdateMember = "UPDATE  sinhvien SET hoTen='$nameMB',maKhoa='$khoaMB',lop='$lopMB',nienKhoa='$nienKhoaMB' where maDeTai='$maDeTai' and vaiTro='$vaiTro'";
+                            $this->execute($sqlUpdateMember);
+                        }
+                    }
                     $_SESSION['status'] = "Cập nhật đề tài thành công !";
                     $_SESSION['status_code'] = "success";
                     $data = 1;

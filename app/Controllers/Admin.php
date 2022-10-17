@@ -132,11 +132,12 @@ class Admin extends controller
 
     function ArticleDetail($maDeTai, $maKhoa)
     {
-        $dataClass = $this->lop->listByDepartament($maKhoa);
+        $dataClass = $this->lop->listClassByHost($maKhoa);
         $data =  $this->Article->getArticleById($maDeTai);
         $dataKhoa = $this->DepartmentModel->getList();
         $Numbermember = $this->Model("Article")->countMember($maDeTai);
         $member = $this->Model("student")->getMembersByCode($maDeTai);
+        // $dataClassMember = $this->Model("student")->getMembersByCode($maKhoa);
         $this->view("masters", [
             "page" => "admin/showArticleDetail",
             "dataArticleByID" => $data,

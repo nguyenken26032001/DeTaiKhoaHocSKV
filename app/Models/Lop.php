@@ -6,10 +6,19 @@ class Lop extends DB
         $sql = "SELECT maLop FROM dslop";
         return $this->executeResult($sql);
     }
-    function listByDepartament($makhoa)
+    function listClassByHost($makhoa)
     {
         $sql = "SELECT maLop FROM dslop WHERE maKhoa='$makhoa'";
         return $this->executeResult($sql);
+    }
+    function getDepartmentAllMembers($maDeTai)
+    {
+        $sql = "SELECT maKhoa FROM dslop WHERE maDeTai='$maDeTai'";
+        return $this->executeResult($sql);
+    }
+    function getListClassByMember($maKhoa, $maDeTai)
+    {
+        $sql = "SELECT maLop FROM dslop,sinhvien WHERE dslop.maKhoa=sinhvien.maKhoa and sinhien.maDeTai='$maDeTai'";
     }
     function addClass()
     {

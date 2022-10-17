@@ -3,7 +3,8 @@ class student extends DB
 {
     function getMembersByCode($maDeTai)
     {
-        $sql = "SELECT hoTen,maKhoa,lop,nienKhoa FROM sinhvien WHERE maDeTai = '$maDeTai' and vaiTro='Thành viên'";
+        $vaitro = "Thành viên";
+        $sql = "SELECT hoTen,maKhoa,lop,nienKhoa FROM sinhvien WHERE maDeTai = '$maDeTai' and vaiTro like '" . $vaitro . "%'";
         return $this->executeResult($sql);
     }
 }
