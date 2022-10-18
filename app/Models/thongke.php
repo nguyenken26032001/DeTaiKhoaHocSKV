@@ -43,4 +43,14 @@ class thongke extends DB
         $sql = "SELECT maDeTai,tenDeTai,xepLoai FROM detai WHERE thoiGianNghiemThu like '" . $year . "%'";
         return $this->executeResult($sql);
     }
+    function getArticleByType($type)
+    {
+        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,giaovienhd.hoTen as 'gvhd' FROM detai,giaovienhd WHERE detai.maDeTai=giaovienhd.maDeTai AND xepLoai like '" . $type . "'";
+        return $this->executeResult($sql);
+    }
+    function getArticleByDepartmentDetail($department)
+    {
+        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,giaovienhd.hoTen as 'gvhd' FROM detai,giaovienhd WHERE detai.maDeTai=giaovienhd.maDeTai AND khoaChuTri='$department'";
+        return $this->executeResult($sql);
+    }
 }

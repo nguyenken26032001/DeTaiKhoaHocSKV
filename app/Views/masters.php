@@ -84,6 +84,9 @@ if (isset($data["totalArticleXLKha"])) {
 if (isset($data["listyear"])) {
     $listyear = $data["listyear"];
 }
+if (isset($data["dataDepartments"])) {
+    $dataDepartments = $data["dataDepartments"];
+}
 
 ?>
 <?php include "app/Views/Block/admin/headerAd.php" ?>

@@ -168,8 +168,23 @@ function deletePost(id) {
 }
 //* thống kê dữ liệu
 function DuLieuThongKe(value) {
-  if (value == "year") statistical_by_year.style.display = "block";
-  else statistical_by_year.style.display = "none";
+  if (value === "year") {
+    statistical_by_year.style.display = "block";
+    statistical_by_Type.style.display = "none";
+    statistical_By_Derpartment.style.display = "none";
+  } else if (value === "Type") {
+    statistical_by_Type.style.display = "block";
+    statistical_by_year.style.display = "none";
+    statistical_By_Derpartment.style.display = "none";
+  } else if (value == "khoa") {
+    statistical_By_Derpartment.style.display = "block";
+    statistical_by_Type.style.display = "none";
+    statistical_by_year.style.display = "none";
+  } else {
+    statistical_by_Type.style.display = "none";
+    statistical_by_year.style.display = "none";
+    statistical_By_Derpartment.style.display = "none";
+  }
   $.ajax({
     type: "POST",
     url: `${pathRoot}/Statistical/statistical_By_Derpartment`,
@@ -229,6 +244,12 @@ function deleteDocument(id) {
 //handles thong ke
 var statistical_by_year = document.getElementById("StatisticalByYear");
 statistical_by_year.style.display = "none";
+var statistical_by_Type = document.getElementById("StatisticalByType");
+statistical_by_Type.style.display = "none";
+var statistical_By_Derpartment = document.getElementById(
+  "StatisticalByDeparment"
+);
+statistical_By_Derpartment.style.display = "none";
 
 function Statistical_by_year(year, option) {
   $.ajax({
@@ -240,6 +261,53 @@ function Statistical_by_year(year, option) {
     },
     success: function (data) {
       $("#tableThongKe").html(data);
+    },
+  });
+}
+function Statistical_by_Type(type, option) {
+  $.ajax({
+    type: "post",
+    url: `${pathRoot}/Statistical/StatisticalByType`,
+    data: {
+      type: type,
+      option: option,
+    },
+    success: function (data) {
+      if (data == 0) {
+        $("#tableThongKe").html("");
+        swal({
+          title: "",
+          text: "Không có đề tài nào thuộc loại này .",
+          icon: "warning",
+          button: "ok!",
+        });
+      } else {
+        $("#tableThongKe").html(data);
+      }
+    },
+  });
+}
+
+function Statistical_by_Deparment(department, option) {
+  $.ajax({
+    type: "post",
+    url: `${pathRoot}/Statistical/StatisticalByDeparmentDetail`,
+    data: {
+      department: department,
+      option: option,
+    },
+    success: function (data) {
+      if (data == 0) {
+        $("#tableThongKe").html("");
+        swal({
+          title: "",
+          text: "Không có đề tài thuộc khoa này.",
+          icon: "warning",
+          button: "ok!",
+        });
+      } else {
+        $("#tableThongKe").html(data);
+      }
     },
   });
 }

@@ -6,6 +6,7 @@ class DepartmentModel extends DB
         $sql = "SELECT * FROM khoa";
         return  $this->executeResult($sql);
     }
+
     function getClassByDepartment($value)
     {
         $sql = "SELECT maLop from dslop where maKhoa='$value'";

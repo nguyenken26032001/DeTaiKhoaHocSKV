@@ -38,7 +38,7 @@
             <li class="menu_item">
                 <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TRANG CHỦ</a>
             </li>
-            <li class="menu_item">
+            <!-- <li class="menu_item">
                 <a href="" class="menu_link">TIN TỨC</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
@@ -47,7 +47,7 @@
                         <li>Element</li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="menu_item">
                 <a href="" class="menu_link">ĐỀ TÀI</a>
                 <div class="menu_child">

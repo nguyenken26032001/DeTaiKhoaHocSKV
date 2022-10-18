@@ -70,7 +70,12 @@ class Lop extends DB
     }
     function addListClassByImportFile($malop, $makhoa, $heDaoTao, $nienKhoa)
     {
-        $sql = "INSERT INTO dslop (maLop,maKhoa,thuocLoai,nienKhoa) values('$malop','$makhoa','$heDaoTao','$nienKhoa'";
+        $sql = "INSERT INTO dslop (maLop,maKhoa,thuocLoai,nienKhoa) values('$malop','$makhoa','$heDaoTao','$nienKhoa')";
         $this->execute($sql);
+    }
+    function isExistClass($maLop, $makhoa)
+    {
+        $sql = "SELECT count(id) as 'number' FROM dslop WHERE maLop = '$maLop' AND maKhoa = '$makhoa'";
+        return $this->executeResult($sql);
     }
 }

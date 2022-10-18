@@ -226,8 +226,19 @@
             </div>
             <div class="form-group">
                 <label for="">Xếp loại đề tài</label>
-                <input type="text" class="form-control" id="Article_type" required="true" name="article_type"
-                    value="<?php echo $dataArticleDetail[0]['xepLoai']; ?>">
+                <select name="article_type" id="" class="form-control">
+                    <?php
+                    $array = ['Xuất sắc', 'Tốt', 'Khá', 'Đạt', 'Không đạt'];
+                    foreach ($array as $item) {
+                        if ($item == $dataArticleDetail[0]['xepLoai']) {
+                            echo "<option value=" . $item . " selected>" . $item . "</option>";
+                        } else {
+                            echo "<option value=" . $item . " >" . $item . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+
             </div>
             <div class="form-group">
                 <label for="">File Báo Cáo </label>
