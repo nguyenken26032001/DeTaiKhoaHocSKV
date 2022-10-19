@@ -12,17 +12,9 @@
             <option value="year">Thống kê theo năm</option>
             <option value="Type">Thống kê theo loại</option>
         </select>
-        <select name="year" id="StatisticalByYear" class="form-control ml-5" style="max-width: 250px;"
-            onchange="Statistical_by_year(this.value,$('#option').val())">
-            <option value="null" selected>-- chọn năm ---</option>
-            <?php
-            foreach ($listyear as $item) {
-                echo "<option value=" . $item . " >" . $item . "</option>";
-            }
-            ?>
-        </select>
+
         <select name="Type" id="StatisticalByType" class="form-control ml-5" style="max-width: 250px;"
-            onchange="Statistical_by_Type(this.value,$('#option').val())">
+            onchange="Statistical_by_Type(this.value,$('#StatisticalByYear').val())">
             <option value="null" selected>-- chọn loại đề tài --</option>
             <?php
             $array = ['Xuất sắc', 'Tốt', 'Khá', 'Đạt', 'Không đạt'];
@@ -31,8 +23,17 @@
             }
             ?>
         </select>
+        <select name="year" id="StatisticalByYear" class="form-control ml-5" style="max-width: 250px;"
+            onchange="Statistical_by_year(this.value,$('#StatisticalByType').val())">
+            <option value="null" selected>-- chọn năm ---</option>
+            <?php
+            foreach ($listyear as $item) {
+                echo "<option value=" . $item . " >" . $item . "</option>";
+            }
+            ?>
+        </select>
         <select name="Deparment" id="StatisticalByDeparment" class="form-control ml-5" style="max-width: 250px;"
-            onchange="Statistical_by_Deparment(this.value,$('#option').val())">
+            onchange="Statistical_by_Deparment(this.value)">
             <option value="null" selected>-- chọn Khoa ---</option>
             <?php
             foreach ($dataDepartments as $item) {

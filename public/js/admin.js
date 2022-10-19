@@ -174,7 +174,7 @@ function DuLieuThongKe(value) {
     statistical_By_Derpartment.style.display = "none";
   } else if (value === "Type") {
     statistical_by_Type.style.display = "block";
-    statistical_by_year.style.display = "none";
+    statistical_by_year.style.display = "block";
     statistical_By_Derpartment.style.display = "none";
   } else if (value == "khoa") {
     statistical_By_Derpartment.style.display = "block";
@@ -252,33 +252,43 @@ var statistical_By_Derpartment = document.getElementById(
 );
 statistical_By_Derpartment.style.display = "none";
 
-function Statistical_by_year(year, option) {
+function Statistical_by_year(year, type) {
   $.ajax({
     type: "post",
     url: `${pathRoot}/Statistical/statisticalByYear`,
     data: {
       year: year,
-      option: option,
-    },
-    success: function (data) {
-      $("#tableThongKe").html(data);
-    },
-  });
-}
-function Statistical_by_Type(type, option) {
-  $.ajax({
-    type: "post",
-    url: `${pathRoot}/Statistical/StatisticalByType`,
-    data: {
       type: type,
-      option: option,
     },
     success: function (data) {
       if (data == 0) {
         $("#tableThongKe").html("");
         swal({
           title: "",
-          text: "Không có đề tài nào thuộc loại này .",
+          text: "Không có dữ liệu .",
+          icon: "warning",
+          button: "ok!",
+        });
+      } else {
+        $("#tableThongKe").html(data);
+      }
+    },
+  });
+}
+function Statistical_by_Type(type, year) {
+  $.ajax({
+    type: "post",
+    url: `${pathRoot}/Statistical/StatisticalByType`,
+    data: {
+      type: type,
+      year: year,
+    },
+    success: function (data) {
+      if (data == 0) {
+        $("#tableThongKe").html("");
+        swal({
+          title: "",
+          text: "Không có dữ liệu .",
           icon: "warning",
           button: "ok!",
         });
@@ -289,13 +299,12 @@ function Statistical_by_Type(type, option) {
   });
 }
 
-function Statistical_by_Deparment(department, option) {
+function Statistical_by_Deparment(department) {
   $.ajax({
     type: "post",
     url: `${pathRoot}/Statistical/StatisticalByDeparmentDetail`,
     data: {
       department: department,
-      option: option,
     },
     success: function (data) {
       if (data == 0) {
