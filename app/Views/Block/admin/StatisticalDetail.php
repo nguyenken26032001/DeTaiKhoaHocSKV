@@ -43,6 +43,5 @@
 
         </select>
     </div>
-    <div class="wraper_table px-3" id="tableThongKe">
-    </div>
+    <div class="wraper_table px-3" id="tableThongKe"></div>
 </div>

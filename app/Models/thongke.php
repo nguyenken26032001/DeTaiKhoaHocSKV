@@ -40,7 +40,7 @@ class thongke extends DB
     }
     function getArticleByYear($year)
     {
-        $sql = "SELECT maDeTai,tenDeTai,xepLoai FROM detai WHERE thoiGianNghiemThu like '" . $year . "%'";
+        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,giaovienhd.hoTen as'gvhd',xepLoai FROM detai,giaovienhd WHERE detai.maDeTai=giaovienhd.maDeTai and thoiGianNghiemThu like '" . $year . "%' ";
         return $this->executeResult($sql);
     }
     function getArticleByType($type)

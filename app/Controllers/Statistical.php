@@ -1,4 +1,12 @@
 <?php
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+// use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+// use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer;
+// use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 class Statistical extends controller
 {
     function statistical_By_Derpartment()
@@ -26,7 +34,8 @@ class Statistical extends controller
                     </tr>';
                 }
                 echo "</tbody>";
-                echo "</table";
+                echo "</table>";
+                echo  "<button id=\"btnExcel\" class=\"btn btn-success float-right mr-5 mt-4\">Xuất Excel</button>";
             }
         }
     }
@@ -44,9 +53,9 @@ class Statistical extends controller
                     echo "<thead>";
                     echo "<tr>";
                     echo "<th>TT</th>";
-                    echo "<th>Mã đề tài</th>";
+                    echo "<th style='width:100px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
-                    echo "<th>Giáo viên hướng dẫn</th>";
+                    echo "<th style='width:200px'>Giáo viên HD</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -61,7 +70,10 @@ class Statistical extends controller
                     </tr>';
                     }
                     echo "</tbody>";
-                    echo "</table";
+                    echo "</table>";
+                    echo "<form action=\"" . _WEB_ROOT_ . "/Statistical/ExportByDepartment/" . $department . "\" method=\"post\">";
+                    echo  "<button id=\"btnExcel\" class=\"btn btn-success float-right mr-5 mt-4\" name=\"export\">Xuất Excel</button>";
+                    echo "</form>";
                 }
             }
         }
@@ -89,9 +101,10 @@ class Statistical extends controller
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>TT</th>";
-                echo "<th>Mã đề tài</th>";
+                echo "<th style='width:100px' >Mã đề tài</th>";
                 echo "<th>Tên đề tài</th>";
-                echo "<th>Xếp loại</th>";
+                echo "<th  style='width:200px'>Giáo viên HD</th>";
+                echo "<th  style='width:100px'>Xếp loại</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -102,11 +115,13 @@ class Statistical extends controller
                     <td>' . ++$index . '</td>
                     <td>' . $item['maDeTai'] . '</td>
                     <td>' . $item['tenDeTai'] . '</td>
+                    <td>' . $item['gvhd'] . '</td>
                     <td>' . $item['xepLoai'] . '</td>
                     </tr>';
                 }
                 echo "</tbody>";
-                echo "</table";
+                echo "</table>";
+                echo  "<button id=\"btnExcel\" class=\"btn btn-success float-right mr-5 mt-4\">Xuất Excel</button>";
             }
         }
     }
@@ -124,9 +139,9 @@ class Statistical extends controller
                     echo "<thead>";
                     echo "<tr>";
                     echo "<th>TT</th>";
-                    echo "<th>Mã đề tài</th>";
+                    echo "<th  style='width:100px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
-                    echo "<th>Giáo viên hướng dẫn</th>";
+                    echo "<th  style='width:200px'>Giáo viên HD</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -141,9 +156,34 @@ class Statistical extends controller
                     </tr>';
                     }
                     echo "</tbody>";
-                    echo "</table";
+                    echo "</table>";
+                    echo  "<button id=\"btnExcel\" class=\"btn btn-success float-right mr-5 mt-4\">Xuất Excel</button>";
                 }
             }
+        }
+    }
+    //handle export data
+    function ExportByDepartment($department)
+    {
+        if (isset($_POST['export'])) {
+
+            $data = $this->Model("thongke")->getArticleByDepartmentDetail($department);
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $writer = new Xlsx($spreadsheet);
+            $rowCount = 1;
+            $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
+            $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
+            $sheet->setCellValue('C' . $rowCount, 'Giáo  viên hướng dẫn');
+            foreach ($data as $row) {
+                $rowCount++;
+                $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
+                $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
+                $sheet->setCellValue('C' . $rowCount, $row['gvhd']);
+            }
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attactment; filename="data.xlsx"');
+            $writer->save('php://output');
         }
     }
 }

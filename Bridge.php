@@ -14,3 +14,7 @@ require_once "app/core/App.php";
 require_once "app/core/controller.php";
 require_once "app/core/DB.php";
 require_once "app/library/PHPExcel.php";
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

@@ -185,6 +185,7 @@ function DuLieuThongKe(value) {
     statistical_by_year.style.display = "none";
     statistical_By_Derpartment.style.display = "none";
   }
+
   $.ajax({
     type: "POST",
     url: `${pathRoot}/Statistical/statistical_By_Derpartment`,
@@ -311,3 +312,8 @@ function Statistical_by_Deparment(department, option) {
     },
   });
 }
+//get button btnExcel
+var btnExcel = document.getElementById("btnExcel");
+var table = document.querySelector(".table");
+var isCheck = table.hasChildNodes();
+console.log(isCheck);
