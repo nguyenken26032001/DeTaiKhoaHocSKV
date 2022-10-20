@@ -97,17 +97,47 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <li class="menu_item">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TRANG CHỦ</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                        <li class="menu_item">
+                            <a href="" class="menu_link">ĐỀ TÀI</a>
+                            <div class="menu_child">
+                                <ul class="menu_child_list">
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CNTT">
+                                        <li>Khoa công nghệ thông tin</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKCT">
+                                        <li>Khoa cơ khí chế tạo</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKDL">
+                                        <li>Khoa cơ khí động lực</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/Dien">
+                                        <li>Khoa điện</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/ĐT">
+                                        <li>Khoa điện tử</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/KT">
+                                        <li>Khoa kinh tế</li>
+                                    </a>
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/NN">
+                                        <li>Khoa ngoại ngữ</li>
+                                    </a>
+                                </ul>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <li class="menu_item">
+                            <a href="" class="menu_link">TÀI LIỆU</a>
+                            <div class="menu_child">
+                                <ul class="menu_child_list">
+                                    <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/document">
+                                        <li>Các biểu mẫu</li>
+                                    </a>
+
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
