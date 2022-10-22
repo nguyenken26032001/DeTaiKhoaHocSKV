@@ -136,14 +136,18 @@ class Admin extends controller
         $data =  $this->Article->getArticleById($maDeTai);
         $dataKhoa = $this->DepartmentModel->getList();
         $Numbermember = $this->Model("Article")->countMember($maDeTai);
+        $number_gvhd = $this->Model("Article")->countGvhd($maDeTai);
         $member = $this->Model("student")->getMembersByCode($maDeTai);
         $dataClassMember = $this->Model("lop")->getDepartmentAllMembers($maDeTai);
+        $listMentor = $this->Model("mentor")->getlistGVHD($maDeTai);
         $this->view("masters", [
             "page" => "admin/showArticleDetail",
             "dataArticleByID" => $data,
             "dataDepartments" => $dataKhoa,
             "dataClass" => $dataClass,
             "Numbermember" => $Numbermember,
+            "NumberGvhd" => $number_gvhd,
+            "list_Gvhd" => $listMentor,
             "member" => $member,
             "dataClassMember" => $dataClassMember,
             "Action" => "1"

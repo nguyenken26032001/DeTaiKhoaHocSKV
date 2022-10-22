@@ -52,6 +52,17 @@ function load() {
     updatedata(number);
   }
 }
+//*function add gvhd
+function load_gvhd() {
+  $("#add_gvhd").empty();
+  var number = $("#number_gvhd").val();
+  if (number <= 0 || number === 0) {
+    document.getElementById("add_gvhd").style.display = "none";
+  } else {
+    document.getElementById("add_gvhd").style.display = "block";
+    update_gvhd(number);
+  }
+}
 //change data table
 function changeDataTable(khoa) {
   $("#dataTable").html("");
@@ -164,6 +175,15 @@ function deletePost(id) {
     });
   } else {
     return false;
+  }
+}
+//! news type
+
+function newsType(type) {
+  if (type == "tinKhac") {
+    document.getElementById("tinDeTai").style.display = "none";
+  } else {
+    document.getElementById("tinDeTai").style.display = "block";
   }
 }
 //* thống kê dữ liệu

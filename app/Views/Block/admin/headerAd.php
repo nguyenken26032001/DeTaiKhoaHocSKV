@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminSKV | Dashboard</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -21,13 +22,16 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_ROOT_ ?>/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!--  custom css  link page-->
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!--  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- add icon bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link rel="preconnect" href="https://rsms.me/">
@@ -37,73 +41,73 @@
     $page = $data['page'];
     if ($page == "admin/thongKe") {
     ?>
-        <style>
-            .content-wrapper {
-                background: #ffff;
-            }
+    <style>
+    .content-wrapper {
+        background: #ffff;
+    }
 
-            text {
-                font-size: 16px;
-            }
-        </style>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            google.charts.load("current", {
-                packages: ["corechart"]
-            });
-            google.charts.setOnLoadCallback(drawChart);
+    text {
+        font-size: 16px;
+    }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load("current", {
+        packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ["Task", "Hours per Day"],
-                    <?php
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ["Task", "Hours per Day"],
+            <?php
                     // var_dump($thongkeByKhoa);
                     foreach ($thongkeByKhoa as $item) {
                         echo "[\"" . $item['tenkhoa'] . "\"," . $item['soluong'] . "],";
                     }
                     ?>
-                ]);
+        ]);
 
-                var options = {
-                    title: "Biểu đồ thống kê đề tài",
-                };
+        var options = {
+            title: "Biểu đồ thống kê đề tài",
+        };
 
-                var chart = new google.visualization.PieChart(
-                    document.getElementById("piechart")
-                );
+        var chart = new google.visualization.PieChart(
+            document.getElementById("piechart")
+        );
 
-                chart.draw(data, options);
-            }
-        </script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            google.charts.load("current", {
-                packages: ["corechart"]
-            });
-            google.charts.setOnLoadCallback(drawChart);
+        chart.draw(data, options);
+    }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load("current", {
+        packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ["Task", "Hours per Day"],
-                    <?php
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ["Task", "Hours per Day"],
+            <?php
                     // var_dump($thongkeByKhoa);
                     foreach ($thongKeByTypeArticle as $item) {
                         echo "[\"Đề tài " . $item['xepLoai'] . "\"," . $item['soluong'] . "],";
                     }
                     ?>
-                ]);
+        ]);
 
-                var options = {
-                    title: "Biểu đồ xếp loại đề tài",
-                };
+        var options = {
+            title: "Biểu đồ xếp loại đề tài",
+        };
 
-                var chart = new google.visualization.PieChart(
-                    document.getElementById("piechart2")
-                );
+        var chart = new google.visualization.PieChart(
+            document.getElementById("piechart2")
+        );
 
-                chart.draw(data, options);
-            }
-        </script>
+        chart.draw(data, options);
+    }
+    </script>
     <?php
     }
     ?>
@@ -132,7 +136,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="<?php echo _WEB_ROOT_ ?>/public/image/dhspktv.png" alt="AdminLTE" class="brand-image img-circle elevation-3" style="opacity: 0.8">
+                <img src="<?php echo _WEB_ROOT_ ?>/public/image/dhspktv.png" alt="AdminLTE"
+                    class="brand-image img-circle elevation-3" style="opacity: 0.8">
                 <span class="brand-text font-weight-light">Admin SKV</span>
             </a>
             <!-- Sidebar -->
@@ -140,7 +145,8 @@
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                            aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -151,7 +157,8 @@
                 <!-- Sidebar Menu -->
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <li class="nav-item menu-open">
                             <a href="<?php echo _WEB_ROOT_ ?>/Admin" class="nav-link">
                                 <i class="fa-solid fa-pager" style="padding-left: 7px;"></i>
@@ -161,7 +168,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notification" class="nav-link" style="padding-left: 22px">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/notification" class="nav-link"
+                                style="padding-left: 22px">
                                 <i class="fa-regular fa-bell" style="padding-right: 10px;"></i>
                                 <p>
                                     THÔNG BÁO

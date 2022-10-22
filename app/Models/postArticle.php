@@ -6,30 +6,49 @@ class postArticle extends DB
     {
         $check = 0;
         if (isset($_POST["postArticle"])) {
+            $action = $_POST['loai_tin'];
             $maDeTai = $_POST['maDeTai'];
             $tieuDe = $_POST['title'];
             $noiDung = $_POST['content'];
             $moTa = $_POST['moTa'];
             $khoaChuTri = $_POST['khoaChuTri'];
             //check  bai dang exist
-            $data = $this->checkExitsArticle($maDeTai);
-            if (!empty($data) && count($data) > 0) {
-                $_SESSION["status"] = "Đăng bài đã tồn tại";
-                $_SESSION["status_code"] = "warning";
-                $check = 0;
+            if ($action == "deTai") {
+                $data = $this->checkExitsArticle($maDeTai);
+                if (!empty($data) && count($data) > 0) {
+                    $_SESSION["status"] = "Đăng bài đã tồn tại";
+                    $_SESSION["status_code"] = "warning";
+                    $check = 0;
+                } else {
+                    $data = $this->getArticleName_FileBaoCao_ById($maDeTai);
+                    $name = $data[0]['tenDeTai'];
+                    $fileBaoCao = $data[0]['fileBaoCao'];
+                    $extension = pathinfo($_FILES["fileUploads"]['name'], PATHINFO_EXTENSION);
+                    $allowed = ['png', 'jpg', 'jpeg'];
+                    $fileupload = $this->getFileName();
+                    if (in_array($extension, $allowed)) {
+                        move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
+                        $sql = "INSERT INTO postdetai(maDeTai,tenDeTai,khoaChuTri,tieuDe, noiDung, hinhAnh,moTa,fileBaoCao) VALUES(
+                            '$maDeTai','$name','$khoaChuTri', '$tieuDe', '$noiDung', '$fileupload','$moTa','$fileBaoCao')";
+                        $this->execute($sql);
+                        $_SESSION["status"] = "Đăng bài thành công";
+                        $_SESSION["status_code"] = "success";
+                        $check = 1;
+                    } else {
+                        $_SESSION["status"] = "File đính kèm không phải là hình ảnh vui lòng kiểm tra ";
+                        $_SESSION["status_code"] = "error";
+                        $check = 0;
+                    }
+                }
             } else {
-                $data = $this->getArticleName_FileBaoCao_ById($maDeTai);
-                $name = $data[0]['tenDeTai'];
-                $fileBaoCao = $data[0]['fileBaoCao'];
                 $extension = pathinfo($_FILES["fileUploads"]['name'], PATHINFO_EXTENSION);
                 $allowed = ['png', 'jpg', 'jpeg'];
                 $fileupload = $this->getFileName();
                 if (in_array($extension, $allowed)) {
                     move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
-                    $sql = "INSERT INTO postdetai(maDeTai,tenDeTai,khoaChuTri,tieuDe, noiDung, hinhAnh,moTa,fileBaoCao) VALUES(
-                        '$maDeTai','$name','$khoaChuTri', '$tieuDe', '$noiDung', '$fileupload','$moTa','$fileBaoCao')";
+                    $sql = "INSERT INTO news(tieuDe,noiDung,hinhAnh) VALUES('$tieuDe','$noiDung','$fileupload')";
                     $this->execute($sql);
-                    $_SESSION["status"] = "Đăng bài thành công";
+                    $_SESSION["status"] = "Đăng tin thành công";
                     $_SESSION["status_code"] = "success";
                     $check = 1;
                 } else {
@@ -37,10 +56,9 @@ class postArticle extends DB
                     $_SESSION["status_code"] = "error";
                     $check = 0;
                 }
-                return $check;
             }
-            //hander file
         }
+        return $check;
     }
     function updatePostArticle()
     {

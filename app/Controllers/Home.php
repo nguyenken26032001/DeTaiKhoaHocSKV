@@ -15,6 +15,7 @@ class Home extends controller
             "notifications" => $notifications,
         ]);
     }
+
     public  function DefaultPage()
     {
         $numberPost = $this->Model("postArticle")->getCountPost();
@@ -87,6 +88,27 @@ class Home extends controller
 
         ]);
     }
+    function backNCKH($makhoa)
+    {
+        $limit = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        if ($page < 0) {
+            $page = 1;
+        }
+        $firstIndex = ($page - 1) * $limit;
+        $data = $this->Model("Article")->getListArticleByDerpartment($makhoa, $firstIndex, $limit);
+        if (!empty($data) && count($data) > 0) {
+            $this->view("masterPage", [
+                "header" => "users/headerNoSearch",
+                "page" => "users/articleFindByLink",
+                "dataDeTaiByLink" => $data,
+                "pageIndex" => $page,
+            ]);
+        }
+    }
     function NCKH($makhoa)
     {
         $limit = 10;
@@ -99,22 +121,41 @@ class Home extends controller
         if ($page < 0) {
             $page = 1;
         }
-        $firstIndex = ($page - 1) * $limit;
-        $data = $this->Model("postArticle")->getListPostByDerpartment($makhoa, $firstIndex, $limit);
-        if (!empty($data) && count($data) > 0) {
-            $this->view("masterPage", [
-                "header" => "users/headerNoSearch",
-                "page" => "users/articleFindByLink",
-                "dataDeTaiByLink" => $data,
-                "numberPost" => $numberPost,
-                "pageIndex" => $page,
-            ]);
+        if (isset($_GET['search'])) {
+            $search_content = $_GET['search'];
+            $firstIndex = ($page - 1) * $limit;
+            $data_search = $this->Model("Article")->getListArticleByDerpartment_Search($makhoa, $firstIndex, $limit, $search_content);
+            if (!empty($data_search) && count($data_search) > 0) {
+                $this->view("masterPage", [
+                    "header" => "users/headerNoSearch",
+                    "page" => "users/articleFindByLink",
+                    "dataDeTaiByLink" => $data_search,
+                    "numberPost" => $numberPost,
+                    "pageIndex" => $page,
+                ]);
+            } else {
+                $_SESSION['status'] = "Đề tài này chưa có trên hệ thống !";
+                $_SESSION['status_code'] = "warning";
+                $this->backNCKH($makhoa);
+            }
         } else {
-            $this->view("masterPage", [
-                "header" => "users/headerNoSearch",
-                "page" => "users/page404",
-                "css" => "page404"
-            ]);
+            $firstIndex = ($page - 1) * $limit;
+            $data = $this->Model("Article")->getListArticleByDerpartment($makhoa, $firstIndex, $limit);
+            if (!empty($data) && count($data) > 0) {
+                $this->view("masterPage", [
+                    "header" => "users/headerNoSearch",
+                    "page" => "users/articleFindByLink",
+                    "dataDeTaiByLink" => $data,
+                    "numberPost" => $numberPost,
+                    "pageIndex" => $page,
+                ]);
+            } else {
+                $this->view("masterPage", [
+                    "header" => "users/headerNoSearch",
+                    "page" => "users/page404",
+                    "css" => "page404"
+                ]);
+            }
         }
     }
     function document()

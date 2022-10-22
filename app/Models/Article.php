@@ -8,13 +8,18 @@ class Article extends DB
     }
     function getArticleById($maDeTai)
     {
-        $sql = "SELECT detai.maDeTai as maDeTai,tenDeTai as tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao,giaovienhd.hoTen as hotenGVHD,giaovienhd.khoa as khoaGVHD, sinhvien.hoTen as hotenCNDT, sinhvien.maKhoa as khoaCNDT,sinhvien.lop as lop, sinhvien.nienKhoa FROM sinhvien,detai,giaovienhd 
+        $sql = "SELECT detai.maDeTai as maDeTai,tenDeTai as tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao,sinhvien.hoTen as hotenCNDT, sinhvien.maKhoa as khoaCNDT,sinhvien.lop as lop, sinhvien.nienKhoa, detai.kinhPhi as kinhPhi FROM sinhvien,detai,giaovienhd 
         WHERE detai.maDeTai=giaovienhd.maDeTai and detai.maDeTai=sinhvien.maDeTai and detai.maDeTai='$maDeTai' and sinhvien.vaiTro='Chủ nhiệm đề tài'";
         return $this->executeResult($sql);
     }
     function countMember($maDeTai)
     {
         $sql = "SELECT COUNT(id) as numberMember from sinhvien where maDeTai='$maDeTai'";
+        return $this->executeResult($sql);
+    }
+    function countGvhd($maDeTai)
+    {
+        $sql = "SELECT COUNT(id) as number_gvhd from giaovienhd where maDeTai='$maDeTai'";
         return $this->executeResult($sql);
     }
 
@@ -29,8 +34,7 @@ class Article extends DB
             $khoaChuTri = $_POST['khoaChuTri'];
             $ngayGiao = $_POST['ngayGiao'];
             $ngayNghiemThu = $_POST['ngayNghiemThu'];
-            $GVHD = $_POST['GVHD'];
-            $khoaGVHD = $_POST['khoaGVHD'];
+            $number_gvhd = $_POST['gvhd'];
             $CNDT = $_POST['chuNhiemDeTai'];
             $khoaCNDT = $_POST['khoaChuNhiem'];
             $lopCNDT = $_POST['lopCNDT'];
@@ -38,6 +42,7 @@ class Article extends DB
             $mucTieuNghienCuu = $_POST['mucTieuNghienCuu'];
             $SPNghienCuu = $_POST['SPNghienCuu'];
             $xepLoaiDT = $_POST['article_type'];
+            $kinhPhi = str_replace(',', '', $_POST['kinhPhi']);
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
             $date1 = strtotime($ngayGiao);
@@ -58,14 +63,18 @@ class Article extends DB
                     $fileBaoCao = $this->getFileName();
                     if (in_array($extension, $allowed)) {
                         move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao);
-                        $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao')";
+                        $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao,kinhPhi) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao','$kinhPhi')";
                         $this->execute($sqlAddArticle);
                         $_SESSION['status'] = "Thêm  đề tài thành công !";
                         $_SESSION['status_code'] = "success";
                         //* insert instructors
-                        $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa) values('$maDeTai','$GVHD','$khoaGVHD')";
-                        $this->execute($sqlInsertTeacher);
-                        new DB();
+                        for ($i = 1; $i <= $number_gvhd; $i++) {
+                            $name_gvhd = $_POST['name_gvhd' . $i];
+                            $khoa_gvhd = $_POST['khoa_gvhd' . $i];
+                            $vaiTro = "gvhd" . $i;
+                            $sqlInsertTeacher = "INSERT INTO giaovienhd(maDeTai,hoTen,khoa,vaiTro) values('$maDeTai','$name_gvhd','$khoa_gvhd','$vaiTro')";
+                            $this->execute($sqlInsertTeacher);
+                        }
                         //* insert member
                         $sqlInsertHost = "INSERT INTO sinhvien(hoTen,maDeTai,maKhoa,lop,nienKhoa,vaiTro) values('$CNDT','$maDeTai','$khoaCNDT','$lopCNDT','$nienKhoaCNDT','Chủ nhiệm đề tài')";
                         $this->execute($sqlInsertHost);
@@ -101,8 +110,7 @@ class Article extends DB
             $khoaChuTri = $_POST['khoaChuTri'];
             $ngayGiao = $_POST['ngayGiao'];
             $ngayNghiemThu = $_POST['ngayNghiemThu'];
-            $GVHD = $_POST['GVHD'];
-            $khoaGVHD = $_POST['khoaGVHD'];
+            $number_gvhd = $_POST['number_gvhd'];
             $CNDT = $_POST['chuNhiemDeTai'];
             $khoaCNDT = $_POST['khoaChuNhiem'];
             $lopCNDT = $_POST['lopCNDT'];
@@ -110,6 +118,7 @@ class Article extends DB
             $mucTieuNghienCuu = $_POST['mucTieuNghienCuu'];
             $SPNghienCuu = $_POST['SPNghienCuu'];
             $xepLoaiDT = $_POST['article_type'];
+            $kinhPhi = str_replace(',', '', $_POST['kinhPhi']);
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
             $fileold = $_POST['file_Old'];
@@ -128,7 +137,7 @@ class Article extends DB
                     $fileBaoCao = $this->getFileName();
                     if (in_array($extension, $allowed)) {
                         move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao . '');
-                        $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao' WHERE maDeTai='$maDeTai' ";
+                        $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao',kinhPhi='$kinhPhi' WHERE maDeTai='$maDeTai' ";
                         $this->execute($sqlUpdateArticle);
                         $isCheckPostDeTai = $this->getPostArticleById($maDeTai);
                         if (!empty($isCheckPostDeTai) && count($isCheckPostDeTai) > 0) {
@@ -138,8 +147,13 @@ class Article extends DB
                         unlink('./Uploads/FileArticle/' . $fileold . '');
                         $sqlUpdateHost = "UPDATE sinhvien SET hoTen='$CNDT',maKhoa='$khoaCNDT',lop='$lopCNDT',nienKhoa='$nienKhoaCNDT' WHERE maDeTai='$maDeTai' and vaiTro='Chủ nhiệm đề tài'";
                         $this->execute($sqlUpdateHost);
-                        $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
-                        $this->execute($sqlUpdateTeacher);
+                        for ($i = 1; $i <= $number_gvhd; $i++) {
+                            $name_gvhd = $_POST['name_gvhd' . $i];
+                            $khoa_gvhd = $_POST['khoa_gvhd' . $i];
+                            $vaitro = "gvhd" . $i;
+                            $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$name_gvhd',khoa='$khoa_gvhd' WHERE maDeTai='$maDeTai' and vaiTro='$vaitro'";
+                            $this->execute($sqlUpdateTeacher);
+                        }
                         //update member
                         if ($member > 0) {
                             for ($i = 1; $i <= $member; $i++) {
@@ -161,12 +175,17 @@ class Article extends DB
                         $_SESSION['status_code'] = "error";
                     }
                 } else {
-                    $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu' WHERE maDeTai='$maDeTai' ";
+                    $sqlUpdateArticleNotFile = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu',kinhPhi='$kinhPhi' WHERE maDeTai='$maDeTai' ";
                     $this->execute($sqlUpdateArticleNotFile);
                     $sqlUpdateHost = "UPDATE sinhvien SET hoTen='$CNDT',maKhoa='$khoaCNDT',lop='$lopCNDT',nienKhoa='$nienKhoaCNDT' WHERE maDeTai='$maDeTai' and vaiTro='Chủ nhiệm đề tài'";
                     $this->execute($sqlUpdateHost);
-                    $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$GVHD',khoa='$khoaGVHD' WHERE maDeTai='$maDeTai'";
-                    $this->execute($sqlUpdateTeacher);
+                    for ($i = 1; $i <= $number_gvhd; $i++) {
+                        $name_gvhd = $_POST['name_gvhd' . $i];
+                        $khoa_gvhd = $_POST['khoa_gvhd' . $i];
+                        $vaitro = "gvhd" . $i;
+                        $sqlUpdateTeacher = "UPDATE giaovienhd SET hoTen='$name_gvhd',khoa='$khoa_gvhd' WHERE maDeTai='$maDeTai' and vaiTro='$vaitro'";
+                        $this->execute($sqlUpdateTeacher);
+                    }
                     //update member
                     if ($member > 0) {
                         for ($i = 1; $i <= $member; $i++) {
@@ -234,5 +253,22 @@ class Article extends DB
         $sql = "SELECT khoaChuTri from detai where maDeTai = '$maDeTai'";
         $data = $this->executeResult($sql);
         return $data[0]['khoaChuTri'];
+    }
+    //find detai by user
+    function getListArticleByDerpartment($maKhoa, $firstIndex, $limit)
+    {
+        $sql = "SELECT tenDeTai FROM detai WHERE khoaChuTri = '$maKhoa' limit $firstIndex,$limit";
+        $data = $this->executeResult($sql);
+        if (empty($data)) {
+            $_SESSION["status"] = "Khoa bạn tìm kiếm chưa có đề tài nào !";
+            $_SESSION["status_code"] = "warning";
+        }
+        return $data;
+    }
+    function getListArticleByDerpartment_Search($maKhoa, $firstIndex, $limit, $search_content)
+    {
+        $sql = "SELECT tenDeTai FROM detai WHERE khoaChuTri = '$maKhoa' and tenDeTai like '%" . $search_content . "%' limit $firstIndex,$limit";
+        $data = $this->executeResult($sql);
+        return $data;
     }
 }

@@ -40,31 +40,40 @@
                 <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu"
                     onchange="checkdate()" value="<?php echo $dataArticleDetail[0]['thoiGianNghiemThu']; ?>">
             </div>
-            <div class="row">
+
+            <?php
+            $number = $NumberGvhd[0]['number_gvhd'];
+            for ($i = 1; $i <= $number; $i++) {
+            ?>
+            <div class="row p-2 mt-1 border border-secondary">
+                <input type="hidden" name="number_gvhd" value="<?php echo $NumberGvhd[0]['number_gvhd'] ?>">
                 <div class="col-md-6">
                     <div class="form-group" id="thanhvien">
-                        <label for=""> Giáo Viên Hướng Dẫn </label>
-                        <input type="text" class="form-control" id="" required="true" name="GVHD"
-                            value="<?php echo $dataArticleDetail[0]['hotenGVHD']; ?>">
+                        <label for=""> Giáo Viên Hướng Dẫn Thứ <?php echo $i; ?></label>
+                        <input type="text" class="form-control" id="" required="true" name="name_gvhd<?php echo $i; ?>"
+                            value="<?php echo $list_Gvhd[$i - 1]['hoTen']; ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pwd">Thuộc khoa </label>
-                        <select class="form-control" name="khoaGVHD" id="">
+                        <select class="form-control" name="khoa_gvhd<?php echo $i; ?>" id="">
                             <option disabled>--- Chọn khoa----</option>
                             <?php
-                            foreach ($dataKhoa as $item) {
-                                if ($item['maKhoa'] == $dataArticleDetail[0]['khoaGVHD']) {
-                                    echo '<option value="' . $item['maKhoa'] . '" selected>' . $item['tenKhoa'] . '</option>';
+                                foreach ($dataKhoa as $item) {
+                                    if ($item['maKhoa'] == $list_Gvhd[$i - 1]['khoa']) {
+                                        echo '<option value="' . $item['maKhoa'] . '" selected>' . $item['tenKhoa'] . '</option>';
+                                    }
+                                    echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
                                 }
-                                echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
-                            }
-                            ?>
+                                ?>
                         </select>
                     </div>
                 </div>
             </div>
+            <?php
+            }
+            ?>
             <div class="form-group">
                 <label for="usr">Chủ Nhiệm Đề Tài</label>
                 <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai"
@@ -239,6 +248,11 @@
                     ?>
                 </select>
 
+            </div>
+            <div class="form-group">
+                <label for="">Kinh phí</label>
+                <input type="text" name="kinhPhi" id="" class="form-control" required
+                    value="<?php echo number_format($dataArticleDetail[0]['kinhPhi']); ?>">
             </div>
             <div class="form-group">
                 <label for="">File Báo Cáo </label>

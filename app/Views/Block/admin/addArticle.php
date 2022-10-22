@@ -34,25 +34,13 @@
                 <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu"
                     onchange="checkdate()">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group" id="thanhvien">
-                        <label for=""> Giáo Viên Hướng Dẫn </label>
-                        <input type="text" class="form-control" id="" required="true" name="GVHD" spellcheck="false">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="pwd">Thuộc khoa </label>
-                        <select class="form-control" name="khoaGVHD" id="">
-                            <?php
-                            foreach ($dataKhoa as $item) {
-                                echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group" id="gvhd">
+                <label for=""> Số Lượng GVHD </label>
+                <input type="number" class="form-control" id="number_gvhd" required min="0" name="gvhd"
+                    onchange="load_gvhd()" value="0">
+            </div>
+            <!-- ----- -->
+            <div id="add_gvhd" style="background-color: #EEE;padding: 10px 20px 20px 20px;display:none;">
             </div>
             <div class="form-group">
                 <label for="usr">Chủ Nhiệm Đề Tài</label>
@@ -134,10 +122,15 @@
 
             </div>
             <div class="form-group">
+                <label for="">Kinh phí</label>
+                <input type="text" name="kinhPhi" id="" class="form-control" required>
+            </div>
+            <div class="form-group">
                 <label for="">File Báo Cáo </label>
                 <input type="file" id="address" name="fileUploads" required="true" multiple="multiple"
                     style="margin-left: 59px;">
             </div>
+
             <button type="submit" class="btn btn-success" name="addDeTai" id="add" style="margin-bottom: 30px;">Thêm Đề
                 Tài</button>
         </form>

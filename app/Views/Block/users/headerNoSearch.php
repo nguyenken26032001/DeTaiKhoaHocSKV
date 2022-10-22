@@ -36,18 +36,8 @@
     <div class="menu">
         <ul class="menu_main">
             <li class="menu_item">
-                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TRANG CHỦ</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TIN TỨC</a>
             </li>
-            <!-- <li class="menu_item">
-                <a href="" class="menu_link">TIN TỨC</a>
-                <div class="menu_child">
-                    <ul class="menu_child_list">
-                        <li>Element</li>
-                        <li>Element</li>
-                        <li>Element</li>
-                    </ul>
-                </div>
-            </li> -->
             <li class="menu_item">
                 <a href="" class="menu_link">ĐỀ TÀI</a>
                 <div class="menu_child">
@@ -99,8 +89,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?php echo _WEB_ROOT_ ?>/Home">TRANG
-                                CHỦ</a>
+                            <a class="nav-link active" aria-current="page" href="<?php echo _WEB_ROOT_ ?>/Home">TIN
+                                TỨC</a>
                         </li>
                         <li class="menu_item">
                             <a href="" class="menu_link">ĐỀ TÀI</a>

@@ -20,6 +20,12 @@ if (isset($data["dataClassMember"])) {
 if (isset($data["member"])) {
     $member = $data["member"];
 }
+if (isset($data["NumberGvhd"])) {
+    $NumberGvhd = $data["NumberGvhd"];
+}
+if (isset($data["list_Gvhd"])) {
+    $list_Gvhd = $data["list_Gvhd"];
+}
 if (isset($data["showNotification"])) {
     $notifi = $data["showNotification"];
 }
