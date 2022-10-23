@@ -98,8 +98,8 @@ class Statistical extends controller
                 echo "<th>TT</th>";
                 echo "<th style='width:100px' >Mã đề tài</th>";
                 echo "<th>Tên đề tài</th>";
-                echo "<th  style='width:200px'>Giáo viên HD</th>";
-                echo "<th  style='width:100px'>Xếp loại</th>";
+                echo "<th  style='width:200px'>Ngày giao</th>";
+                echo "<th  style='width:200px'>Ngày nghiệm thu</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -110,8 +110,8 @@ class Statistical extends controller
                     <td>' . ++$index . '</td>
                     <td>' . $item['maDeTai'] . '</td>
                     <td>' . $item['tenDeTai'] . '</td>
-                    <td>' . $item['gvhd'] . '</td>
-                    <td>' . $item['xepLoai'] . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayGiao') . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayNghiemThu') . '</td>
                     </tr>';
                 }
                 echo "</tbody>";
@@ -131,7 +131,8 @@ class Statistical extends controller
                     echo "<th>TT</th>";
                     echo "<th  style='width:100px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
-                    echo "<th  style='width:200px'>Giáo viên HD</th>";
+                    echo "<th  style='width:200px'>Ngày giao</th>";
+                    echo "<th  style='width:200px'>Ngày nghiệm thu</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -142,7 +143,8 @@ class Statistical extends controller
                     <td>' . ++$index . '</td>
                     <td>' . $item['maDeTai'] . '</td>
                     <td>' . $item['tenDeTai'] . '</td>
-                    <td>' . $item['gvhd'] . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayGiao') . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayNghiemThu') . '</td>
                     </tr>';
                     }
                     echo "</tbody>";
@@ -170,7 +172,8 @@ class Statistical extends controller
                     echo "<th>TT</th>";
                     echo "<th  style='width:100px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
-                    echo "<th  style='width:200px'>Giáo viên HD</th>";
+                    echo "<th  style='width:200px'>Ngày giao</th>";
+                    echo "<th  style='width:200px'>Ngày nghiệm thu</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -181,7 +184,8 @@ class Statistical extends controller
                         <td>' . ++$index . '</td>
                         <td>' . $item['maDeTai'] . '</td>
                         <td>' . $item['tenDeTai'] . '</td>
-                        <td>' . $item['gvhd'] . '</td>
+                        <td>' . $this->analysis_Date($item, 'ngayGiao') . '</td>
+                        <td>' . $this->analysis_Date($item, 'ngayNghiemThu') . '</td>
                         </tr>';
                     }
                     echo "</tbody>";
@@ -202,7 +206,8 @@ class Statistical extends controller
                     echo "<th>TT</th>";
                     echo "<th  style='width:100px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
-                    echo "<th  style='width:200px'>Giáo viên HD</th>";
+                    echo "<th  style='width:200px'>Ngày giao</th>";
+                    echo "<th  style='width:200px'>Ngày nghiệm thu</th>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -213,7 +218,8 @@ class Statistical extends controller
                     <td>' . ++$index . '</td>
                     <td>' . $item['maDeTai'] . '</td>
                     <td>' . $item['tenDeTai'] . '</td>
-                    <td>' . $item['gvhd'] . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayGiao') . '</td>
+                    <td>' . $this->analysis_Date($item, 'ngayNghiemThu') . '</td>
                     </tr>';
                     }
                     echo "</tbody>";
@@ -282,14 +288,16 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'danh sách đề tài trong năm' . $year);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Giáo viên hướng dẫn');
-            $sheet->setCellValue('D' . $rowCount, 'Xếp loại');
+            $sheet->setCellValue('C' . $rowCount, 'Ngày giao');
+            $sheet->setCellValue('D' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('E' . $rowCount, 'Xếp loại');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['gvhd']);
-                $sheet->setCellValue('D' . $rowCount, $row['xepLoai']);
+                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('E' . $rowCount, $row['xepLoai']);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-de-tai-nam-' . $year . '.xlsx"');
@@ -308,14 +316,16 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại' . $type);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Giáo viên hướng dẫn');
+            $sheet->setCellValue('C' . $rowCount, 'Ngày giao đề tài');
+            $sheet->setCellValue('C' . $rowCount, 'Ngày nghiệm thu');
             $sheet->setCellValue('D' . $rowCount, 'Loại đề tài');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['gvhd']);
-                $sheet->setCellValue('D' . $rowCount, $type);
+                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('E' . $rowCount, $type);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-theo-de-tai-loai-' . $type . '.xlsx"');
@@ -334,18 +344,28 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại ' . $type . "vào năm: " . $year);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Giáo viên hướng dẫn');
-            $sheet->setCellValue('D' . $rowCount, 'Loại đề tài');
+            $sheet->setCellValue('C' . $rowCount, 'Ngày giao đề tài');
+            $sheet->setCellValue('D' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('E' . $rowCount, 'Loại đề tài');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['gvhd']);
-                $sheet->setCellValue('D' . $rowCount, $type);
+                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('E' . $rowCount, $type);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-de-tai-loai-' . $type . '-' . $year . '.xlsx"');
             $writer->save('php://output');
         }
+    }
+    function analysis_Date($item, $fieldName)
+    {
+        $time = strtotime($item[$fieldName]);
+        $day = date('j', $time);
+        $month = date('m', $time);
+        $year = date('Y', $time);
+        return $day . '/' . $month . '/' . $year;
     }
 }

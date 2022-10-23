@@ -237,7 +237,7 @@
                 <label for="">Xếp loại đề tài</label>
                 <select name="article_type" id="" class="form-control">
                     <?php
-                    $array = ['Xuất sắc', 'Tốt', 'Khá', 'Đạt', 'Không đạt'];
+                    $array = ['Xuất sắc', 'Tốt', 'Khá', 'Đạt', "Không đạt"];
                     foreach ($array as $item) {
                         if ($item == $dataArticleDetail[0]['xepLoai']) {
                             echo "<option value=" . $item . " selected>" . $item . "</option>";
