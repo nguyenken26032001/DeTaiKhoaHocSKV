@@ -117,7 +117,7 @@
 
 
     <div class="wrapper">
-        <p class="setActive d-none"><?php echo $pageActive; ?> </p>
+        <p class="setActive d-none" id="page__Active"><?php echo $pageActive; ?></p>
         <!-- Navbar -->
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">

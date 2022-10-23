@@ -115,7 +115,7 @@
                     <?php
                     $array = ['Xuất sắc', 'Tốt', 'Khá', 'Đạt', 'Không đạt'];
                     foreach ($array as $item) {
-                        echo "<option value=" . $item . ">" . $item . "</option>";
+                        echo "<option value='" . $item . "'>" . $item . "</option>";
                     }
                     ?>
                 </select>

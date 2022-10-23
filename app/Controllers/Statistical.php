@@ -82,6 +82,7 @@ class Statistical extends controller
             "Action" => "6",
             "listyear" => $listyear,
             "dataDepartments" => $dataDepartments,
+            "js" => "statistical.js"
 
         ]);
     }

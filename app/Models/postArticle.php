@@ -45,12 +45,12 @@ class postArticle extends DB
                 $allowed = ['png', 'jpg', 'jpeg'];
                 $fileupload = $this->getFileName();
                 if (in_array($extension, $allowed)) {
-                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostArticle/' . $fileupload);
-                    $sql = "INSERT INTO news(tieuDe,noiDung,hinhAnh) VALUES('$tieuDe','$noiDung','$fileupload')";
+                    move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/PostNews/' . $fileupload);
+                    $sql = "INSERT INTO news(tieuDe,noiDung,hinhAnh,moTa) VALUES('$tieuDe','$noiDung','$fileupload','$moTa')";
                     $this->execute($sql);
                     $_SESSION["status"] = "Đăng tin thành công";
                     $_SESSION["status_code"] = "success";
-                    $check = 1;
+                    $check = 2;
                 } else {
                     $_SESSION["status"] = "File đính kèm không phải là hình ảnh vui lòng kiểm tra ";
                     $_SESSION["status_code"] = "error";

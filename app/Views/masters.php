@@ -49,6 +49,9 @@ if (isset($data["dataNotificationByID"])) {
 if (isset($data["dataPost"])) {
     $dataPost = $data["dataPost"];
 }
+if (isset($data["dataNews"])) {
+    $dataNews = $data["dataNews"];
+}
 if (isset($data["dataPostById"])) {
     $dataPostById = $data["dataPostById"];
 }
@@ -58,6 +61,11 @@ if (isset($data["listMaDeTai"])) {
 if (isset($data["dataMaDeTai"])) {
     $dataMaDeTai = $data["dataMaDeTai"];
 }
+//news
+if (isset($data["dataNewById"])) {
+    $dataNewById = $data["dataNewById"];
+}
+//statistical
 if (isset($data["thongKeByKhoa"])) {
     $thongkeByKhoa = $data["thongKeByKhoa"];
 }

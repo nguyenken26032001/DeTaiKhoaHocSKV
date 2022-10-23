@@ -177,6 +177,23 @@ function deletePost(id) {
     return false;
   }
 }
+function deleteNew(id) {
+  var question = confirm("Bạn chắc chắn muốn xóa bài đăng này ?");
+  if (question) {
+    $.ajax({
+      type: "post",
+      url: `${pathRoot}/Tintuc/DelNew`,
+      data: {
+        id: id,
+      },
+      success: function (data) {
+        window.location = `${pathRoot}/Tintuc/quanLyTin`;
+      },
+    });
+  } else {
+    return false;
+  }
+}
 //! news type
 
 function newsType(type) {
@@ -262,15 +279,6 @@ function deleteDocument(id) {
     return false;
   }
 }
-//handles thong ke
-var statistical_by_year = document.getElementById("StatisticalByYear");
-statistical_by_year.style.display = "none";
-var statistical_by_Type = document.getElementById("StatisticalByType");
-statistical_by_Type.style.display = "none";
-var statistical_By_Derpartment = document.getElementById(
-  "StatisticalByDeparment"
-);
-statistical_By_Derpartment.style.display = "none";
 
 function Statistical_by_year(year, type) {
   $.ajax({
@@ -341,8 +349,14 @@ function Statistical_by_Deparment(department) {
     },
   });
 }
-//get button btnExcel
-var btnExcel = document.getElementById("btnExcel");
-var table = document.querySelector(".table");
-var isCheck = table.hasChildNodes();
-console.log(isCheck);
+
+//* change action manager post (thông tin về đề tài or các tin khác)
+function changeManagerPost(type) {
+  if (type == "tinKhac") {
+    document.getElementById("table_Article").style.display = "none";
+    document.getElementById("tableNews").style.display = "block";
+  } else {
+    document.getElementById("table_Article").style.display = "block";
+    document.getElementById("tableNews").style.display = "none";
+  }
+}

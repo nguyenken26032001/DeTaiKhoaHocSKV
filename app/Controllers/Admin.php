@@ -250,6 +250,8 @@ class Admin extends controller
                     "page" => "admin/postManager",
                     "Action" => "5",
                     "dataPost" => $data,
+                    "js" => "post.js"
+
                 ]);
             } else {
                 $_SESSION['status'] = "Thông tin về đề tài này không tổn tại !";
@@ -262,6 +264,8 @@ class Admin extends controller
                 "page" => "admin/postManager",
                 "Action" => "5",
                 "dataPost" => $data,
+                "js" => "post.js"
+
             ]);
         }
     }
@@ -270,9 +274,16 @@ class Admin extends controller
         $check = $this->Model("postArticle")->addPostArticle();
         if ($check == 0) {
             header("Location: ../Admin/postArticle");
-        } else {
+        } else
+        if ($check == 1) {
             header("Location: ../Admin/postManager");
+        } else {
+            header("Location: ../Tintuc/quanLyTin");
         }
+    }
+    function postNewsDetail($id)
+    {
+        echo "this is page postnewDetails";
     }
     function postArticleDetail($maDeTai)
     {
