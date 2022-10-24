@@ -40,22 +40,22 @@ class thongke extends DB
     }
     function getArticleByYear($year)
     {
-        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu',xepLoai FROM detai,giaovienhd WHERE detai.maDeTai=giaovienhd.maDeTai and detai.thoiGianNghiemThu like '" . $year . "%' ";
+        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu',xepLoai,hoTen FROM detai,sinhvien WHERE detai.maDeTai=sinhvien.maDeTai and detai.thoiGianNghiemThu like '" . $year . "%' ";
         return $this->executeResult($sql);
     }
     function getArticleByType($type)
     {
-        $sql = "SELECT detai.maDeTai as 'maDeTai',detai.tenDeTai as 'tenDeTai',detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu' FROM detai WHERE  xepLoai = '" . $type . "'";
+        $sql = "SELECT detai.maDeTai as 'maDeTai',detai.tenDeTai as 'tenDeTai',detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu',hoTen FROM detai,sinhvien  WHERE detai.maDeTai=sinhvien.maDeTai and   xepLoai = '" . $type . "'";
         return $this->executeResult($sql);
     }
     function getArticleByTypeYear($type, $year)
     {
-        $sql = "SELECT detai.maDeTai as 'maDeTai',detai.tenDeTai as 'tenDeTai', detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu' FROM detai WHERE detai.xepLoai ='$type' AND detai.thoiGianNghiemThu like '" . $year . "%'";
+        $sql = "SELECT detai.maDeTai as 'maDeTai',detai.tenDeTai as 'tenDeTai', detai.thoiGianGiao as 'ngayGiao', detai.thoiGianNghiemThu as 'ngayNghiemThu',hoTen FROM detai,sinhvien WHERE detai.maDeTai=sinhvien.maDeTai and  detai.xepLoai ='$type' AND detai.thoiGianNghiemThu like '" . $year . "%'";
         return $this->executeResult($sql);
     }
     function getArticleByDepartmentDetail($department)
     {
-        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,giaovienhd.hoTen as 'gvhd' FROM detai,giaovienhd WHERE detai.maDeTai=giaovienhd.maDeTai AND khoaChuTri='$department'";
+        $sql = "SELECT detai.maDeTai as 'maDeTai', tenDeTai , thoiGianGiao,thoiGianNghiemThu,xepLoai,hoTen FROM detai,sinhvien WHERE detai.maDeTai=sinhvien.maDeTai AND khoaChuTri='$department'";
         return $this->executeResult($sql);
     }
 }

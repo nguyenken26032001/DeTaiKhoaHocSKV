@@ -21,7 +21,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <?php
-                for ($i = 1; $i <= $numberPages; $i++) {
+                for ($i = 1; $i <= $pages; $i++) {
                     if ($pageIndex == $i) {
                         echo ' <li class="page-item">
                             <a class="page-link active" href="?page=' . $i . '">' . $i . '</a>

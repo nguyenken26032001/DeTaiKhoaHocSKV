@@ -51,7 +51,8 @@ class Statistical extends controller
                 echo "<th>TT</th>";
                 echo "<th style='width:100px'>Mã đề tài</th>";
                 echo "<th>Tên đề tài</th>";
-                echo "<th style='width:200px'>Giáo viên HD</th>";
+                echo "<th style='width:200px'>Ngày giao</th>";
+                echo "<th style='width:200px'>Ngày nghiệm thu</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -62,7 +63,8 @@ class Statistical extends controller
                     <td>' . ++$index . '</td>
                     <td>' . $item['maDeTai'] . '</td>
                     <td>' . $item['tenDeTai'] . '</td>
-                    <td>' . $item['gvhd'] . '</td>
+                    <td>' . $this->analysis_Date($item, 'thoiGianGiao') . '</td>
+                    <td>' . $this->analysis_Date($item, 'thoiGianNghiemThu') . '</td>
                     </tr>';
                 }
                 echo "</tbody>";
@@ -244,12 +246,18 @@ class Statistical extends controller
             $rowCount = 1;
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Giáo  viên hướng dẫn');
+            $sheet->setCellValue('C' . $rowCount, 'Sv thực hiện');
+            $sheet->setCellValue('D' . $rowCount, 'ngày giao');
+            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('F' . $rowCount, 'Xếp loại');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['gvhd']);
+                $sheet->setCellValue('C' . $rowCount, $row['hoTen']);
+                $sheet->setCellValue('D' . $rowCount, $row['thoiGianGiao']);
+                $sheet->setCellValue('E' . $rowCount, $row['thoiGianNghiemThu']);
+                $sheet->setCellValue('F' . $rowCount, $row['xepLoai']);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="thong-ke-de-tai-khoa-' . $department . '.xlsx"');
@@ -289,16 +297,18 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'danh sách đề tài trong năm' . $year);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Ngày giao');
-            $sheet->setCellValue('D' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('E' . $rowCount, 'Xếp loại');
+            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
+            $sheet->setCellValue('D' . $rowCount, 'Ngày giao');
+            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('F' . $rowCount, 'Xếp loại');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
-                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
-                $sheet->setCellValue('E' . $rowCount, $row['xepLoai']);
+                $sheet->setCellValue('C' . $rowCount, $row['hoTen']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('E' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('F' . $rowCount, $row['xepLoai']);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-de-tai-nam-' . $year . '.xlsx"');
@@ -317,16 +327,18 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại' . $type);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Ngày giao đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('D' . $rowCount, 'Loại đề tài');
+            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
+            $sheet->setCellValue('D' . $rowCount, 'Ngày giao đề tài');
+            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('F' . $rowCount, 'Loại đề tài');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
-                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
-                $sheet->setCellValue('E' . $rowCount, $type);
+                $sheet->setCellValue('C' . $rowCount, $row['hoTen']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('E' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('F' . $rowCount, $type);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-theo-de-tai-loai-' . $type . '.xlsx"');
@@ -345,16 +357,18 @@ class Statistical extends controller
             $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại ' . $type . "vào năm: " . $year);
             $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
             $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Ngày giao đề tài');
-            $sheet->setCellValue('D' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('E' . $rowCount, 'Loại đề tài');
+            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
+            $sheet->setCellValue('D' . $rowCount, 'Ngày giao đề tài');
+            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
+            $sheet->setCellValue('F' . $rowCount, 'Loại đề tài');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
                 $sheet->setCellValue('B' . $rowCount, $row['tenDeTai']);
-                $sheet->setCellValue('C' . $rowCount, $row['ngayGiao']);
-                $sheet->setCellValue('D' . $rowCount, $row['ngayNghiemThu']);
-                $sheet->setCellValue('E' . $rowCount, $type);
+                $sheet->setCellValue('C' . $rowCount, $row['hoTen']);
+                $sheet->setCellValue('D' . $rowCount, $row['ngayGiao']);
+                $sheet->setCellValue('E' . $rowCount, $row['ngayNghiemThu']);
+                $sheet->setCellValue('F' . $rowCount, $type);
             }
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attactment; filename="Thong-ke-de-tai-loai-' . $type . '-' . $year . '.xlsx"');

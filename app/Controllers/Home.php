@@ -90,6 +90,8 @@ class Home extends controller
     }
     function backNCKH($makhoa)
     {
+        $numberPost = $this->Model("postArticle")->getNumberPostByDerpartment($makhoa);
+        $numberPost = $numberPost[0]['number'];
         $limit = 10;
         $page = 1;
         if (isset($_GET['page'])) {
@@ -106,6 +108,7 @@ class Home extends controller
                 "page" => "users/articleFindByLink",
                 "dataDeTaiByLink" => $data,
                 "pageIndex" => $page,
+                "numberPost" => $numberPost,
             ]);
         }
     }
@@ -166,5 +169,52 @@ class Home extends controller
             "page" => "users/document",
             "dataDocuments" => $data
         ]);
+    }
+    function Tintuckhac()
+    {
+        $Carousel = $this->Model('banner')->getbanner();
+        $notifications = $this->Model("Notification")->getList();
+        $limit = 10;
+        $page = 1;
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+        $firstIndex = ($page - 1) * $limit;
+        if (isset($_GET['search'])) {
+            $search_content = $_GET['search'];
+            $data_search = $this->Model("news")->getDataSearch($search_content, $firstIndex, $limit);
+            $numberNews = $this->Model("news")->getNumberNewsSearch($data_search);
+            $numberNews = $numberNews[0]['numberNews'];
+            if (!empty($data_search)) {
+                $this->view("masterPage", [
+                    "header" => "users/header",
+                    "page" => "users/contentMainNews",
+                    "Carousel" => $Carousel,
+                    "pageNotifi" => "notification",
+                    "notifications" => $notifications,
+                    "dataNews" => $data_search,
+                    "numberPost" => $numberNews,
+                    "pageIndex" => $page,
+                ]);
+            } else {
+                $_SESSION['status'] = "Tin tức bạn muốn tìm chưa có trên hệ thống";
+                $_SESSION['status_code'] = "warning";
+                $this->Tintuckhac();
+            }
+        } else {
+            $data = $this->Model("news")->getNewsLimit($firstIndex, $limit);
+            $numberNews = $this->Model("news")->getNumberPost();
+            $numberNews = $numberNews[0]['numberNews'];
+            $this->view("masterPage", [
+                "header" => "users/header",
+                "page" => "users/contentMainNews",
+                "Carousel" => $Carousel,
+                "pageNotifi" => "notification",
+                "notifications" => $notifications,
+                "dataNews" => $data,
+                "numberPost" => $numberNews,
+                "pageIndex" => $page,
+            ]);
+        }
     }
 }

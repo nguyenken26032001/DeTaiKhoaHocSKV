@@ -17,27 +17,13 @@
     </div>
     <div class="content__main" style="margin-top: 20px">
         <?php
-        foreach ($dataDetai as $item) {
+        foreach ($dataNews as $item) {
         ?>
         <div class="article d-flex mb-5 align-items-center">
-            <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostArticle/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
+            <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostNews/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
             <div class="article__content ms-2 mw-100">
                 <a
-                    href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['maDeTai'] ?>"><?php echo $item['tieuDe'] ?></a>
-            </div>
-        </div>
-
-        <?php
-        }
-        ?>
-        <?php
-        foreach ($dataDetai as $item) {
-        ?>
-        <div class="article d-flex mb-5 align-items-center">
-            <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostArticle/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
-            <div class="article__content ms-2 mw-100">
-                <a
-                    href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['maDeTai'] ?>"><?php echo $item['tieuDe'] ?></a>
+                    href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?></a>
             </div>
         </div>
 

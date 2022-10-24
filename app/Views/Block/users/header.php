@@ -37,6 +37,14 @@
         <ul class="menu_main">
             <li class="menu_item">
                 <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TIN TỨC</a>
+                <div class="menu_child">
+                    <ul class="menu_child_list">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/Tintuckhac">
+                            <li>Tin tức về hoạt động khác</li>
+                        </a>
+
+                    </ul>
+                </div>
             </li>
             <li class="menu_item">
                 <a href="" class="menu_link">ĐỀ TÀI</a>

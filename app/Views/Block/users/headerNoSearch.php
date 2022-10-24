@@ -121,7 +121,7 @@
                             </div>
                         </li>
                         <li class="menu_item">
-                            <a href="" class="menu_link">TÀI LIỆU</a>
+                            <a href="." class="menu_link">TÀI LIỆU</a>
                             <div class="menu_child">
                                 <ul class="menu_child_list">
                                     <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/document">
