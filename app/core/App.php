@@ -4,8 +4,10 @@ class App
     protected $controller = "Home";
     protected $action = "DefaultPage";
     protected $params = [];
+    protected $route;
     function __construct()
     {
+        $this->route = new route();
         $arr = $this->UrlProcess();
         // handle Controller
         if (isset($arr[0])) {
@@ -33,7 +35,9 @@ class App
     function UrlProcess()
     {
         if (isset($_GET["url"])) {
-            return explode("/", filter_var(trim($_GET["url"])));
+            $path = $_GET["url"];
+            $url =  $this->route->handleRoute($path);
+            return explode("/", filter_var(trim($url)));
         }
     }
 }

@@ -10,7 +10,7 @@
 
                 <li class="notification__list--item mw-100">
                     <a class="noti--title"
-                        href="<?php echo _WEB_ROOT_; ?>/Home/notificationDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?>
+                        href="<?php echo _WEB_ROOT_; ?>/thong-bao-chi-tiet-<?php echo $item['id'] ?>.html"><?php echo $item['tieuDe'] ?>
                     </a>
                     <div class="notification--time">
                         <ion-icon class="oclock" name="alarm-outline"></ion-icon>

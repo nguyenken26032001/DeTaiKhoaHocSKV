@@ -16,14 +16,9 @@ class news extends DB
         $sql = "SELECT * FROM news  limit $firstIndex, $limit";
         return $this->executeResult($sql);
     }
-    function getDataSearch($search_content, $firstIndex, $limit)
+    function getDataSearch($search_content)
     {
-        $sql = "SELECT * FROM news WHERE tieuDe like '%" . $search_content . "%' limit $firstIndex,$limit";
-        return $this->executeResult($sql);
-    }
-    function getNumberNewsSearch($search_content)
-    {
-        $sql = "SELECT COUNT(id) as 'numberNews' from news ";
+        $sql = "SELECT * FROM news WHERE tieuDe like '%" . $search_content . "%' ";
         return $this->executeResult($sql);
     }
     function getNumberPost()

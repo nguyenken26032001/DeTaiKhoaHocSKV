@@ -9,7 +9,9 @@ class Admin extends controller
     public $lop;
     function __construct()
     {
-        // header("Location:" . _WEB_ROOT_ . '/login');
+        if (empty($_SESSION['account'])) {
+            header("Location:" . _WEB_ROOT_ . '/login');
+        }
         $this->DepartmentModel = $this->Model("DepartmentModel");
         $this->Article = $this->Model("Article");
         $this->lop = $this->Model("Lop");

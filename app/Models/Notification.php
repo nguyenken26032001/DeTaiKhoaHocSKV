@@ -30,7 +30,7 @@ class  Notification extends DB
     }
     function getList()
     {
-        $sql = "SELECT * FROM thongbao";
+        $sql = "SELECT * FROM thongbao  ORDER BY ngayDang DESC LIMIT 5 ";
         return $this->executeResult($sql);
     }
     function getListByID($maThongBao)

@@ -12,7 +12,7 @@
     <div class="header">
         <div class="login">
             <i class="far fa-user"></i>
-            <a href="<?php echo _WEB_ROOT_ ?>/Admin">ĐĂNG NHẬP</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/login">ĐĂNG NHẬP</a>
         </div>
         <div class="header__content d-flex flex-column">
             <div class="header__content--right mb-2">
@@ -36,10 +36,10 @@
     <div class="menu">
         <ul class="menu_main">
             <li class="menu_item">
-                <a href="<?php echo _WEB_ROOT_ ?>/Home" class="menu_link">TIN TỨC</a>
+                <a href="<?php echo _WEB_ROOT_ ?>/trang-chu.html" class="menu_link">TIN TỨC</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/Tintuckhac">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/hoat-dong-khac.html">
                             <li>Tin tức về hoạt động khác</li>
                         </a>
 
@@ -50,25 +50,25 @@
                 <a href="" class="menu_link">ĐỀ TÀI</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CNTT">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-CNTT.html">
                             <li>Khoa công nghệ thông tin</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKCT">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-CKCT.html">
                             <li>Khoa cơ khí chế tạo</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/CKDL">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-CKDL.html">
                             <li>Khoa cơ khí động lực</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/Dien">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-Dien.html">
                             <li>Khoa điện</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/ĐT">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-ĐT.html">
                             <li>Khoa điện tử</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/KT">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-KT.html">
                             <li>Khoa kinh tế</li>
                         </a>
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/NCKH/NN">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-NN.html">
                             <li>Khoa ngoại ngữ</li>
                         </a>
                     </ul>
@@ -78,7 +78,7 @@
                 <a href="" class="menu_link">TÀI LIỆU</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
-                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/Home/document">
+                        <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/tai-lieu.html">
                             <li>Các biểu mẫu</li>
                         </a>
 

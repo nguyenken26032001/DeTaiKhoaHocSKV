@@ -127,7 +127,7 @@
                     <a class="" id="home" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo _WEB_ROOT_ ?>/Admin" class="" id="home">Home</a>
+                    <a href="<?php echo _WEB_ROOT_ ?>/Home" class="" id="home" target="_blank">Home</a>
                 </li>
             </ul>
         </nav>

@@ -23,7 +23,7 @@
             <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostNews/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
             <div class="article__content ms-2 mw-100">
                 <a
-                    href="<?php echo _WEB_ROOT_ ?>/Home/ArticleDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?></a>
+                    href="<?php echo _WEB_ROOT_ ?>/Home/NewDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?></a>
             </div>
         </div>
 

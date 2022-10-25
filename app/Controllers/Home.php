@@ -26,7 +26,7 @@ class Home extends controller
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         }
-        if ($page < 0) {
+        if ($page <= 0) {
             $page = 1;
         }
         $firstIndex = ($page - 1) * $limit;
@@ -67,6 +67,17 @@ class Home extends controller
     public function ArticleDetail($maDeTai)
     {
         $data = $this->Model('postArticle')->getListPostById($maDeTai);
+        $this->view("masterPage", [
+            "header" => "users/headerNoSearch",
+            "page" => "users/articleDetail",
+            "ArticleDetail" => $data,
+            "css" => "articleDetail",
+            "download" => "has"
+        ]);
+    }
+    function NewDetail($id)
+    {
+        $data = $this->Model('news')->getNewById($id);
         $this->view("masterPage", [
             "header" => "users/headerNoSearch",
             "page" => "users/articleDetail",
@@ -179,12 +190,13 @@ class Home extends controller
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         }
+        if ($page <= 0) {
+            $page = 1;
+        }
         $firstIndex = ($page - 1) * $limit;
         if (isset($_GET['search'])) {
             $search_content = $_GET['search'];
-            $data_search = $this->Model("news")->getDataSearch($search_content, $firstIndex, $limit);
-            $numberNews = $this->Model("news")->getNumberNewsSearch($data_search);
-            $numberNews = $numberNews[0]['numberNews'];
+            $data_search = $this->Model("news")->getDataSearch($search_content);
             if (!empty($data_search)) {
                 $this->view("masterPage", [
                     "header" => "users/header",
@@ -193,13 +205,13 @@ class Home extends controller
                     "pageNotifi" => "notification",
                     "notifications" => $notifications,
                     "dataNews" => $data_search,
-                    "numberPost" => $numberNews,
+                    "numberPost" => 10,
                     "pageIndex" => $page,
                 ]);
             } else {
                 $_SESSION['status'] = "Tin tức bạn muốn tìm chưa có trên hệ thống";
                 $_SESSION['status_code'] = "warning";
-                $this->Tintuckhac();
+                header("location:../Home/Tintuckhac");
             }
         } else {
             $data = $this->Model("news")->getNewsLimit($firstIndex, $limit);

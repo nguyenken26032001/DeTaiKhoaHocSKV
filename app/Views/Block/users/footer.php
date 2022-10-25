@@ -12,12 +12,12 @@
     <div class="footer d-flex flex-column">
         <div class="footer__content d-flex flex-column">
             <p id="footer__content--title" class="mb-4 mt-3">
-                PHÒNG QUẢN LÝ KHOA HỌC
+                PHÒNG KHOA HỌC HỢP TÁC QUỐC TẾ
             </p>
             <div class="footer__content--address d-flex  mb-3">
                 <ion-icon name="home" class="icon home"></ion-icon>
                 <p id="footer__content--address--detail" class="address--detail">
-                    Địa Chỉ: P201 tầng 5 nhà A1 Trường Đại học Sư phạm kỹ thuật Vinh,
+                    Địa Chỉ: P501 tầng 5 nhà A1 Trường Đại học Sư phạm kỹ thuật Vinh,
                     117 Nguyễn Viết Xuân, Phường Hưng Dũng, TP Vinh
                 </p>
                 <p class="address--responsive"></p>
@@ -50,14 +50,14 @@
 <?php
 if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 ?>
-    <script>
-        swal({
-            title: "",
-            text: "<?php echo $_SESSION['status'] ?>",
-            icon: "<?php echo $_SESSION['status_code'] ?>",
-            button: "ok",
-        });
-    </script>
+<script>
+swal({
+    title: "",
+    text: "<?php echo $_SESSION['status'] ?>",
+    icon: "<?php echo $_SESSION['status_code'] ?>",
+    button: "ok",
+});
+</script>
 <?php
     unset($_SESSION['status']);
     unset($_SESSION['status_code']);

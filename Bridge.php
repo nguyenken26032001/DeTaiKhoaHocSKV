@@ -10,6 +10,8 @@ if (!empty($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) == 'on') {
 $folder =  str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', _DIR_ROOT_));
 $web_root = $web_root . $folder;
 define('_WEB_ROOT_', $web_root);
+require_once "app/core/arrayRoute.php";
+require_once "app/core/route.php";
 require_once "app/core/App.php";
 require_once "app/core/controller.php";
 require_once "app/core/DB.php";
