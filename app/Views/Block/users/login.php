@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
     <link
         href="https://fonts.googleapis.com/css2?family=Alice&family=Comfortaa:wght@500;700&family=Encode+Sans:wght@700;800&family=Merriweather:wght@300&family=Montserrat:wght@300;400;600&family=Open+Sans:wght@300;400;600&family=Ubuntu:wght@300&display=swap"
         rel="stylesheet" />
@@ -17,7 +16,8 @@
 
 <body>
     <div id="total">
-        <form action="<?php echo _WEB_ROOT_ ?>/login/dangNhap" id="formLogin" method="POST" name="formlogin">
+        <form action="<?php echo _WEB_ROOT_ ?>/login/dangNhap" id="formLogin" method="POST" name="formlogin"
+            class="shadow" style="border-radius: 10px;">
             <div class="picture">
                 <img src="./public/image/dhspktv.png" class="image" alt="" width="120px" height="auto" />
             </div>

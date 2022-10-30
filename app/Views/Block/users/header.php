@@ -21,10 +21,10 @@
                 </div>
                 <div class="header__content--title">
                     <p class="header__content--title--department mb-3">
-                        PHÒNG QUẢN LÝ KHOA HỌC
+                        PHÒNG KHOA HỌC - HỢP TÁC QUỐC TẾ
                     </p>
                     <p class="header__content--title--department--E">
-                        Research Management Department
+                        Science Management - International Cooperation Department
                     </p>
                 </div>
             </div>
