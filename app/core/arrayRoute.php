@@ -5,3 +5,4 @@ $arrayRoute['tai-lieu.html'] = "Home/document";
 $arrayRoute['hoat-dong-khac.html'] = "Home/Tintuckhac";
 $arrayRoute['thong-tin-chi-tiet-de-tai-(.+).html'] = "Home/ArticleDetail/$1";
 $arrayRoute['thong-bao-chi-tiet-(.+).html'] = "Home/notificationDetail/$1";
+$arrayRoute['tin-tuc-chi-tiet-(.+).html'] = "Home/NewDetail/$1";

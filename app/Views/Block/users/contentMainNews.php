@@ -23,14 +23,12 @@
             <img src="<?php echo _WEB_ROOT_ ?>/Uploads/PostNews/<?php echo $item['hinhAnh'] ?>" class="img-fluid" />
             <div class="article__content ms-2 mw-100">
                 <a
-                    href="<?php echo _WEB_ROOT_ ?>/Home/NewDetail/<?php echo $item['id'] ?>"><?php echo $item['tieuDe'] ?></a>
+                    href="<?php echo _WEB_ROOT_ ?>/tin-tuc-chi-tiet-<?php echo $item['id'] ?>.html"><?php echo $item['tieuDe'] ?></a>
             </div>
         </div>
-
         <?php
         }
         ?>
-
         <div class="page__number mb-4" style="margin-top: 250px;">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
