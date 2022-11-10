@@ -31,6 +31,7 @@ class Admin extends controller
             $maDeTai = $_GET['search'];
             $data = $this->Article->getArticleById($maDeTai);
             if (!empty($data)) {
+                $_SESSION['dataSearch'] = $maDeTai;
                 $this->view("masters", [
                     "page" => "admin/managerArticle",
                     "Action" => "1",

@@ -2,7 +2,8 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">THÊM TÀI LIỆU</h2>
-            <a href="<?php echo _WEB_ROOT_ ?>/document/documentManager" class="link_file btn btn-outline-info">Quản lý tài liệu</a>
+            <a href="<?php echo _WEB_ROOT_ ?>/document/documentManager" class="link_file btn btn-outline-info">Quản lý
+                tài liệu</a>
         </div>
         <form action="<?PHP echo _WEB_ROOT_ ?>/document/addDocument" method="post" enctype="multipart/form-data">
             <div class="form-group mt-5">

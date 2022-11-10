@@ -28,9 +28,6 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-radius: 8px;
   /* color: white; */
 }
-.link_file:hover {
-  /* color: #999; */
-}
 .scrollTable thead th {
   position: sticky;
   top: 0;
@@ -80,4 +77,18 @@ tr:hover {
 .wrapper-card {
   position: absolute;
   top: 50%;
+}
+/* responsive */
+@media screen and (max-width: 767.98px) {
+  .link_file {
+    position: absolute;
+    top: -45px;
+    right: -12px;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+  h2 {
+    font-size: 18px;
+    margin-top: 30px;
+  }
 }

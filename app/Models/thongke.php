@@ -3,8 +3,8 @@ class thongke extends DB
 {
     function statistical_By_Derpartment()
     {
-        $sql = "SELECT khoa.tenKhoa as 'tenkhoa', COUNT(detai.maDeTai) as 'soluong' FROM khoa,detai
-        WHERE khoa.maKhoa=detai.khoaChuTri GROUP BY detai.khoaChuTri";
+        $sql = "SELECT khoa.tenKhoa as 'tenkhoa', COUNT(detai.maDeTai) as 'soluong' FROM khoa LEFT JOIN detai
+        on khoa.maKhoa=detai.khoaChuTri GROUP BY khoa.maKhoa order By  COUNT(detai.maDeTai)";
         return $this->executeResult($sql);
     }
     function statistical_By_Type()

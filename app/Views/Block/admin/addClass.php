@@ -6,7 +6,7 @@
         </div>
         <form action="<?PHP echo _WEB_ROOT_ ?>/Admin/addClass" method="post">
             <div class="row mt-5 mb-5 text-center d-flex justify-content-center">
-                <div class="md-col-3 mr-4">
+                <div class="md-col-2 mr-4">
                     <label for="">Mã Lớp</label>
                     <input type="text" class="form-control" name="maLop" required>
                 </div>
@@ -29,23 +29,29 @@
                         <option value="Cao đẳng chính quy">Cao đẳng chính quy</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="">Niên khóa</label>
                     <input type="text" name="nienKhoa" id="" class="form-control" required>
                 </div>
             </div>
-            <div class="button_feature d-flex justify-content-between">
-                <button type="submit" class="btn btn-success px-4 py-2" style="margin-left: 120px;" name="addClass">
-                    THÊM</button>
+            <div class="container row d-flex justify-content-between">
+                <div class="button_feature">
+                    <button type="submit" class="btn btn-success px-4 py-2" style="margin-left: 95px;" name="addClass">
+                        THÊM</button>
+                </div>
         </form>
         <form action="<?php echo _WEB_ROOT_ ?>/import/importData" method="post" enctype="multipart/form-data">
-            <div class="import" style="margin-right:50px">
-                <input type="file" name="file_import" required style="width: 250px;">
-                <button class="btn btn-success px-3" name="import">IMPORT</button>
-                <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImportClass.xlsx" class="btn btn-success"> down
-                    load file mẫu</a>
+            <div class="row">
+                <div class="import" style="margin-right:50px">
+                    <input type="file" name="file_import" required style="width: 250px;">
+                    <button class="btn btn-success px-3" name="import">IMPORT</button>
+                    <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImportClass.xlsx" class="btn btn-success">
+                        down
+                        load file mẫu</a>
+                </div>
             </div>
         </form>
     </div>
+
 </div>
 </div>

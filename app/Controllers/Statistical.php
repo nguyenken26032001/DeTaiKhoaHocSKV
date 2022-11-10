@@ -16,7 +16,7 @@ class Statistical extends controller
                 echo "<tr>";
                 echo "<th>TT</th>";
                 echo "<th>Khoa</th>";
-                echo "<th>Số đề tài</th>";
+                echo "<th>Số lượng đề tài nghiên cứu</th>";
                 echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";

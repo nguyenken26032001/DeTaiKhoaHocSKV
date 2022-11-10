@@ -136,6 +136,9 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   margin: 0 auto;
 }
+.menu_link:hover {
+  cursor: pointer;
+}
 .menu_item {
   list-style-type: none;
   padding: 10px 40px;

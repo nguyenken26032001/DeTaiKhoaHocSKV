@@ -47,7 +47,7 @@
                 </div>
             </li>
             <li class="menu_item">
-                <a href="" class="menu_link">ĐỀ TÀI</a>
+                <a class="menu_link">ĐỀ TÀI</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
                         <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/De-tai-nghien-cuu-khoa-CNTT.html">
@@ -75,7 +75,7 @@
                 </div>
             </li>
             <li class="menu_item">
-                <a href="" class="menu_link">TÀI LIỆU</a>
+                <a class="menu_link">TÀI LIỆU</a>
                 <div class="menu_child">
                     <ul class="menu_child_list">
                         <a class="find__byLink" href="<?php echo _WEB_ROOT_ ?>/tai-lieu.html">
