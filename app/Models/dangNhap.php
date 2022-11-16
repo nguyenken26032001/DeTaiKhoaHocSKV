@@ -18,7 +18,7 @@ class dangNhap extends DB
                 $_SESSION['account'] = $infor_Account;
             } else {
                 $value = 0;
-                $_SESSION['status'] = "Thông tin về email hoặc mật khẩu không đúng. ";
+                $_SESSION['status'] = "Thông tin về email hoặc mật khẩu không hợp lệ. ";
                 $_SESSION['status_code'] = "error";
             }
         }

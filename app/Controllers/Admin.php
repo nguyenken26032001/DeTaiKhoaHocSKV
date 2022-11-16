@@ -349,8 +349,11 @@ class Admin extends controller
             "Action" => "3"
         ]);
     }
+    function logout()
+    {
+        if (isset($_SESSION['account'])) {
+            unset($_SESSION['account']);
+            header("Location:" . _WEB_ROOT_);
+        }
+    }
 }
-// }
-//  else {
-//     header("Location:" . _WEB_ROOT_ . '/login');
-// }

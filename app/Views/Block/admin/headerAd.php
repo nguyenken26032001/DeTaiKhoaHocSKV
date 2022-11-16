@@ -120,7 +120,7 @@
         <p class="setActive d-none" id="page__Active"><?php echo $pageActive; ?></p>
         <!-- Navbar -->
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light d-flex justify-content-between">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -130,6 +130,9 @@
                     <a href="<?php echo _WEB_ROOT_ ?>/" class="" id="home" target="_blank">Home</a>
                 </li>
             </ul>
+            <li class=" navbar-nav nav-item float-end">
+                <a href="<?php echo _WEB_ROOT_ ?>/Admin/logout" class="btn btn-outline-danger">Đăng Xuất</a>
+            </li>
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
