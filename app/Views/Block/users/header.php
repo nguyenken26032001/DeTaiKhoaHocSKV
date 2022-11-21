@@ -17,7 +17,7 @@
         <div class="header__content d-flex flex-column">
             <div class="header__content--right mb-2">
                 <div class="header__content--logo">
-                    <img src="<?php echo _WEB_ROOT_; ?>/public/image/dhspktv.png" alt="" class="logo" />
+                    <img src="<?php echo _WEB_ROOT_; ?>/Uploads/Images/Dhspktv-637b30b7dc96a.png" alt="" class="logo" />
                 </div>
                 <div class="header__content--title">
                     <p class="header__content--title--department mb-3">
