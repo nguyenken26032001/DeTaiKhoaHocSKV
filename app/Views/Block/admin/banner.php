@@ -20,6 +20,11 @@
             </tbody>
 
         </table>
+        <form action="<?php echo _WEB_ROOT_ ?>/uploads_images_system/uploads_images" method="post"
+            enctype="multipart/form-data">
+            <input type="file" name="fileUploads" id="" required>
+            <button class="btn btn-success" name="uploads">UPload images</button>
+        </form>
 
     </div>
 </div>

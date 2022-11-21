@@ -15,29 +15,38 @@
 </head>
 
 <body>
-    <div id="total">
-        <form action="<?php echo _WEB_ROOT_ ?>/login/dangNhap" id="formLogin" method="POST" name="formlogin"
-            class="shadow" style="border-radius: 10px;">
-            <div class="picture">
-                <img src="./public/image/dhspktv.png" class="image" alt="" width="120px" height="auto" />
-            </div>
-            <div class="block">
-                <div class="line"></div>
-                <div class="hoatiet">-- * --</div>
-            </div>
-            <div id="formgroup">
-                <input type="email" class="forminput" placeholder="Nhập email" name="email" required />
-            </div>
-            <div id="formgroup">
-                <input type="password" class="forminput" id="password" placeholder="Mật khẩu" name="passWord"
-                    required />
-                <div id="eye">
-                    <i class="fas fa-eye"></i>
+    <div class="loin d-flex w-100">
+        <div class="form-login px-5 d-flex flex-column align-items-center justify-content-center">
+            <form action="<?php echo _WEB_ROOT_ ?>/login/dangnhap" method="POST"
+                class="d-flex flex-column justify-content-center align-items-center gap-4">
+                <div class="form-login-logo">
+                    <img src="<?php echo _WEB_ROOT_ ?>/Uploads/images/Logo_School-637af54c49cd8.png" alt=""
+                        width="400px" />
                 </div>
-            </div>
-            <input type="submit" value="ĐĂNG NHẬP" class="formsubmit" name="submit" />
-        </form>
+                <div class="line text-center">
+                    <h5>----- * -----</h5>
+                </div>
+                <div class="user-name d-flex overflow-hidden">
+                    <i class="icon fa-solid fa-user d-flex justify-content-center align-items-center"></i>
+                    <input class="px-2" type="email" placeholder="Nhập tài khoản email" required name="email" />
+                </div>
+                <div class="user-name pass d-flex overflow-hidden">
+                    <i class="icon fa-solid fa-user d-flex justify-content-center align-items-center"></i>
+                    <input class="input px-2" type="password" id="password" placeholder="Nhập mật khẩu" required
+                        name="password" />
+                    <span class="d-flex justify-content-center align-items-center" id="tooglebtn"></span>
+                </div>
+                <div class="loginsubmit d-flex">
+                    <input type="submit" value="Đăng nhập" name="submit" />
+                </div>
+            </form>
+        </div>
+        <div class="img-login"
+            style="background: url(<?php echo _WEB_ROOT_ ?>/Uploads/Images/Bg_Transparent-637af57005847.jpg);background-size: cover">
+            <img src="<?php echo _WEB_ROOT_ ?>/Uploads/images/Bg_Thubnail-637af56694f59.png" alt="" />
+        </div>
     </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

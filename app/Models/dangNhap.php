@@ -6,7 +6,7 @@ class dangNhap extends DB
         $value = 0;
         if (isset($_POST['submit'])) {
             $email = $_POST['email'];
-            $passWord = $_POST['passWord'];
+            $passWord = $_POST['password'];
             $isCheck = $this->isExistAcc($email, $passWord);
             $isCheck = $isCheck[0]['id'];
             if ($isCheck == 1) {
