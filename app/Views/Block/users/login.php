@@ -31,7 +31,7 @@
                     <input class="px-2" type="email" placeholder="Nhập tài khoản email" required name="email" />
                 </div>
                 <div class="user-name pass d-flex overflow-hidden">
-                    <i class="icon fa-solid fa-user d-flex justify-content-center align-items-center"></i>
+                    <i class="icon fa-solid fa-key d-flex justify-content-center align-items-center"></i>
                     <input class="input px-2" type="password" id="password" placeholder="Nhập mật khẩu" required
                         name="password" />
                     <span class="d-flex justify-content-center align-items-center" id="tooglebtn"></span>

@@ -31,8 +31,8 @@ class Statistical extends controller
                 }
                 echo "</tbody>";
                 echo "</table>";
-                echo "<form action=\"" . _WEB_ROOT_ . "/Statistical/ExportByDepartments/\" method=\"post\">";
-                echo  "<button id=\"btnExcel\" class=\"btn btn-success float-right mr-5 mt-4\" name=\"export\">Xuất Excel</button>";
+                echo "<form action=\"" . _WEB_ROOT_ . "/Statistical/ExportByDepartments/\" method=\"post\" class=\"d-flex justify-content-end\" >";
+                echo  "<button id=\"btnExcel\" class=\"btn btn-success mr-5 mt-2 mb-3\"  name=\"export\">Xuất Excel</button>";
                 echo "</form>";
             }
         }
