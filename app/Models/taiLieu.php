@@ -11,6 +11,7 @@ class taiLieu extends DB
             $newFile = $this->getFileName();
             if (in_array($extension, $allowed)) {
                 move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileTaiLieu/' . $newFile);
+
                 $sql = "INSERT INTO tailieu(tenFile,fileTaiLieu) VALUES('$descDoc','$newFile')";
                 $this->execute($sql);
                 $_SESSION['status'] = "Thêm tài liệu thành công.";

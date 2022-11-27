@@ -45,7 +45,8 @@
                 <div class="import" style="margin-right:50px">
                     <input type="file" name="file_import" required style="width: 250px;">
                     <button class="btn btn-success px-3" name="import">IMPORT</button>
-                    <a href="<?php echo _WEB_ROOT_ ?>/Uploads/template_fileImportClass.xlsx" class="btn btn-success">
+                    <a href="<?php echo _WEB_ROOT_ ?>/Uploads/File-Quy-Dinh-Import-Lop-63838853269a0.xlsx"
+                        class="btn btn-success">
                         down
                         load file mẫu</a>
                 </div>
