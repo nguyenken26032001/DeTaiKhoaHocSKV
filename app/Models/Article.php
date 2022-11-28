@@ -6,10 +6,15 @@ class Article extends DB
         $sql = "SELECT * from detai";
         return $this->executeResult($sql);
     }
+    function getArticleDetailByID($maDeTai)
+    {
+        $sql = "SELECT * FROM detai WHERE maDeTai= '$maDeTai'";
+        return $this->executeResult($sql);
+    }
     function getArticleById($maDeTai)
     {
         $sql = "SELECT detai.maDeTai as maDeTai,tenDeTai as tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao,sinhvien.hoTen as hotenCNDT, sinhvien.maKhoa as khoaCNDT,sinhvien.lop as lop, sinhvien.nienKhoa, detai.kinhPhi as kinhPhi FROM sinhvien,detai,giaovienhd 
-        WHERE detai.maDeTai=giaovienhd.maDeTai and detai.maDeTai=sinhvien.maDeTai and detai.maDeTai='$maDeTai' and sinhvien.vaiTro='Chủ nhiệm đề tài'";
+        WHERE detai.maDeTai='$maDeTai' and detai.maDeTai=giaovienhd.maDeTai and detai.maDeTai=sinhvien.maDeTai and sinhvien.vaiTro='Chủ nhiệm đề tài'";
         return $this->executeResult($sql);
     }
     function countMember($maDeTai)

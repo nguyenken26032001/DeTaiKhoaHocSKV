@@ -38,7 +38,7 @@ class Admin extends controller
                     "dataArticle" => $data,
                 ]);
             } else {
-                $_SESSION['status'] = "Thông tin về đề tài này không tổn tại !";
+                $_SESSION['status'] = "Thông tin về đề tài này không tồn tại !";
                 $_SESSION['status_code'] = "error";
                 header("Location: ../Admin/managerArticle");
             }
@@ -247,12 +247,12 @@ class Admin extends controller
     {
         if (isset($_GET["search"])) {
             $maDeTai = $_GET['search'];
-            $data = $this->Model("postArticle")->getListPostById($maDeTai);
+            $data_search = $this->Model("postArticle")->getListPostById($maDeTai);
             if (!empty($data)) {
                 $this->view("masters", [
                     "page" => "admin/postManager",
                     "Action" => "5",
-                    "dataPost" => $data,
+                    "dataPost" => $data_search,
                     "js" => "post.js"
 
                 ]);
