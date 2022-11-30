@@ -262,7 +262,7 @@ class Article extends DB
     //find detai by user
     function getListArticleByDerpartment($maKhoa, $firstIndex, $limit)
     {
-        $sql = "SELECT tenDeTai FROM detai WHERE khoaChuTri = '$maKhoa' limit $firstIndex,$limit";
+        $sql = "SELECT tenDeTai,maDeTai FROM detai WHERE khoaChuTri = '$maKhoa' limit $firstIndex,$limit";
         $data = $this->executeResult($sql);
         if (empty($data)) {
             $_SESSION["status"] = "Khoa bạn tìm kiếm chưa có đề tài nào !";
@@ -272,8 +272,12 @@ class Article extends DB
     }
     function getListArticleByDerpartment_Search($maKhoa, $firstIndex, $limit, $search_content)
     {
-        $sql = "SELECT tenDeTai FROM detai WHERE khoaChuTri = '$maKhoa' and tenDeTai like '%" . $search_content . "%' limit $firstIndex,$limit";
-        $data = $this->executeResult($sql);
-        return $data;
+        $sql = "SELECT tenDeTai,maDeTai FROM detai WHERE khoaChuTri = '$maKhoa' and tenDeTai like '%" . $search_content . "%' limit $firstIndex,$limit";
+        return  $this->executeResult($sql);
+    }
+    function getInfoArticleByCode($id)
+    {
+        $sql = "SELECT detai.maDeTai as 'maDeTai',tenDeTai,sinhvien.hoTen as 'chuNhiemDeTai', mucTieuNghienCuu,fileBaoCao FROM detai,sinhvien WHERE sinhvien.maDeTai=detai.maDeTai and detai.maDeTai = '$id'";
+        return $this->executeResult($sql);
     }
 }

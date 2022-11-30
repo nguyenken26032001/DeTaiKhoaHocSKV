@@ -11,9 +11,11 @@
     ?>
     <div class="article d-flex mb-3 align-items-center mx-2 text-start " style="font-size: 20px;">
         <div class="article__content ms-2 mw-100">
-            <li>
-                <?php echo $item['tenDeTai'] ?>
-            </li>
+            <a href="<?php echo _WEB_ROOT_; ?>/Home/ThongTinChiTietDeTai/<?php echo $item['maDeTai'] ?>">
+                <li>
+                    <?php echo $item['tenDeTai'] ?>
+                </li>
+            </a>
         </div>
     </div>
     <?php } ?>

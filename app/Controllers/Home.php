@@ -229,4 +229,16 @@ class Home extends controller
             ]);
         }
     }
+    function ThongTinChiTietDeTai($id)
+    {
+        $data = $this->Model('Article')->getInfoArticleByCode($id);
+        if (!empty($data)) {
+            $this->view("masterPage", [
+                "header" => "users/headerNoSearch",
+                "page" => "users/infoArticle",
+                "ArticleDetail" => $data,
+                "css" => "articleDetail"
+            ]);
+        }
+    }
 }
