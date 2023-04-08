@@ -8,7 +8,9 @@
             <tbody>
                 <form action="<?php echo _WEB_ROOT_ ?>/Admin/updatedBanner" method="post" enctype="multipart/form-data">
                     <tr class="d-flex justify-content-around align-items-center">
-                        <td><img id="changeImage" src="<?php echo _WEB_ROOT_ ?>/Uploads/Banner/<?php echo $bannerId[0]['hinhAnh'] ?>" width="250px" /></td>
+                        <td><img id="changeImage"
+                                src="<?php echo _WEB_ROOT_ ?>/Uploads/Banner/<?php echo $bannerId[0]['hinhAnh'] ?>"
+                                width="250px" /></td>
                         <td>
                             <button class="btn btn-outline-info" name="updateBanner"> Sửa</button>
                         </td>

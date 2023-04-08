@@ -48,7 +48,7 @@ class Ajax extends controller
             ' <tr id=' . $item['maLop'] . ' >
             <td>' . (++$index) . '</td>
             <td>' . $item['maLop'] . '</td>
-            <td> <button class="btn btn-danger"  onclick="deleteClass(\'' . $item['maLop'] . '\',\'' . $khoa . '\')"> Delete</button></td>
+            <td> <button class="btn btn-danger"  onclick="deleteClass(\'' . $item['maLop'] . '\',\'' . $khoa . '\')">Delete</button></td>
          </tr>';
         }
     }
