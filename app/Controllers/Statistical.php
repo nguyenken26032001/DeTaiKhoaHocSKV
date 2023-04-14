@@ -243,13 +243,44 @@ class Statistical extends controller
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             $writer = new Xlsx($spreadsheet);
-            $rowCount = 1;
-            $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
-            $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'Sv thực hiện');
-            $sheet->setCellValue('D' . $rowCount, 'ngày giao');
-            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('F' . $rowCount, 'Xếp loại');
+            $rowCount = 8;
+            $spreadsheet->getDefaultStyle()->getFont()->setName("Time new Roman");
+            $spreadsheet->getDefaultStyle()->getFont()->setSize(13);
+            //set width for column
+            $sheet->getColumnDimension('A')->setWidth(12);
+            $sheet->getColumnDimension('B')->setWidth(45);
+            $sheet->getColumnDimension('C')->setWidth(22);
+            $sheet->getColumnDimension('D')->setWidth(20);
+            $sheet->getColumnDimension('E')->setWidth(20);
+            $sheet->getColumnDimension('F')->setWidth(12);
+
+
+            $sheet->setCellValue("B2", "TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT VINH");
+            $sheet->getStyle('B2')->getAlignment()->setHorizontal('center');
+            $sheet->mergeCells("D2:E2");
+            $sheet->setCellValue("D2", "Cộng hòa xã hội chủ nghĩa Việt Nam");
+            $sheet->getStyle("D2:E2")->getFont()->setBold(true);
+            $sheet->getStyle("D2:E2")->getAlignment()->setHorizontal('center');
+            $sheet->setCellValue("B3", "Khoa " . $department);
+            $sheet->getStyle("B3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("B3")->getFont()->setBold(true);
+    
+            $sheet->mergeCells("D3:E3");
+            $sheet->setCellValue("D3", "Độc lập - tự do - hạnh phúc");
+            $sheet->getStyle("D3:E3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("D3:E3")->getFont()->setUnderline(true);
+            
+            $sheet->mergeCells("C5:D5");
+            $sheet->setCellValue("C5", "THỐNG KÊ THÔNG TIN CÁC ĐỀ TÀI NCKH ");
+            $sheet->getStyle("C5:D5")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("C5:D5")->getFont()->setBold(true)->setSize(14);
+
+            $sheet->setCellValue('A' . $rowCount, 'MÃ ĐỀ TÀI');
+            $sheet->setCellValue('B' . $rowCount, 'TÊN ĐỀ TÀI');
+            $sheet->setCellValue('C' . $rowCount, 'SINH VIÊN THỰC HIỆN');
+            $sheet->setCellValue('D' . $rowCount, 'NGÀY GIAO');
+            $sheet->setCellValue('E' . $rowCount, 'NGÀY NGHIỆM THU');
+            $sheet->setCellValue('F' . $rowCount, 'XẾP LOẠI');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
@@ -293,14 +324,44 @@ class Statistical extends controller
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             $writer = new Xlsx($spreadsheet);
-            $rowCount = 2;
-            $sheet->setCellValue('A1', 'danh sách đề tài trong năm' . $year);
-            $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
-            $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
-            $sheet->setCellValue('D' . $rowCount, 'Ngày giao');
-            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('F' . $rowCount, 'Xếp loại');
+            $rowCount = 8;
+            $spreadsheet->getDefaultStyle()->getFont()->setName("Time new Roman");
+            $spreadsheet->getDefaultStyle()->getFont()->setSize(13);
+            //set width for column
+            $sheet->getColumnDimension('A')->setWidth(12);
+            $sheet->getColumnDimension('B')->setWidth(45);
+            $sheet->getColumnDimension('C')->setWidth(22);
+            $sheet->getColumnDimension('D')->setWidth(28);
+            $sheet->getColumnDimension('E')->setWidth(20);
+            $sheet->getColumnDimension('F')->setWidth(12);
+
+
+            $sheet->setCellValue("B2", "TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT VINH");
+            $sheet->getStyle('B2')->getAlignment()->setHorizontal('center');
+            $sheet->mergeCells("D2:E2");
+            $sheet->setCellValue("D2", "Cộng hòa xã hội chủ nghĩa Việt Nam");
+            $sheet->getStyle("D2:E2")->getFont()->setBold(true);
+            $sheet->getStyle("D2:E2")->getAlignment()->setHorizontal('center');
+            $sheet->setCellValue("B3", "Phòng Khoa học - hợp tác Quốc Tế");
+            $sheet->getStyle("B3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("B3")->getFont()->setBold(true);
+    
+            $sheet->mergeCells("D3:E3");
+            $sheet->setCellValue("D3", "Độc lập - tự do - hạnh phúc");
+            $sheet->getStyle("D3:E3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("D3:E3")->getFont()->setUnderline(true);
+            
+            $sheet->mergeCells("C5:D5");
+            $sheet->setCellValue("C5", "TỔNG HỢP DANH SÁCH ĐỀ TÀI TRONG NĂM ".$year);
+            $sheet->getStyle("C5:D5")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("C5:D5")->getFont()->setBold(true)->setSize(14);
+
+            $sheet->setCellValue('A' . $rowCount, 'MÃ ĐỀ TÀI');
+            $sheet->setCellValue('B' . $rowCount, 'TÊN ĐỀ TÀI');
+            $sheet->setCellValue('C' . $rowCount, 'SINH VIÊN THỰC HIỆN');
+            $sheet->setCellValue('D' . $rowCount, 'NGÀY GIAO');
+            $sheet->setCellValue('E' . $rowCount, 'NGÀY NGHIỆM THU');
+            $sheet->setCellValue('F' . $rowCount, 'XẾP LOẠI');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
@@ -323,14 +384,44 @@ class Statistical extends controller
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             $writer = new Xlsx($spreadsheet);
-            $rowCount = 2;
-            $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại' . $type);
-            $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
-            $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
-            $sheet->setCellValue('D' . $rowCount, 'Ngày giao đề tài');
-            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('F' . $rowCount, 'Loại đề tài');
+            $rowCount = 8;
+            $spreadsheet->getDefaultStyle()->getFont()->setName("Time new Roman");
+            $spreadsheet->getDefaultStyle()->getFont()->setSize(13);
+            //set width for column
+            $sheet->getColumnDimension('A')->setWidth(12);
+            $sheet->getColumnDimension('B')->setWidth(45);
+            $sheet->getColumnDimension('C')->setWidth(22);
+            $sheet->getColumnDimension('D')->setWidth(28);
+            $sheet->getColumnDimension('E')->setWidth(20);
+            $sheet->getColumnDimension('F')->setWidth(12);
+
+
+            $sheet->setCellValue("B2", "TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT VINH");
+            $sheet->getStyle('B2')->getAlignment()->setHorizontal('center');
+            $sheet->mergeCells("D2:E2");
+            $sheet->setCellValue("D2", "Cộng hòa xã hội chủ nghĩa Việt Nam");
+            $sheet->getStyle("D2:E2")->getFont()->setBold(true);
+            $sheet->getStyle("D2:E2")->getAlignment()->setHorizontal('center');
+            $sheet->setCellValue("B3", "Phòng Khoa học - hợp tác Quốc Tế");
+            $sheet->getStyle("B3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("B3")->getFont()->setBold(true);
+    
+            $sheet->mergeCells("D3:E3");
+            $sheet->setCellValue("D3", "Độc lập - tự do - hạnh phúc");
+            $sheet->getStyle("D3:E3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("D3:E3")->getFont()->setUnderline(true);
+            
+            $sheet->mergeCells("C5:D5");
+            $sheet->setCellValue("C5", "TỔNG HỢP DANH SÁCH ĐỀ TÀI THUỘC LOẠI ".$type);
+            $sheet->getStyle("C5:D5")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("C5:D5")->getFont()->setBold(true)->setSize(14);
+
+            $sheet->setCellValue('A' . $rowCount, 'MÃ ĐỀ TÀI');
+            $sheet->setCellValue('B' . $rowCount, 'TÊN ĐỀ TÀI');
+            $sheet->setCellValue('C' . $rowCount, 'SINH VIÊN THỰC HIỆN');
+            $sheet->setCellValue('D' . $rowCount, 'NGÀY GIAO');
+            $sheet->setCellValue('E' . $rowCount, 'NGÀY NGHIỆM THU');
+            $sheet->setCellValue('F' . $rowCount, 'XẾP LOẠI');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
@@ -353,14 +444,44 @@ class Statistical extends controller
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             $writer = new Xlsx($spreadsheet);
-            $rowCount = 2;
-            $sheet->setCellValue('A1', 'Danh sách đề tài thuộc loại ' . $type . "vào năm: " . $year);
-            $sheet->setCellValue('A' . $rowCount, 'Mã đề tài');
-            $sheet->setCellValue('B' . $rowCount, 'Tên đề tài');
-            $sheet->setCellValue('C' . $rowCount, 'sv thực hiện');
-            $sheet->setCellValue('D' . $rowCount, 'Ngày giao đề tài');
-            $sheet->setCellValue('E' . $rowCount, 'Ngày nghiệm thu');
-            $sheet->setCellValue('F' . $rowCount, 'Loại đề tài');
+            $rowCount = 8;
+            $spreadsheet->getDefaultStyle()->getFont()->setName("Time new Roman");
+            $spreadsheet->getDefaultStyle()->getFont()->setSize(13);
+            //set width for column
+            $sheet->getColumnDimension('A')->setWidth(12);
+            $sheet->getColumnDimension('B')->setWidth(45);
+            $sheet->getColumnDimension('C')->setWidth(37);
+            $sheet->getColumnDimension('D')->setWidth(28);
+            $sheet->getColumnDimension('E')->setWidth(20);
+            $sheet->getColumnDimension('F')->setWidth(12);
+
+
+            $sheet->setCellValue("B2", "TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT VINH");
+            $sheet->getStyle('B2')->getAlignment()->setHorizontal('center');
+            $sheet->mergeCells("D2:E2");
+            $sheet->setCellValue("D2", "Cộng hòa xã hội chủ nghĩa Việt Nam");
+            $sheet->getStyle("D2:E2")->getFont()->setBold(true);
+            $sheet->getStyle("D2:E2")->getAlignment()->setHorizontal('center');
+            $sheet->setCellValue("B3", "Phòng Khoa học - hợp tác Quốc Tế");
+            $sheet->getStyle("B3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("B3")->getFont()->setBold(true);
+    
+            $sheet->mergeCells("D3:E3");
+            $sheet->setCellValue("D3", "Độc lập - tự do - hạnh phúc");
+            $sheet->getStyle("D3:E3")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("D3:E3")->getFont()->setUnderline(true);
+            
+            $sheet->mergeCells("C5:D5");
+            $sheet->setCellValue("C5", "TỔNG HỢP DANH SÁCH ĐỀ TÀI THUỘC LOẠI ".$type. " NĂM ".$year);
+            $sheet->getStyle("C5:D5")->getAlignment()->setHorizontal('center');
+            $sheet->getStyle("C5:D5")->getFont()->setBold(true)->setSize(14);
+
+            $sheet->setCellValue('A' . $rowCount, 'MÃ ĐỀ TÀI');
+            $sheet->setCellValue('B' . $rowCount, 'TÊN ĐỀ TÀI');
+            $sheet->setCellValue('C' . $rowCount, 'SINH VIÊN THỰC HIỆN');
+            $sheet->setCellValue('D' . $rowCount, 'NGÀY GIAO');
+            $sheet->setCellValue('E' . $rowCount, 'NGÀY NGHIỆM THU');
+            $sheet->setCellValue('F' . $rowCount, 'XẾP LOẠI');
             foreach ($data as $row) {
                 $rowCount++;
                 $sheet->setCellValue('A' . $rowCount, $row['maDeTai']);
