@@ -49,7 +49,6 @@ class Article extends DB
             $xepLoaiDT = $_POST['article_type'];
             $kinhPhi = str_replace(',', '', $_POST['kinhPhi']);
             $member = $_POST['member'];
-            $file = $_FILES['fileUploads'];
             $date1 = strtotime($ngayGiao);
             $date2 = strtotime($ngayNghiemThu);
             $checkArticle = $this->checkExitsArticle($maDeTai);
@@ -63,11 +62,36 @@ class Article extends DB
                     $_SESSION['status_code'] = "error";
                     $data = 0;
                 } else {
-                    $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
+                    $fileBaoCao = "";
+                    $arrFiles = [];
+                    $file_temp = $_FILES['fileUploads']['tmp_name'];
+                    $files = $_FILES['fileUploads']['name'];
+                    $countFiles = count($_FILES['fileUploads']['name']);
                     $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
-                    $fileBaoCao = $this->getFileName();
+                    for ($i = 0; $i < $countFiles; $i++) {
+                        $extension = pathinfo($_FILES['fileUploads']['name'][$i], PATHINFO_EXTENSION);
+                        $newFile = $this->getFileNameMulti($i);
+                        array_push($arrFiles, $newFile);
+                    }
                     if (in_array($extension, $allowed)) {
-                        move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao);
+
+                        if ($countFiles > 1) {
+                            $zip = new ZipArchive();
+                            $fileZipName = "bao-cao-NCKH" . uniqid() . ".zip";
+                            $zip_name = "Uploads/FileArticle/" . $fileZipName;
+                            $zip->open($zip_name, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+                            for ($i = 0; $i < $countFiles; $i++) {
+                                $filename = $arrFiles[$i];
+                                $temp_name = $file_temp[$i];
+                                $zip->addFile($temp_name, $filename);
+                            }
+                            $fileBaoCao = $fileZipName;
+                        } else {
+                            $fileBaoCao = $this->getFileNameMulti(0);
+                            move_uploaded_file($_FILES['fileUploads']['tmp_name'][0], './Uploads/FileArticle/' . $fileBaoCao);
+                        }
+                        //insert DB
                         $sqlAddArticle = "INSERT INTO detai (maDeTai,tenDeTai,khoaChuTri,thoiGianGiao,thoiGianNghiemThu,mucTieuNghienCuu,sanPhamNghienCuu,xepLoai,fileBaoCao,kinhPhi) values('$maDeTai','$tenDeTai','$khoaChuTri','$ngayGiao','$ngayNghiemThu','$mucTieuNghienCuu','$SPNghienCuu','$xepLoaiDT','$fileBaoCao','$kinhPhi')";
                         $this->execute($sqlAddArticle);
                         $_SESSION['status'] = "Thêm  đề tài thành công !";
@@ -97,6 +121,7 @@ class Article extends DB
                         }
                         $data = 1;
                     } else {
+                        //not formatted
                         $_SESSION['status'] = "Định dạng của file báo cáo không được Uploads ";
                         $_SESSION['status_code'] = "error";
                         $data = 0;
@@ -126,8 +151,15 @@ class Article extends DB
             $kinhPhi = str_replace(',', '', $_POST['kinhPhi']);
             $member = $_POST['member'];
             $file = $_FILES['fileUploads'];
+            $file_temp = $_FILES['fileUploads']['tmp_name'];
             $fileold = $_POST['file_Old'];
-
+            $countFiles = count($_FILES['fileUploads']['name']);
+            $arrFiles = [];
+            for ($i = 0; $i < $countFiles; $i++) {
+                $extension = pathinfo($_FILES['fileUploads']['name'][$i], PATHINFO_EXTENSION);
+                $newFile = $this->getFileNameMulti($i);
+                array_push($arrFiles, $newFile);
+            }
             //check date
             $date1 = strtotime($ngayGiao);
             $date2 = strtotime($ngayNghiemThu);
@@ -137,11 +169,25 @@ class Article extends DB
                 $data = 0;
             } else {
                 if (!empty($file['name'])) {
-                    $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
                     $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
-                    $fileBaoCao = $this->getFileName();
+                    $fileBaoCao = "";
                     if (in_array($extension, $allowed)) {
-                        move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileArticle/' . $fileBaoCao . '');
+                        if ($countFiles > 1) {
+                            $zip = new ZipArchive();
+                            $fileZipName = "bao-cao-NCKH" . uniqid() . ".zip";
+                            $zip_name = "Uploads/FileArticle/" . $fileZipName;
+                            $zip->open($zip_name, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+                            for ($i = 0; $i < $countFiles; $i++) {
+                                $filename = $arrFiles[$i];
+                                $temp_name = $file_temp[$i];
+                                $zip->addFile($temp_name, $filename);
+                            }
+                            $fileBaoCao = $fileZipName;
+                        } else {
+                            $fileBaoCao = $this->getFileNameMulti(0);
+                            move_uploaded_file($_FILES['fileUploads']['tmp_name'][0], './Uploads/FileArticle/' . $fileBaoCao);
+                        }
                         $sqlUpdateArticle = "UPDATE  detai set tenDeTai='$tenDeTai',khoaChuTri='$khoaChuTri',thoiGianGiao='$ngayGiao',thoiGianNghiemThu='$ngayNghiemThu',mucTieuNghienCuu='$mucTieuNghienCuu',sanPhamNghienCuu='$SPNghienCuu', xepLoai='$xepLoaiDT',fileBaoCao='$fileBaoCao',kinhPhi='$kinhPhi' WHERE maDeTai='$maDeTai' ";
                         $this->execute($sqlUpdateArticle);
                         $isCheckPostDeTai = $this->getPostArticleById($maDeTai);

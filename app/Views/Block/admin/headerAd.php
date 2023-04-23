@@ -39,12 +39,18 @@
     <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/css/styleAdmin.css">
     <?php
     $page = $data['page'];
+    if($page=="admin/settings"){
+        ?>
+          <link rel="stylesheet" href="<?php echo _WEB_ROOT_ ?>/public/css/<?php echo $data['css'] ?>">
+        <?php
+    }
+
     if ($page == "admin/thongKe") {
     ?>
     <style>
     .content-wrapper {
         background: #ffff;
-    }
+    }   
 
     text {
         font-size: 16px;
@@ -216,6 +222,14 @@
                                 <i class="fa-solid fa-image" style="padding-right: 10px; margin-left:5px;"></i>
                                 <p>
                                     BANNER
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo _WEB_ROOT_ ?>/Admin/settings" class="nav-link">
+                                <i class="fa-solid fa-gear" style="padding-right: 10px; margin-left:5px;"></i>
+                                <p>
+                                    SETTINGS
                                 </p>
                             </a>
                         </li>

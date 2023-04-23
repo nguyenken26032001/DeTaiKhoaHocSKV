@@ -349,6 +349,18 @@ class Admin extends controller
             "Action" => "3"
         ]);
     }
+    //settings
+    function settings(){
+        $infoAdmin= $this->Model("administrator")->getInfo();
+        $this->view("masters", [
+            "page" => "admin/settings",
+            "inForAdmin" => $infoAdmin,
+            "Action" => "8",
+            "css"=>"settingSystem.css",
+            "js"=>"setting.js"
+        ]);
+    }
+
     function logout()
     {
         if (isset($_SESSION['account'])) {

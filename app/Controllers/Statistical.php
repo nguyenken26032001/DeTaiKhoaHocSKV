@@ -99,7 +99,7 @@ class Statistical extends controller
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>TT</th>";
-                echo "<th style='width:100px' >Mã đề tài</th>";
+                echo "<th style='width:100px,border-radius:10px' >Mã đề tài</th>";
                 echo "<th>Tên đề tài</th>";
                 echo "<th  style='width:200px'>Ngày giao</th>";
                 echo "<th  style='width:200px'>Ngày nghiệm thu</th>";
@@ -132,7 +132,7 @@ class Statistical extends controller
                     echo "<thead>";
                     echo "<tr>";
                     echo "<th>TT</th>";
-                    echo "<th  style='width:100px'>Mã đề tài</th>";
+                    echo "<th  style='width:100px,border-radius:10px'>Mã đề tài</th>";
                     echo "<th>Tên đề tài</th>";
                     echo "<th  style='width:200px'>Ngày giao</th>";
                     echo "<th  style='width:200px'>Ngày nghiệm thu</th>";

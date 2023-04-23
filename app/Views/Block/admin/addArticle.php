@@ -31,28 +31,24 @@
             </div>
             <div class="form-group">
                 <label for="">Ngày Nghiệm Thu</label>
-                <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu"
-                    onchange="checkdate()">
+                <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu" onchange="checkdate()">
             </div>
             <div class="form-group" id="gvhd">
                 <label for=""> Số Lượng GVHD </label>
-                <input type="number" class="form-control" id="number_gvhd" required min="0" name="gvhd"
-                    onchange="load_gvhd()" value="0">
+                <input type="number" class="form-control" id="number_gvhd" required min="0" name="gvhd" onchange="load_gvhd()" value="0">
             </div>
             <!-- ----- -->
             <div id="add_gvhd" style="background-color: #EEE;padding: 10px 20px 20px 20px;display:none;">
             </div>
             <div class="form-group">
                 <label for="usr">Chủ Nhiệm Đề Tài</label>
-                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai"
-                    spellcheck="false">
+                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai" spellcheck="false">
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="pwd">Thuộc Khoa </label>
-                        <select class="form-control" name="khoaChuNhiem" id="0"
-                            onchange="FetchDepartment(this.value,this)">
+                        <select class="form-control" name="khoaChuNhiem" id="0" onchange="FetchDepartment(this.value,this)">
                             <?php
                             foreach ($dataKhoa as $item) {
                                 echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
@@ -64,8 +60,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="pwd">Hệ Đào Tạo</label>
-                        <select class="form-control" name="heCNDT" id="0"
-                            onchange="FetchDataHeDaoTao(this.value,$('#0').val(),this)">
+                        <select class="form-control" name="heCNDT" id="0" onchange="FetchDataHeDaoTao(this.value,$('#0').val(),this)">
                             <option value="Đại học chính quy">Đại học chính quy</option>
                             <option value="Cao đẳng chính quy">Cao đẳng chính quy</option>
                         </select>
@@ -93,21 +88,18 @@
             </div>
             <div class="form-group" id="thanhvien">
                 <label for=""> Số Lượng Thành Viên </label>
-                <input type="number" class="form-control" id="member" required="true" min="0" name="member"
-                    onchange="load()" value="0">
+                <input type="number" class="form-control" id="member" required="true" min="0" name="member" onchange="load()" value="0">
             </div>
             <!-- ----- -->
             <div id="addMember" style="background-color: #EEE;padding: 10px 20px 20px 20px;display:none;">
             </div>
             <div class="form-group">
                 <label for="">Mục Tiêu Nghiên Cứu</label>
-                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="10"
-                    spellcheck="false"></textarea>
+                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="10" spellcheck="false"></textarea>
             </div>
             <div class="form-group">
                 <label for="">Sản Phẩm Nghiên Cứu</label>
-                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu"
-                    spellcheck="false">
+                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu" spellcheck="false">
             </div>
             <div class="form-group">
                 <label for="">Xếp loại đề tài</label>
@@ -127,8 +119,7 @@
             </div>
             <div class="form-group">
                 <label for="">File Báo Cáo </label>
-                <input type="file" id="address" name="fileUploads" required="true" multiple="multiple"
-                    style="margin-left: 59px;">
+                <input type="file" id="address" name="fileUploads[]" required="true" multiple="multiple" style="margin-left: 59px;">
             </div>
 
             <button type="submit" class="btn btn-success" name="addDeTai" id="add" style="margin-bottom: 30px;">Thêm Đề

@@ -101,6 +101,9 @@ if (isset($data["listyear"])) {
 if (isset($data["dataDepartments"])) {
     $dataDepartments = $data["dataDepartments"];
 }
+if (isset($data["inForAdmin"])) {
+    $infoAdmin = $data["inForAdmin"];
+}
 
 ?>
 <?php include "app/Views/Block/admin/headerAd.php" ?>

@@ -7,9 +7,9 @@
     }
     foreach ($data as $item) {
     ?>
-        <a href="<?php echo _WEB_ROOT_ ?>/Uploads/FileTaiLieu/<?php echo $item['fileTaiLieu'] ?>">
-            <li class="my-2 fs-5"><?php echo $item['tenFile'] ?></li>
-        </a>
+    <a href="<?php echo _WEB_ROOT_ ?>/Uploads/FileTaiLieu/<?php echo $item['fileTaiLieu'] ?>">
+        <li class="my-2 fs-5"><?php echo $item['tenFile'] ?></li>
+    </a>
     <?php
     }
     ?>

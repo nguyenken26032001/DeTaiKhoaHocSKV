@@ -6,16 +6,42 @@ class taiLieu extends DB
         if (isset($_POST["addDocument"])) {
             $descDoc = $_POST['decsDoc'];
             $files = $_FILES['fileUploads']['name'];
+            $file_temp = $_FILES['fileUploads']['tmp_name'];
+            $arrFiles = [];
+            $total = count($_FILES['fileUploads']['name']);
             $allowed = ['ppt', 'zip', 'pptx', 'doc', 'docx', 'xls', 'xlsx', 'pdf'];
-            $extension = pathinfo($_FILES['fileUploads']['name'], PATHINFO_EXTENSION);
-            $newFile = $this->getFileName();
+            for ($i = 0; $i < $total; $i++) {
+                $extension = pathinfo($_FILES['fileUploads']['name'][$i], PATHINFO_EXTENSION);
+                $newFile = $this->getFileNameMulti($i);
+                array_push($arrFiles, $newFile);
+            }
+            $countFiles = count($arrFiles);
             if (in_array($extension, $allowed)) {
-                move_uploaded_file($_FILES['fileUploads']['tmp_name'], './Uploads/FileTaiLieu/' . $newFile);
+                if ($countFiles > 1) {
+                    $zip = new ZipArchive();
+                    $fileZipName = $this->changeTitle($descDoc) . ".zip";
+                    $zip_name = "Uploads/FileTaiLieu/" . $fileZipName;
+                    $zip->open($zip_name, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+                    for ($i = 0; $i < $countFiles; $i++) {
+                        $filename = $arrFiles[$i];
+                        $temp_name = $file_temp[$i];
+                        $zip->addFile($temp_name, $filename);
+                    }
+                    $zip->close();
+                    $sql = "INSERT INTO tailieu(tenFile,fileTaiLieu) VALUES('$descDoc','$fileZipName');";
+                    $this->execute($sql);
+                    $_SESSION['status'] = "Thêm tài liệu thành công.";
+                    $_SESSION['status_code'] = "success";
+                } else {
+                    $filename = $arrFiles[0];
+                    $file_to_move = $file_temp[0];
+                    move_uploaded_file($file_to_move, './Uploads/FileTaiLieu/' . $filename);
 
-                $sql = "INSERT INTO tailieu(tenFile,fileTaiLieu) VALUES('$descDoc','$newFile')";
-                $this->execute($sql);
-                $_SESSION['status'] = "Thêm tài liệu thành công.";
-                $_SESSION['status_code'] = "success";
+                    $sql = "INSERT INTO tailieu(tenFile,fileTaiLieu) VALUES('$descDoc','$filename')";
+                    $this->execute($sql);
+                    $_SESSION['status'] = "Thêm tài liệu thành công.";
+                    $_SESSION['status_code'] = "success";
+                }
             } else {
                 $_SESSION['status'] = "File Upload không đúng định dạng vui lòng kiểm tra lại";
                 $_SESSION['status_code'] = "error";

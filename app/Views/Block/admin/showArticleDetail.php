@@ -2,19 +2,16 @@
     <div class="panel panel-primary">
         <div class="panel-heading primary">
             <h2 class="text-center">THÔNG TIN CHI TIẾT ĐỀ TÀI</h2>
-            <button class="btn btn-danger delete"
-                onclick="deleteArticle('<?php echo $dataArticleDetail[0]['maDeTai']; ?>')">Xóa đề tài</button>
+            <button class="btn btn-danger delete" onclick="deleteArticle('<?php echo $dataArticleDetail[0]['maDeTai']; ?>')">Xóa đề tài</button>
         </div>
         <form action="<?php echo _WEB_ROOT_ ?>/Admin/UpdateArticle" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="usr">Mã Đề Tài</label>
-                <input required="true" readonly type="text" class="form-control" id="usr" name="maDeTai"
-                    value="<?php echo $dataArticleDetail[0]['maDeTai']; ?>">
+                <input required="true" readonly type="text" class="form-control" id="usr" name="maDeTai" value="<?php echo $dataArticleDetail[0]['maDeTai']; ?>">
             </div>
             <div class="form-group">
                 <label for="email">Tên Đề Tài</label>
-                <input required="true" type="text" class="form-control" name="tenDeTai"
-                    value="<?php echo $dataArticleDetail[0]['tenDeTai']; ?>">
+                <input required="true" type="text" class="form-control" name="tenDeTai" value="<?php echo $dataArticleDetail[0]['tenDeTai']; ?>">
             </div>
             <div class="form-group">
                 <label for="pwd">Đơn Vị Chủ Trì</label>
@@ -32,34 +29,31 @@
             </div>
             <div class="form-group">
                 <label for="">Ngày Giao Đề Tài</label>
-                <input type="date" class="form-control" id="ngayGiao" required="true" name="ngayGiao"
-                    value="<?php echo $dataArticleDetail[0]['thoiGianGiao']; ?>">
+                <input type="date" class="form-control" id="ngayGiao" required="true" name="ngayGiao" value="<?php echo $dataArticleDetail[0]['thoiGianGiao']; ?>">
             </div>
             <div class="form-group">
                 <label for="">Ngày Nghiệm Thu</label>
-                <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu"
-                    onchange="checkdate()" value="<?php echo $dataArticleDetail[0]['thoiGianNghiemThu']; ?>">
+                <input type="date" class="form-control" id="ngayNghiemThu" required="true" name="ngayNghiemThu" onchange="checkdate()" value="<?php echo $dataArticleDetail[0]['thoiGianNghiemThu']; ?>">
             </div>
 
             <?php
             $number = $NumberGvhd[0]['number_gvhd'];
             for ($i = 1; $i <= $number; $i++) {
             ?>
-            <div class="row p-2 mt-1 border border-secondary">
-                <input type="hidden" name="number_gvhd" value="<?php echo $NumberGvhd[0]['number_gvhd'] ?>">
-                <div class="col-md-6">
-                    <div class="form-group" id="thanhvien">
-                        <label for=""> Giáo Viên Hướng Dẫn Thứ <?php echo $i; ?></label>
-                        <input type="text" class="form-control" id="" required="true" name="name_gvhd<?php echo $i; ?>"
-                            value="<?php echo $list_Gvhd[$i - 1]['hoTen']; ?>">
+                <div class="row p-2 mt-1 border border-secondary">
+                    <input type="hidden" name="number_gvhd" value="<?php echo $NumberGvhd[0]['number_gvhd'] ?>">
+                    <div class="col-md-6">
+                        <div class="form-group" id="thanhvien">
+                            <label for=""> Giáo Viên Hướng Dẫn Thứ <?php echo $i; ?></label>
+                            <input type="text" class="form-control" id="" required="true" name="name_gvhd<?php echo $i; ?>" value="<?php echo $list_Gvhd[$i - 1]['hoTen']; ?>">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="pwd">Thuộc khoa </label>
-                        <select class="form-control" name="khoa_gvhd<?php echo $i; ?>" id="">
-                            <option disabled>--- Chọn khoa----</option>
-                            <?php
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="pwd">Thuộc khoa </label>
+                            <select class="form-control" name="khoa_gvhd<?php echo $i; ?>" id="">
+                                <option disabled>--- Chọn khoa----</option>
+                                <?php
                                 foreach ($dataKhoa as $item) {
                                     if ($item['maKhoa'] == $list_Gvhd[$i - 1]['khoa']) {
                                         echo '<option value="' . $item['maKhoa'] . '" selected>' . $item['tenKhoa'] . '</option>';
@@ -67,24 +61,22 @@
                                     echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
                                 }
                                 ?>
-                        </select>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php
             }
             ?>
             <div class="form-group">
                 <label for="usr">Chủ Nhiệm Đề Tài</label>
-                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai"
-                    value="<?php echo $dataArticleDetail[0]['hotenCNDT'] ?>">
+                <input required="true" type="text" class="form-control" id="usr" name="chuNhiemDeTai" value="<?php echo $dataArticleDetail[0]['hotenCNDT'] ?>">
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="pwd">Thuộc Khoa </label>
-                        <select class="form-control" name="khoaChuNhiem" id="0"
-                            onchange="FetchDepartment(this.value,this)">
+                        <select class="form-control" name="khoaChuNhiem" id="0" onchange="FetchDepartment(this.value,this)">
                             <option>----Chọn khoa----</option>
                             <?php
 
@@ -101,8 +93,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="pwd">Hệ Đào Tạo</label>
-                        <select class="form-control" name="heCNDT" id="he"
-                            onchange="FetchDataHeDaoTao(this.value,$('#0').val(),this)">
+                        <select class="form-control" name="heCNDT" id="he" onchange="FetchDataHeDaoTao(this.value,$('#0').val(),this)">
                             <option>----Chọn hệ đào tạo----</option>
                             <?php
                             $lop = $dataArticleDetail[0]['lop'];
@@ -157,21 +148,19 @@
             if ($numberMB > 0) {
                 for ($i = 1; $i <= $numberMB; $i++) {
             ?>
-            <label for=""> Thành Viên</label>
-            <div class="row  p-2 border border-secondary">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for=""> Họ Tên</label>
-                        <input type="text" spellcheck="false" name="name_MB<?php echo $i ?>" class="form-control"
-                            required id="" value="<?php echo $member[$i - 1]['hoTen'] ?>">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for=""> Khoa</label>
-                        <select name="khoa_MB<?php echo $i ?>" id="<?php echo $i ?>" class="form-control"
-                            onchange="FetchDepartment(this.value,this)">
-                            <?php
+                    <label for=""> Thành Viên</label>
+                    <div class="row  p-2 border border-secondary">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for=""> Họ Tên</label>
+                                <input type="text" spellcheck="false" name="name_MB<?php echo $i ?>" class="form-control" required id="" value="<?php echo $member[$i - 1]['hoTen'] ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for=""> Khoa</label>
+                                <select name="khoa_MB<?php echo $i ?>" id="<?php echo $i ?>" class="form-control" onchange="FetchDepartment(this.value,this)">
+                                    <?php
                                     foreach ($dataKhoa as $item) {
                                         if ($item['maKhoa'] == $member[$i - 1]['maKhoa']) {
                                             echo '<option value="' . $item['maKhoa'] . '" selected>' . $item['tenKhoa'] . '</option>';
@@ -179,24 +168,23 @@
                                             echo '<option value="' . $item['maKhoa'] . '">' . $item['tenKhoa'] . '</option>';
                                     }
                                     ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for=""> Hệ Đào Tạo</label>
-                        <select name="he_MB<?php echo $i ?>" id="<?php echo $i ?>" class="form-control"
-                            onchange="FetchDataHeDaoTao(this.value,$('#<?php echo $i ?>').val(),this)">
-                            <option value="Đại học chính quy">Đại học chính quy</option>
-                            <option value="Cao đẳng chính quy">Cao đẳng chính quy</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for=""> Lớp</label>
-                        <select name="lop_MB<?php echo $i ?>" id="lop<?php echo $i ?>" class="form-control">
-                            <?php
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for=""> Hệ Đào Tạo</label>
+                                <select name="he_MB<?php echo $i ?>" id="<?php echo $i ?>" class="form-control" onchange="FetchDataHeDaoTao(this.value,$('#<?php echo $i ?>').val(),this)">
+                                    <option value="Đại học chính quy">Đại học chính quy</option>
+                                    <option value="Cao đẳng chính quy">Cao đẳng chính quy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for=""> Lớp</label>
+                                <select name="lop_MB<?php echo $i ?>" id="lop<?php echo $i ?>" class="form-control">
+                                    <?php
                                     foreach ($dataClassMember[$i - 1] as $item) {
                                         if ($item['maLop'] == $member[$i - 1]['lop']) {
                                             echo '<option value="' . $item['maLop'] . '" selected>' . $item['maLop'] . '</option>';
@@ -204,34 +192,32 @@
                                             echo '<option value="' . $item['maLop'] . '">' . $item['maLop'] . '</option>';
                                     }
                                     ?>
-                        </select>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for=""> Niên khóa</label>
+                                <select class="form-control" name="nienKhoa_MB<?php echo $i ?>">
+                                    <option value="2019-2023">2019-2023</option>
+                                    <option value="2020-2024">2020-2024</option>
+                                    <option value="2021-2025">2021-2025</option>
+                                    <option value="2022-2026">2022-2026</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for=""> Niên khóa</label>
-                        <select class="form-control" name="nienKhoa_MB<?php echo $i ?>">
-                            <option value="2019-2023">2019-2023</option>
-                            <option value="2020-2024">2020-2024</option>
-                            <option value="2021-2025">2021-2025</option>
-                            <option value="2022-2026">2022-2026</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
             <?php
                 }
             }
             ?>
             <div class="form-group">
                 <label for="">Mục Tiêu Nghiên Cứu</label>
-                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="5"
-                    spellcheck="false"> <?php echo $dataArticleDetail[0]['mucTieuNghienCuu'] ?></textarea>
+                <textarea required="true" name="mucTieuNghienCuu" class="form-control" id="" cols="30" rows="5" spellcheck="false"> <?php echo $dataArticleDetail[0]['mucTieuNghienCuu'] ?></textarea>
             </div>
             <div class="form-group">
                 <label for="">Sản Phẩm Nghiên Cứu</label>
-                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu"
-                    value="<?php echo $dataArticleDetail[0]['sanPhamNghienCuu']; ?>">
+                <input type="text" class="form-control" id="address" required="true" name="SPNghienCuu" value="<?php echo $dataArticleDetail[0]['sanPhamNghienCuu']; ?>">
             </div>
             <div class="form-group">
                 <label for="">Xếp loại đề tài</label>
@@ -251,12 +237,11 @@
             </div>
             <div class="form-group">
                 <label for="">Kinh phí</label>
-                <input type="text" name="kinhPhi" id="" class="form-control" required
-                    value="<?php echo number_format($dataArticleDetail[0]['kinhPhi']); ?>">
+                <input type="text" name="kinhPhi" id="" class="form-control" required value="<?php echo number_format($dataArticleDetail[0]['kinhPhi']); ?>">
             </div>
             <div class="form-group">
                 <label for="">File Báo Cáo </label>
-                <input type="file" id="address" name="fileUploads" style="margin-left: 59px;"> <span>
+                <input type="file" id="address" name="fileUploads[]" style="margin-left: 59px;"> <span>
                     <?php echo $dataArticleDetail[0]['fileBaoCao'] ?></span>
             </div>
             <input type="hidden" name="file_Old" value="<?php echo $dataArticleDetail[0]['fileBaoCao']; ?>">

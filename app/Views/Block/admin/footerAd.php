@@ -40,7 +40,6 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo _WEB_ROOT_ ?>/public/js/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="<?php echo _WEB_ROOT_ ?>/public/js/<?php echo $data["js"] ?>"></script>
-
 <script>
 $(document).ready(function() {
     $("#content").summernote({

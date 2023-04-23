@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="">File đính kèm</label>
-                <input type="file" name="fileUploads" required>
+                <input type="file" name="fileUploads[]" required multiple>
             </div>
             <div class="button_feature d-flex justify-content-between">
                 <button type="submit" class="btn btn-success px-4 py-2" name="addDocument"> THÊM </button>

@@ -85,4 +85,14 @@ class DB
         $file = $fileChangeTitle . '-' . uniqid() . '.' . $extension;
         return $file;
     }
+    function getFileNameMulti($index)
+    {
+        $extension = pathinfo($_FILES['fileUploads']['name'][$index], PATHINFO_EXTENSION);
+        $elementFileAll = explode('.', $_FILES['fileUploads']['name'][$index]);
+        $elementHeader = array_slice($elementFileAll, 0, -1);
+        $fileNew = implode('', $elementHeader);
+        $fileChangeTitle = $this->changeTitle($fileNew);
+        $file = $fileChangeTitle . '-' . uniqid() . '.' . $extension;
+        return $file;
+    }
 }

@@ -3,6 +3,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
-php_value upload_max_filesize 12M
-php_value post_max_size 13M
-php_value memory_limit 15M
+php_value upload_max_filesize 80M
+php_value post_max_size 80M
+php_value memory_limit 80M
